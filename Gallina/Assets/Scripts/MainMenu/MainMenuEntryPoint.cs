@@ -9,8 +9,11 @@ public class MainMenuEntryPoint : MonoBehaviour
     private UIMainMenuRoot sceneRoot;
     private ViewContainer viewContainer;
 
+    private BankPresenter bankPresenter;
     private ParticleEffectPresenter particleEffectPresenter;
     private SoundPresenter soundPresenter;
+
+    private BookPagesPresenter bookPagesPresenter;
 
     public void Run(UIRootView uIRootView)
     {
@@ -29,6 +32,10 @@ public class MainMenuEntryPoint : MonoBehaviour
             (new ParticleEffectModel(),
             viewContainer.GetView<ParticleEffectView>());
 
+        bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
+
+        bookPagesPresenter = new BookPagesPresenter(new BookPagesModel(), viewContainer.GetView<BookPagesView>());
+
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
 
@@ -38,6 +45,8 @@ public class MainMenuEntryPoint : MonoBehaviour
         soundPresenter.Initialize();
         particleEffectPresenter.Initialize();
         sceneRoot.Initialize();
+        bankPresenter.Initialize();
+        bookPagesPresenter.Initialize();
     }
 
     private void ActivateEvents()
@@ -70,8 +79,11 @@ public class MainMenuEntryPoint : MonoBehaviour
     {
         DeactivateEvents();
 
+        soundPresenter?.Dispose();
         sceneRoot?.Dispose();
         particleEffectPresenter?.Dispose();
+        bankPresenter?.Dispose();
+        bookPagesPresenter?.Dispose();
     }
 
     private void OnDestroy()
@@ -81,14 +93,10 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     #region Input actions
 
-    public event Action OnGoToGame;
-
-
-    private void HandleGoToSoloGame()
+    public event Action OnGoToGame
     {
-        Deactivate();
-        soundPresenter.PlayOneShot("ClickEnter");
-        OnGoToGame?.Invoke();
+        add { sceneRoot.OnGoToGame += value; }
+        remove { sceneRoot.OnGoToGame -= value; }
     }
 
     #endregion

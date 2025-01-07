@@ -91,7 +91,7 @@ public class GameEntryPoint
         yield return new WaitForSeconds(0.3f);
 
         yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.GAME_SOLO);
+        yield return LoadScene(Scenes.MINI_GAME);
 
         yield return new WaitForSeconds(0.1f);
 

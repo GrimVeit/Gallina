@@ -29,7 +29,7 @@ public class UIMainMenuRoot : MonoBehaviour
         shopPanel.OnClickCollectionsButton += OpenCollectionPanel;
         shopPanel.OnClickBackButton += OpenMainPanel;
 
-        collectionPanel.OnClickToBackButton += OpenMainPanel;
+        collectionPanel.OnClickToBackButton += OpenShopPanel;
 
         OpenMainPanel();
     }
@@ -41,7 +41,7 @@ public class UIMainMenuRoot : MonoBehaviour
         shopPanel.OnClickCollectionsButton -= OpenCollectionPanel;
         shopPanel.OnClickBackButton -= OpenMainPanel;
 
-        collectionPanel.OnClickToBackButton -= OpenMainPanel;
+        collectionPanel.OnClickToBackButton -= OpenShopPanel;
 
         currentPanel.DeactivatePanel();
     }

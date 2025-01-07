@@ -6,34 +6,61 @@ using UnityEngine.UI;
 
 public class UIMiniGameSceneRoot : MonoBehaviour
 {
-    public event Action GoToMainMenu;
-
-    [SerializeField] private MiniGamePanel_MiniGameScene miniGamePanel;
-    [SerializeField] private FailGamePanel_MiniGameScene failGamePanel;
+    [SerializeField] private MiniGamePanel_MiniGameScene mainPanel;
+    [SerializeField] private HeaderPanel_MiniGameScene headerPanel;
+    [SerializeField] private FooterPanel_MiniGameScene footerPanel;
 
     private Panel currentPanel;
 
     public void Initialize()
     {
-
-        miniGamePanel.Initialize();
-        failGamePanel.Initialize();
-
-        miniGamePanel.GoToMainMenu += HandlerGoToMainMenu;
-        failGamePanel.GoToMainMenu += HandlerGoToMainMenu;
-
-        currentPanel = miniGamePanel;
-        currentPanel.ActivatePanel();
+        mainPanel.Initialize();
     }
 
     public void Dispose()
     {
-        miniGamePanel.GoToMainMenu -= HandlerGoToMainMenu;
-        failGamePanel.GoToMainMenu -= HandlerGoToMainMenu;
-
-        miniGamePanel.Dispose();
-        failGamePanel.Dispose();
+        mainPanel.Dispose();
     }
+
+    public void Activate()
+    {
+        OpenMainPanel();
+        OpenFooterPanel();
+        OpenHeaderPanel();
+    }
+
+    public void Deactivate()
+    {
+        CloseOtherPanel(currentPanel);
+    }
+
+
+    public void OpenMainPanel()
+    {
+        OpenPanel(mainPanel);
+    }
+
+    public void OpenFooterPanel()
+    {
+        OpenOtherPanel(footerPanel);
+    }
+
+    public void CloseFooterPanel()
+    {
+        CloseOtherPanel(footerPanel);
+    }
+
+    public void OpenHeaderPanel()
+    {
+        OpenOtherPanel(headerPanel);
+    }
+
+    public void CloseHeaderPanel()
+    {
+        CloseOtherPanel(headerPanel);
+    }
+
+
 
     private void OpenPanel(Panel panel)
     {
@@ -50,15 +77,20 @@ public class UIMiniGameSceneRoot : MonoBehaviour
         panel.ActivatePanel();
     }
 
-    public void OpenFailGamePanel()
+    private void CloseOtherPanel(Panel panel)
     {
-        OpenOtherPanel(failGamePanel);
+        panel.DeactivatePanel();
     }
 
-    private void HandlerGoToMainMenu()
-    {
-        currentPanel.DeactivatePanel();
 
-        GoToMainMenu?.Invoke();
+
+    #region Input
+
+    public event Action OnGoToMainMenu
+    {
+        add { headerPanel.OnGoToMainMenu += value; }
+        remove { headerPanel.OnGoToMainMenu -= value; }
     }
+
+    #endregion
 }

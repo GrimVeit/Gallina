@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MiniGamePanel_MiniGameScene : MovePanel
+public class HeaderPanel_MiniGameScene : MovePanel
 {
-    public event Action GoToMainMenu;
+    public event Action OnGoToMainMenu;
 
     [SerializeField] private Button backButton;
 
@@ -24,6 +26,6 @@ public class MiniGamePanel_MiniGameScene : MovePanel
 
     private void HandlerGoToMainMenu()
     {
-        GoToMainMenu?.Invoke();
+        OnGoToMainMenu?.Invoke();
     }
 }
