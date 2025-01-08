@@ -38,7 +38,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
         bankPresenter.Initialize();
 
-        basketPresenter = new BasketPresenter(new BasketModel(2, 1, soundPresenter), viewContainer.GetView<BasketView_LeftRightControl>());
+        basketPresenter = new BasketPresenter(new BasketModel(3, 1, soundPresenter), viewContainer.GetView<BasketView_LeftRightControl>());
         basketPresenter.Initialize();
 
         eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(2f, 0.5f, 0.01f, soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
@@ -49,28 +49,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         globalStateMachine = new MiniGameGlobalStateMachine(sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter);
         globalStateMachine.Initialize();
-
-        ActivateEvents();
-
-        eggCatcherPresenter.StartSpawner();
-        eggCatcherPresenter.SetTimerSpawnerData(2, 0.5f, 0.01f, 1);
-    }
-
-    private void ActivateEvents()
-    {
-        eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
-        eggCatcherPresenter.OnEggWin_EggValue += scorePresenter.AddScore;
-    }
-
-    private void DeactivateEvents()
-    {
-        eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
-        eggCatcherPresenter.OnEggWin_EggValue -= scorePresenter.AddScore;
     }
 
     public void Dispose()
     {
-        DeactivateEvents();
         sceneRoot.Deactivate();
 
         sceneRoot?.Dispose();
@@ -88,6 +70,12 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     {
         add { sceneRoot.OnGoToMainMenu += value; }
         remove { sceneRoot.OnGoToMainMenu -= value; }
+    }
+
+    public event Action OnGoToRestart
+    {
+        add { sceneRoot.OnGoToRestart += value; }
+        remove { sceneRoot.OnGoToRestart -= value; }
     }
 
     #endregion

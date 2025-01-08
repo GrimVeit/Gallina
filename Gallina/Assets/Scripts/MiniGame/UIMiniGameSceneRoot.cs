@@ -9,21 +9,37 @@ public class UIMiniGameSceneRoot : MonoBehaviour
     [SerializeField] private MiniGamePanel_MiniGameScene mainPanel;
     [SerializeField] private HeaderPanel_MiniGameScene headerPanel;
     [SerializeField] private FooterPanel_MiniGameScene footerPanel;
+    [SerializeField] private WinPanel_MiniGameScene winPanel;
+    [SerializeField] private FailPanel_MiniGameScene failPanel;
 
     private Panel currentPanel;
 
     public void Initialize()
     {
         mainPanel.Initialize();
+        headerPanel.Initialize();
+        footerPanel.Initialize();
+        winPanel.Initialize();
+        failPanel.Initialize();
     }
 
     public void Dispose()
     {
         mainPanel.Dispose();
+        headerPanel.Dispose();
+        footerPanel.Dispose();
+        winPanel.Dispose();
+        failPanel.Dispose();
     }
 
     public void Activate()
     {
+        headerPanel.OnGoToMainMenu += GoToMainMenu;
+        winPanel.OnClickToButtonExit += GoToMainMenu;
+        failPanel.OnClickToButtonExit += GoToMainMenu;
+        winPanel.OnClickToButtonRestart += GoToRestart;
+        failPanel.OnClickToButtonRestart += GoToRestart;
+
         OpenMainPanel();
         OpenFooterPanel();
         OpenHeaderPanel();
@@ -31,14 +47,47 @@ public class UIMiniGameSceneRoot : MonoBehaviour
 
     public void Deactivate()
     {
+        headerPanel.OnGoToMainMenu -= GoToMainMenu;
+        winPanel.OnClickToButtonExit -= GoToMainMenu;
+        failPanel.OnClickToButtonExit -= GoToMainMenu;
+        winPanel.OnClickToButtonRestart -= GoToRestart;
+        failPanel.OnClickToButtonRestart -= GoToRestart;
+
         CloseOtherPanel(currentPanel);
     }
+
 
 
     public void OpenMainPanel()
     {
         OpenPanel(mainPanel);
     }
+
+
+
+    public void OpenWinPanel()
+    {
+        OpenOtherPanel(winPanel);
+    }
+
+    public void CloseWinPanel()
+    {
+        CloseOtherPanel(winPanel);
+    }
+
+
+
+    public void OpenFailPanel()
+    {
+        OpenOtherPanel(failPanel);
+    }
+
+    public void CloseFailPanel()
+    {
+        CloseOtherPanel(failPanel);
+    }
+
+
 
     public void OpenFooterPanel()
     {
@@ -49,6 +98,8 @@ public class UIMiniGameSceneRoot : MonoBehaviour
     {
         CloseOtherPanel(footerPanel);
     }
+
+
 
     public void OpenHeaderPanel()
     {
@@ -86,10 +137,17 @@ public class UIMiniGameSceneRoot : MonoBehaviour
 
     #region Input
 
-    public event Action OnGoToMainMenu
+    public event Action OnGoToMainMenu;
+    public event Action OnGoToRestart;
+
+    private void GoToMainMenu()
     {
-        add { headerPanel.OnGoToMainMenu += value; }
-        remove { headerPanel.OnGoToMainMenu -= value; }
+        OnGoToMainMenu?.Invoke();
+    }
+
+    private void GoToRestart()
+    {
+        OnGoToRestart?.Invoke();
     }
 
     #endregion

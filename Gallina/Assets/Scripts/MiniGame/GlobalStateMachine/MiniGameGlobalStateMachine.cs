@@ -15,9 +15,9 @@ public class MiniGameGlobalStateMachine : IMiniGameGlobalMachineControl
         EggCatcherPresenter eggCatcherPresenter, 
         ScorePresenter scorePresenter)
     {
-        states[typeof(IGlobalState)] = new MiniGame_GlobalState(this, sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter);
-        states[typeof(IGlobalState)] = new WinMiniGame_GlobalState();
-        states[typeof(IGlobalState)] = new FailMiniGame_GlobalState();
+        states[typeof(MiniGame_GlobalState)] = new MiniGame_GlobalState(this, sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter);
+        states[typeof(WinMiniGame_GlobalState)] = new WinMiniGame_GlobalState(this, sceneRoot);
+        states[typeof(FailMiniGame_GlobalState)] = new FailMiniGame_GlobalState(this, sceneRoot);
     }
 
     public void Initialize()

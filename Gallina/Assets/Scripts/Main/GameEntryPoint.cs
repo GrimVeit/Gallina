@@ -77,13 +77,13 @@ public class GameEntryPoint
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
         sceneEntryPoint.Run(rootView);
 
-        sceneEntryPoint.OnGoToGame += () => coroutines.StartCoroutine(LoadAndStartGameScene());
+        sceneEntryPoint.OnGoToGame += () => coroutines.StartCoroutine(LoadAndStartMiniGameScene());
 
         yield return rootView.HideLoadingScreen();
         Debug.Log("FFFFFFF");
     }
 
-    private IEnumerator LoadAndStartGameScene()
+    private IEnumerator LoadAndStartMiniGameScene()
     {
         rootView.SetLoadScreen(1);
         yield return rootView.ShowLoadingScreen();
@@ -99,6 +99,7 @@ public class GameEntryPoint
         sceneEntryPoint.Run(rootView);
 
         sceneEntryPoint.OnGoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
+        sceneEntryPoint.OnGoToRestart += () => coroutines.StartCoroutine(LoadAndStartMiniGameScene());
 
 
         yield return rootView.HideLoadingScreen();

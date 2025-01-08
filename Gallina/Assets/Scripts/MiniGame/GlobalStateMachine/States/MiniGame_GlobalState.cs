@@ -23,7 +23,7 @@ public class MiniGame_GlobalState : IGlobalState
 
     public void EnterState()
     {
-        scorePresenter.OnGameFailed += ChangeStateToLose;
+        scorePresenter.OnGameFailed += ChangeStateToFail;
         scorePresenter.OnGameWinned += ChangeStateToWin;
         eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggWin_EggValue += scorePresenter.AddScore;
@@ -39,7 +39,7 @@ public class MiniGame_GlobalState : IGlobalState
 
     public void ExitState()
     {
-        scorePresenter.OnGameFailed -= ChangeStateToLose;
+        scorePresenter.OnGameFailed -= ChangeStateToFail;
         scorePresenter.OnGameWinned -= ChangeStateToWin;
         eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggWin_EggValue -= scorePresenter.AddScore;
@@ -57,8 +57,8 @@ public class MiniGame_GlobalState : IGlobalState
         machineControl.SetState(machineControl.GetState<WinMiniGame_GlobalState>());
     }
     
-    private void ChangeStateToLose()
+    private void ChangeStateToFail()
     {
-        machineControl.SetState(machineControl.GetState<WinMiniGame_GlobalState>());
+        machineControl.SetState(machineControl.GetState<FailMiniGame_GlobalState>());
     }
 }
