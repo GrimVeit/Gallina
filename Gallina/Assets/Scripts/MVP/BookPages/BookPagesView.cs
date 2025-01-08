@@ -6,13 +6,26 @@ using UnityEngine.UI;
 
 public class BookPagesView : View
 {
+    [SerializeField] private int index;
+
     [SerializeField] private Button buttonOpen;
     [SerializeField] private Button buttonClose;
 
-    [SerializeField] private List<BookPage> bookPages = new List<BookPage>();
+    [SerializeField] private List<BookPage> openPages = new List<BookPage>();
+    [SerializeField] private Transform parentClosePages;
+    [SerializeField] private Transform parentOpenPages;
+
+    [SerializeField] private List<BookPage> closePages = new List<BookPage>();
+
+    private BookPage currentOpenPage;
+
+    private IEnumerator enumerator;
 
     public void Initialize()
     {
+
+        currentOpenPage = openPages[0];
+
         buttonOpen.onClick.AddListener(HandleClickToOpenButton);
         buttonClose.onClick.AddListener(HandleClickToCloseButton);
     }
@@ -23,23 +36,35 @@ public class BookPagesView : View
         buttonClose.onClick.RemoveListener(HandleClickToCloseButton);
     }
 
-    private IEnumerator OpenPages()
+    private IEnumerator OpenPage(int index)
     {
-        for (int i = 0; i < bookPages.Count; i++)
-        {
-            bookPages[i].OpenPage();
+        int currentIndex = currentOpenPage.Index;
 
-            yield return new WaitForSeconds(1f);
+        if(currentIndex < index)
+        {
+            for(int i = currentIndex;  i <= index; i++)
+            {
+                currentOpenPage = openPages[i];
+                currentOpenPage.ClosePage();
+                currentOpenPage.transform.SetParent(parentClosePages);
+
+                yield return new WaitForSeconds(0.4f);
+            }
+            Debug.Log(currentOpenPage.Index);
+            yield break;
         }
-    }
-
-    private IEnumerator ClosePages()
-    {
-        for (int i = 0; i < bookPages.Count; i++)
+        else if(currentIndex > index)
         {
-            bookPages[i].ClosePage();
+            for (int i = currentIndex; i >= index; i--)
+            {
+                currentOpenPage = openPages[i];
+                currentOpenPage.OpenPage();
+                currentOpenPage.transform.SetParent(parentOpenPages);
 
-            yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.4f);
+            }
+            Debug.Log(currentOpenPage.Index);
+            yield break;
         }
     }
 
@@ -50,14 +75,22 @@ public class BookPagesView : View
 
     private void HandleClickToOpenButton()
     {
-        Coroutines.Start(OpenPages());
+        if(enumerator != null)
+            Coroutines.Stop(enumerator);
+
+        enumerator = OpenPage(index);
+        Coroutines.Start(enumerator);
         OnClickToOpenButton?.Invoke();
     }
 
     private void HandleClickToCloseButton()
     {
-        Coroutines.Start(ClosePages());
-        OnClickToCloseButton?.Invoke();
+        //if (enumerator != null)
+        //    Coroutines.Stop(enumerator);
+
+        //enumerator = OpenPage(1);
+        //Coroutines.Start(enumerator);
+        //OnClickToCloseButton?.Invoke();
     }
 
     #endregion

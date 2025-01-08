@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
 public class BookPage : MonoBehaviour
 {
+    public int Index => index;
+
+    [SerializeField] private int index;
     [SerializeField] private float duration;
     [SerializeField] private Transform transformPage;
 
@@ -13,17 +14,17 @@ public class BookPage : MonoBehaviour
 
     private Tween tweenRotate;
 
-    public void OpenPage()
-    {
-        tweenRotate?.Kill();
-
-        tweenRotate = transformPage.DORotate(vectorRotateOpen, duration).SetEase(Ease.InOutCubic);
-    }
-
     public void ClosePage()
     {
         tweenRotate?.Kill();
 
         tweenRotate = transformPage.DORotate(vectorRotateClose, duration).SetEase(Ease.InOutCubic);
+    }
+
+    public void OpenPage()
+    {
+        tweenRotate?.Kill();
+
+        tweenRotate = transformPage.DORotate(vectorRotateOpen, duration).SetEase(Ease.InOutCubic);
     }
 }
