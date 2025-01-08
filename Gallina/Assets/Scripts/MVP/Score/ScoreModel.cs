@@ -3,68 +3,80 @@ using UnityEngine;
 
 public class ScoreModel
 {
-    public event Action<int> OnChangeScoreForBonus;
+    public event Action OnGameWinned;
+    public event Action OnGameFailed;
 
-    public event Action<int> OnTakeResult;
-    public event Action<int> OnChangeScore_Value;
-    public event Action OnChangeScore;
 
-    private int record;
-    private int currentRecord = 0;
+    public event Action OnRemoveHealth;
+    public event Action<int> OnAddHealth;
 
+    public event Action<int> OnChangeAllCountCoins;
+    public event Action<int> OnGetCoins;
+
+    private int currentRecord;
+
+    private int currentHealth;
+
+    private IMoneyProvider moneyProvider;
     private ISoundProvider soundProvider;
-
-    private int maxScoreForBonus = 63;
-    private int currentScoreForBonus = 0;
-    private bool isGetBonus = false;
-
-    private readonly string key;
-    private bool isSave;
-
-    public ScoreModel(string key,  ISoundProvider soundProvider, bool isSave)
+     
+    public ScoreModel(IMoneyProvider moneyProvider, ISoundProvider soundProvider)
     {
-        this.key = key;
+        this.moneyProvider = moneyProvider;
         this.soundProvider = soundProvider;
-        this.isSave = isSave;
     }
 
     public void Initialize()
     {
-        record = PlayerPrefs.GetInt(key, 0);
+        currentHealth = 5;
+        currentRecord = 0;
+        OnAddHealth?.Invoke(currentHealth);
     }
 
 
     public void Dispose()
     {
-        if (currentRecord > record && isSave)
+
+    }
+
+
+    public void RemoveHealth()
+    {
+        currentHealth -= 1;
+
+        if (currentHealth > 0)
         {
-            record = currentRecord;
-            PlayerPrefs.SetInt(PlayerPrefsKeys.GAME_RECORD, record);
+            Debug.Log("ÃËÌÛÒ ÊËÁÍ‡");
+            OnRemoveHealth?.Invoke();
+            //soundProvider.PlayOneShot("FallEgg");
+            return;
+        }
+
+        if (currentHealth == 0)
+        {
+            Debug.Log("œÓË„˚¯");
+            OnRemoveHealth?.Invoke();
+            OnGameFailed?.Invoke();
+            //soundProvider.PlayOneShot("Success");
+            //particleEffectProvider.Play("Win");
         }
     }
     
-    public void AddScore(int score, bool isNumbersOnly)
+    public void AddScore(EggValue eggValue)
     {
-        if (isNumbersOnly)
+        currentRecord += 1;
+        AddCoins(1);
+
+        if(currentRecord == 30)
         {
-            currentScoreForBonus += score;
-            OnChangeScoreForBonus?.Invoke(currentScoreForBonus);
-
-            if(currentScoreForBonus >= maxScoreForBonus && !isGetBonus)
-            {
-                Debug.Log("¡ŒÕ”— œŒÀ”◊≈Õ");
-                currentRecord += 35;
-                isGetBonus = true;
-            }
+            OnGameWinned?.Invoke();
         }
-
-        currentRecord += score;
-        OnChangeScore?.Invoke();
-        OnChangeScore_Value?.Invoke(currentRecord);
     }
 
-    public void TakeResult()
+    private void AddCoins(int coins)
     {
-        OnTakeResult?.Invoke(currentRecord);
+        moneyProvider.SendMoney(coins);
+        OnGetCoins?.Invoke(coins);
+
     }
 }

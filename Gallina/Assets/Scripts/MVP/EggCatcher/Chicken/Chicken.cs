@@ -20,7 +20,7 @@ public abstract class Chicken : MonoBehaviour
 
     public virtual void Initialize()
     {
-        chickenImage.sprite = chickenUnspawn;
+        //chickenImage.sprite = chickenUnspawn;
     }
 
     public virtual void Dispose()

@@ -15,11 +15,9 @@ public class GameFriendSceneEntryPoint : MonoBehaviour
 
     private DiceRollPresenter diceRollPresenter_Me;
     private YatzyCombinationPresenter yatzyCombinationPresenter_Me;
-    private ScorePresenter scorePresenter_Me;
 
     private DiceRollPresenter diceRollPresenter_Bot;
     private YatzyCombinationPresenter yatzyCombinationPresenter_Bot;
-    private ScorePresenter scorePresenter_Bot;
 
     private PlayerPresenter playerFirstPresenter;
     private PlayerPresenter playerSecondPresenter;
@@ -77,11 +75,6 @@ public class GameFriendSceneEntryPoint : MonoBehaviour
             viewContainer.GetView<YatzyCombinationView>("Me"));
         yatzyCombinationPresenter_Me.Initialize();
 
-        scorePresenter_Me = new ScorePresenter
-            (new ScoreModel("BOT", soundPresenter, false),
-            viewContainer.GetView<ScoreView>("Me"));
-        scorePresenter_Me.Initialize();
-
 
 
 
@@ -94,11 +87,6 @@ public class GameFriendSceneEntryPoint : MonoBehaviour
             (new YatzyCombinationModel(13, soundPresenter),
             viewContainer.GetView<YatzyCombinationView>("Bot"));
         yatzyCombinationPresenter_Bot.Initialize();
-
-        scorePresenter_Bot = new ScorePresenter
-            (new ScoreModel("BOT", soundPresenter, false),
-            viewContainer.GetView<ScoreView>("Bot"));
-        scorePresenter_Bot.Initialize();
 
         yatzyEffectPresenter_Me = new YatzyEffectPresenter(new YatzyEffectModel_First(particleEffectPresenter));
         yatzyEffectPresenter_Bot = new YatzyEffectPresenter(new YatzyEffectModel_Second(particleEffectPresenter));
@@ -130,7 +118,6 @@ public class GameFriendSceneEntryPoint : MonoBehaviour
         yatzyCombinationPresenter_Me.OnFreezeYatzyCombination += diceRollPresenter_Me.Reload;
         yatzyCombinationPresenter_Me.OnFreezeYatzyCombination += yatzyCombinationPresenter_Me.Deactivate;
         yatzyCombinationPresenter_Me.OnFreezeYatzyCombination += diceRollPresenter_Me.DeactivateFreezeToggle;
-        yatzyCombinationPresenter_Me.OnGetScore += scorePresenter_Me.AddScore;
 
 
 
@@ -145,15 +132,8 @@ public class GameFriendSceneEntryPoint : MonoBehaviour
         yatzyCombinationPresenter_Bot.OnFreezeYatzyCombination += diceRollPresenter_Bot.Reload;
         yatzyCombinationPresenter_Bot.OnFreezeYatzyCombination += yatzyCombinationPresenter_Bot.Deactivate;
         yatzyCombinationPresenter_Bot.OnFreezeYatzyCombination += diceRollPresenter_Bot.DeactivateFreezeToggle;
-        yatzyCombinationPresenter_Bot.OnGetScore += scorePresenter_Bot.AddScore;
 
 
-
-        yatzyCombinationPresenter_Me.OnFinishGame += scorePresenter_Me.TakeResult;
-        yatzyCombinationPresenter_Bot.OnFinishGame += scorePresenter_Bot.TakeResult;
-
-        scorePresenter_Me.OnTakeResult += gameSessionPresenter.SetScoreResult;
-        scorePresenter_Bot.OnTakeResult += gameSessionPresenter.SetScoreResult;
 
         yatzyCombinationPresenter_Me.OnSelectCombination_Index += yatzyEffectPresenter_Me.SetYatzyCombinationIndex;
         yatzyCombinationPresenter_Bot.OnSelectCombination_Index += yatzyEffectPresenter_Bot.SetYatzyCombinationIndex;
@@ -176,7 +156,6 @@ public class GameFriendSceneEntryPoint : MonoBehaviour
         yatzyCombinationPresenter_Me.OnFreezeYatzyCombination -= diceRollPresenter_Me.Reload;
         yatzyCombinationPresenter_Me.OnFreezeYatzyCombination -= yatzyCombinationPresenter_Me.Deactivate;
         yatzyCombinationPresenter_Me.OnFreezeYatzyCombination -= diceRollPresenter_Me.DeactivateFreezeToggle;
-        yatzyCombinationPresenter_Me.OnGetScore -= scorePresenter_Me.AddScore;
 
 
 
@@ -191,15 +170,7 @@ public class GameFriendSceneEntryPoint : MonoBehaviour
         yatzyCombinationPresenter_Bot.OnFreezeYatzyCombination -= diceRollPresenter_Bot.Reload;
         yatzyCombinationPresenter_Bot.OnFreezeYatzyCombination -= yatzyCombinationPresenter_Bot.Deactivate;
         yatzyCombinationPresenter_Bot.OnFreezeYatzyCombination -= diceRollPresenter_Bot.DeactivateFreezeToggle;
-        yatzyCombinationPresenter_Bot.OnGetScore -= scorePresenter_Bot.AddScore;
 
-
-
-        yatzyCombinationPresenter_Me.OnFinishGame -= scorePresenter_Me.TakeResult;
-        yatzyCombinationPresenter_Bot.OnFinishGame -= scorePresenter_Bot.TakeResult;
-
-        scorePresenter_Me.OnTakeResult -= gameSessionPresenter.SetScoreResult;
-        scorePresenter_Bot.OnTakeResult -= gameSessionPresenter.SetScoreResult;
 
         yatzyCombinationPresenter_Me.OnSelectCombination_Index -= yatzyEffectPresenter_Me.SetYatzyCombinationIndex;
         yatzyCombinationPresenter_Bot.OnSelectCombination_Index -= yatzyEffectPresenter_Bot.SetYatzyCombinationIndex;
@@ -282,7 +253,6 @@ public class GameFriendSceneEntryPoint : MonoBehaviour
 
         diceRollPresenter_Me?.Dispose();
         yatzyCombinationPresenter_Me?.Dispose();
-        scorePresenter_Me?.Dispose();
     }
 
     private void OnDestroy()

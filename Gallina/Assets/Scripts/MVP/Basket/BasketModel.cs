@@ -8,7 +8,7 @@ public class BasketModel : IBasketModel
 {
     public event Action<int> OnMoveIndex;
 
-    private bool isActive = true;
+    private bool isActive = false;
 
     private ISoundProvider soundProvider;
 

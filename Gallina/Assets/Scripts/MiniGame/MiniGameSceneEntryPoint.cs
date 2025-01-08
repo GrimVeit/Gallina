@@ -14,6 +14,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private BankPresenter bankPresenter;
 
     private BasketPresenter basketPresenter;
+    private EggCatcherPresenter eggCatcherPresenter;
+    private ScorePresenter scorePresenter;
+
+    private MiniGameGlobalStateMachine globalStateMachine;
 
     public void Run(UIRootView uIRootView)
     {
@@ -37,17 +41,31 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         basketPresenter = new BasketPresenter(new BasketModel(2, 1, soundPresenter), viewContainer.GetView<BasketView_LeftRightControl>());
         basketPresenter.Initialize();
 
+        eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(2f, 0.5f, 0.01f, soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
+        eggCatcherPresenter.Initialize();
+
+        scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, soundPresenter), viewContainer.GetView<ScoreView>());
+        scorePresenter.Initialize();
+
+        globalStateMachine = new MiniGameGlobalStateMachine(sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter);
+        globalStateMachine.Initialize();
+
         ActivateEvents();
+
+        eggCatcherPresenter.StartSpawner();
+        eggCatcherPresenter.SetTimerSpawnerData(2, 0.5f, 0.01f, 1);
     }
 
     private void ActivateEvents()
     {
-
+        eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
+        eggCatcherPresenter.OnEggWin_EggValue += scorePresenter.AddScore;
     }
 
     private void DeactivateEvents()
     {
-
+        eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
+        eggCatcherPresenter.OnEggWin_EggValue -= scorePresenter.AddScore;
     }
 
     public void Dispose()
@@ -60,6 +78,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         bankPresenter?.Dispose();
         basketPresenter?.Dispose();
         particleEffectPresenter?.Dispose();
+        eggCatcherPresenter?.Dispose();
+        scorePresenter?.Dispose();
     }
 
     #region Input

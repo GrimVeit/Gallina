@@ -61,7 +61,7 @@ public class EggCatcherModel
     {
         if (!isActive) return;
 
-        soundProvider.PlayOneShot("Pop");
+        //soundProvider.PlayOneShot("Pop");
 
         OnEggWin?.Invoke();
         OnEggWin_EggValue?.Invoke(eggValues.EggValue);
@@ -71,7 +71,7 @@ public class EggCatcherModel
     {
         if (!isActive) return;
 
-        soundProvider.PlayOneShot("FallEgg");
+        //soundProvider.PlayOneShot("FallEgg");
 
         OnEggDown?.Invoke();
         OnEggDown_Position?.Invoke(posDown);
@@ -80,7 +80,7 @@ public class EggCatcherModel
 
     public void EggJump()
     {
-        soundProvider.PlayOneShot("Jump");
+        //soundProvider.PlayOneShot("Jump");
     }
 
     #region Spawner

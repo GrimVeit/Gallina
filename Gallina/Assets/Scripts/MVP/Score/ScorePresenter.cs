@@ -29,34 +29,44 @@ public class ScorePresenter
 
     private void ActivateEvents()
     {
-        scoreModel.OnChangeScoreForBonus += scoreView.DisplayScoreBonus;
-        scoreModel.OnChangeScore_Value += scoreView.DisplayScore;
-        scoreModel.OnChangeScore += scoreView.ShakeDisplay;
+        scoreModel.OnAddHealth += scoreView.AddHealth;
+        scoreModel.OnRemoveHealth += scoreView.RemoveHealth;
+
+        scoreModel.OnChangeAllCountCoins += scoreView.DisplayCoins;
+        scoreModel.OnGetCoins += scoreView.DisplayWin;
     }
 
     private void DeactivateEvents()
     {
-        scoreModel.OnChangeScoreForBonus -= scoreView.DisplayScoreBonus;
-        scoreModel.OnChangeScore_Value -= scoreView.DisplayScore;
-        scoreModel.OnChangeScore -= scoreView.ShakeDisplay;
+        scoreModel.OnAddHealth -= scoreView.AddHealth;
+        scoreModel.OnRemoveHealth -= scoreView.RemoveHealth;
+
+        scoreModel.OnChangeAllCountCoins -= scoreView.DisplayCoins;
+        scoreModel.OnGetCoins -= scoreView.DisplayWin;
     }
 
     #region Input
 
-    public event Action<int> OnTakeResult
+    public event Action OnGameWinned
     {
-        add { scoreModel.OnTakeResult += value; }
-        remove { scoreModel.OnTakeResult -= value; }
+        add { scoreModel.OnGameWinned += value; }
+        remove { scoreModel.OnGameWinned -= value; }
     }
 
-    public void AddScore(int score, bool isNumbersOnly)
+    public event Action OnGameFailed
     {
-        scoreModel.AddScore(score, isNumbersOnly);
+        add { scoreModel.OnGameFailed += value; }
+        remove { scoreModel.OnGameFailed -= value; }
     }
 
-    public void TakeResult()
+    public void AddScore(EggValue eggValue)
     {
-        scoreModel.TakeResult();
+        scoreModel.AddScore(eggValue);
+    }
+
+    public void RemoveHealth()
+    {
+        scoreModel.RemoveHealth();
     }
 
     #endregion

@@ -5,6 +5,7 @@ public class UIMainMenuRoot : MonoBehaviour
 {
     [SerializeField] private MainPanel_MainMenuScene mainPanel;
     [SerializeField] private ShopPanel_MainMenuScene shopPanel;
+    [SerializeField] private OpenPackPanel_MainMenuScene openPackPanel;
     [SerializeField] private CollectionPanel_MainMenuScene collectionPanel;
 
     private ISoundProvider soundProvider;
@@ -19,6 +20,8 @@ public class UIMainMenuRoot : MonoBehaviour
     public void Initialize()
     {
         mainPanel.Initialize();
+        openPackPanel.Initialize();
+        shopPanel.Initialize();
         collectionPanel.Initialize();
     }
 
@@ -49,6 +52,8 @@ public class UIMainMenuRoot : MonoBehaviour
     public void Dispose()
     {
         mainPanel.Dispose();
+        shopPanel?.Dispose();
+        openPackPanel?.Dispose();
         collectionPanel.Dispose();
     }
 
@@ -65,6 +70,11 @@ public class UIMainMenuRoot : MonoBehaviour
     public void OpenCollectionPanel()
     {
         OpenPanel(collectionPanel);
+    }
+
+    public void OpenPackPanel()
+    {
+        OpenPanel(openPackPanel);
     }
     
 

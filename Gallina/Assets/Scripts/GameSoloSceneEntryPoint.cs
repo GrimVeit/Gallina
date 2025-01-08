@@ -15,7 +15,6 @@ public class GameSoloSceneEntryPoint : MonoBehaviour
 
     private DiceRollPresenter diceRollPresenter;
     private YatzyCombinationPresenter yatzyCombinationPresenter;
-    private ScorePresenter scorePresenter;
     private PlayerPresenter playerPresenter;
 
     private YatzyEffectPresenter yatzyEffectPresenter;
@@ -50,11 +49,6 @@ public class GameSoloSceneEntryPoint : MonoBehaviour
             viewContainer.GetView<YatzyCombinationView>());
         yatzyCombinationPresenter.Initialize();
 
-        scorePresenter = new ScorePresenter
-            (new ScoreModel(PlayerPrefsKeys.GAME_RECORD, soundPresenter, true), 
-            viewContainer.GetView<ScoreView>());
-        scorePresenter.Initialize();
-
         playerPresenter = new PlayerPresenter
             (new PlayerModel(PlayerPrefsKeys.NICKNAME, PlayerPrefsKeys.IMAGE_INDEX), 
             viewContainer.GetView<PlayerView>());
@@ -88,8 +82,6 @@ public class GameSoloSceneEntryPoint : MonoBehaviour
 
         yatzyCombinationPresenter.OnSelectCombination_Index += yatzyEffectPresenter.SetYatzyCombinationIndex;
         diceRollPresenter.OnFreezeDice_Index += diceEffectPresenter.SetDiceIndex;
-
-        yatzyCombinationPresenter.OnGetScore += scorePresenter.AddScore;
     }
 
     private void DeactivateEvents()
@@ -108,8 +100,6 @@ public class GameSoloSceneEntryPoint : MonoBehaviour
 
         yatzyCombinationPresenter.OnSelectCombination_Index -= yatzyEffectPresenter.SetYatzyCombinationIndex;
         diceRollPresenter.OnFreezeDice_Index -= diceEffectPresenter.SetDiceIndex;
-
-        yatzyCombinationPresenter.OnGetScore -= scorePresenter.AddScore;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -150,7 +140,6 @@ public class GameSoloSceneEntryPoint : MonoBehaviour
 
         diceRollPresenter?.Dispose();
         yatzyCombinationPresenter?.Dispose();
-        scorePresenter?.Dispose();
         playerPresenter?.Dispose();
     }
 
