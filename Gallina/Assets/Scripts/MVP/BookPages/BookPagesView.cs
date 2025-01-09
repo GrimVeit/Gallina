@@ -17,7 +17,7 @@ public class BookPagesView : View
 
     [SerializeField] private List<BookPage> closePages = new List<BookPage>();
 
-    private BookPage currentOpenPage;
+    [SerializeField] private BookPage currentOpenPage;
 
     private IEnumerator enumerator;
 
@@ -25,6 +25,8 @@ public class BookPagesView : View
     {
 
         currentOpenPage = openPages[0];
+        currentOpenPage.ClosePage();
+        currentOpenPage.transform.SetParent(parentClosePages);
 
         buttonOpen.onClick.AddListener(HandleClickToOpenButton);
         buttonClose.onClick.AddListener(HandleClickToCloseButton);
@@ -48,18 +50,26 @@ public class BookPagesView : View
                 currentOpenPage.ClosePage();
                 currentOpenPage.transform.SetParent(parentClosePages);
 
+                Debug.Log("Close page - " + currentOpenPage.Index);
+
                 yield return new WaitForSeconds(0.4f);
             }
             Debug.Log(currentOpenPage.Index);
             yield break;
         }
-        else if(currentIndex > index)
+        else if(currentIndex > index)//19 > 18
         {
             for (int i = currentIndex; i >= index; i--)
             {
                 currentOpenPage = openPages[i];
-                currentOpenPage.OpenPage();
-                currentOpenPage.transform.SetParent(parentOpenPages);
+
+                if(i != index)
+                {
+                    currentOpenPage.OpenPage();
+                    currentOpenPage.transform.SetParent(parentOpenPages);
+                }
+
+                Debug.Log("Open page - " + currentOpenPage.Index);
 
                 yield return new WaitForSeconds(0.4f);
             }
