@@ -8,14 +8,12 @@ public class BookPagesView : View
 {
     [SerializeField] private int index;
 
-    [SerializeField] private Button buttonOpen;
-    [SerializeField] private Button buttonClose;
+    [SerializeField] private Button buttonLeft;
+    [SerializeField] private Button buttonRight;
 
     [SerializeField] private List<BookPage> openPages = new List<BookPage>();
     [SerializeField] private Transform parentClosePages;
     [SerializeField] private Transform parentOpenPages;
-
-    [SerializeField] private List<BookPage> closePages = new List<BookPage>();
 
     [SerializeField] private BookPage currentOpenPage;
 
@@ -28,14 +26,14 @@ public class BookPagesView : View
         currentOpenPage.ClosePage();
         currentOpenPage.transform.SetParent(parentClosePages);
 
-        buttonOpen.onClick.AddListener(HandleClickToOpenButton);
-        buttonClose.onClick.AddListener(HandleClickToCloseButton);
+        buttonLeft.onClick.AddListener(HandleClickToOpenPastPage);
+        buttonRight.onClick.AddListener(HandleClickToCloseButton);
     }
 
     public void Dispose()
     {
-        buttonOpen.onClick.RemoveListener(HandleClickToOpenButton);
-        buttonClose.onClick.RemoveListener(HandleClickToCloseButton);
+        buttonLeft.onClick.RemoveListener(HandleClickToOpenPastPage);
+        buttonRight.onClick.RemoveListener(HandleClickToCloseButton);
     }
 
     private IEnumerator OpenPage(int index)
@@ -52,12 +50,12 @@ public class BookPagesView : View
 
                 Debug.Log("Close page - " + currentOpenPage.Index);
 
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.1f);
             }
             Debug.Log(currentOpenPage.Index);
             yield break;
         }
-        else if(currentIndex > index)//19 > 18
+        else if(currentIndex > index)
         {
             for (int i = currentIndex; i >= index; i--)
             {
@@ -71,36 +69,52 @@ public class BookPagesView : View
 
                 Debug.Log("Open page - " + currentOpenPage.Index);
 
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.1f);
             }
             Debug.Log(currentOpenPage.Index);
             yield break;
         }
     }
 
-    #region Input
-
-    public event Action OnClickToOpenButton;
-    public event Action OnClickToCloseButton;
-
-    private void HandleClickToOpenButton()
+    public void OpenSecondPage()
     {
-        if(enumerator != null)
+        int index = currentOpenPage.Index + 1;
+        if(index > openPages[openPages.Count - 1].Index) return;
+
+        if (enumerator != null)
             Coroutines.Stop(enumerator);
 
         enumerator = OpenPage(index);
         Coroutines.Start(enumerator);
-        OnClickToOpenButton?.Invoke();
+        OnClickToLeft?.Invoke();
+    }
+
+    public void OpenPastPage()
+    {
+        int index = currentOpenPage.Index - 1;
+        if (index < openPages[0].Index) return;
+
+        if (enumerator != null)
+            Coroutines.Stop(enumerator);
+
+        enumerator = OpenPage(index);
+        Coroutines.Start(enumerator);
+        OnClickToLeft?.Invoke();
+    }
+
+    #region Input
+
+    public event Action OnClickToLeft;
+    public event Action OnClickToRight;
+
+    private void HandleClickToOpenPastPage()
+    {
+        OpenPastPage();
     }
 
     private void HandleClickToCloseButton()
     {
-        //if (enumerator != null)
-        //    Coroutines.Stop(enumerator);
-
-        //enumerator = OpenPage(1);
-        //Coroutines.Start(enumerator);
-        //OnClickToCloseButton?.Invoke();
+        OpenSecondPage();
     }
 
     #endregion

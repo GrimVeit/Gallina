@@ -36,40 +36,14 @@ public class GameEntryPoint
 
     private void Run()
     {
-        //coroutines.StartCoroutine(LoadAndStartCountryChecker());
-
         coroutines.StartCoroutine(LoadAndStartMainMenu());
     }
-
-    //private IEnumerator LoadAndStartCountryChecker()
-    //{
-    //    yield return LoadScene(Scenes.BOOT);
-    //    yield return LoadScene(Scenes.COUNTRY_CHECKER);
-
-    //    var sceneEntryPoint = Object.FindObjectOfType<CountryCheckerSceneEntryPoint>();
-    //    sceneEntryPoint.Run(rootView);
-
-    //    sceneEntryPoint.GoToMainMenu += ()=> coroutines.StartCoroutine(LoadAndStartMainMenu());
-    //    sceneEntryPoint.GoToOther += () => coroutines.StartCoroutine(LoadAndStartOther());
-    //}
-
-    //private IEnumerator LoadAndStartOther()
-    //{
-    //    yield return LoadScene(Scenes.BOOT);
-    //    yield return LoadScene(Scenes.OTHER);
-
-    //    var sceneEntryPoint = Object.FindObjectOfType<OtherSceneEntryPoint>();
-    //    sceneEntryPoint.Run(rootView);
-
-    //    sceneEntryPoint.OnGoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-    //}
 
     private IEnumerator LoadAndStartMainMenu()
     {
         rootView.SetLoadScreen(0);
 
         yield return rootView.ShowLoadingScreen();
-        Debug.Log("TTTTTTT");
 
         yield return LoadScene(Scenes.BOOT);
         yield return LoadScene(Scenes.MAIN_MENU);
@@ -80,7 +54,6 @@ public class GameEntryPoint
         sceneEntryPoint.OnGoToGame += () => coroutines.StartCoroutine(LoadAndStartMiniGameScene());
 
         yield return rootView.HideLoadingScreen();
-        Debug.Log("FFFFFFF");
     }
 
     private IEnumerator LoadAndStartMiniGameScene()

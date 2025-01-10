@@ -13,6 +13,9 @@ public class MainMenuEntryPoint : MonoBehaviour
     private ParticleEffectPresenter particleEffectPresenter;
     private SoundPresenter soundPresenter;
 
+    private ShopItemSelectPresenter shopItemSelectPresenter;
+    private ShopPackPresenter shopPackPresenter;
+
     private BookPagesPresenter bookPagesPresenter;
 
     public void Run(UIRootView uIRootView)
@@ -36,6 +39,10 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         bookPagesPresenter = new BookPagesPresenter(new BookPagesModel(), viewContainer.GetView<BookPagesView>());
 
+        shopItemSelectPresenter = new ShopItemSelectPresenter(new ShopItemSelectModel(), viewContainer.GetView<ShopItemSelectView>());
+
+        shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter), viewContainer.GetView<ShopPackView>());
+
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
 
@@ -47,16 +54,26 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.Initialize();
         bankPresenter.Initialize();
         bookPagesPresenter.Initialize();
+        shopItemSelectPresenter.Initialize();
+        shopPackPresenter.Initialize();
     }
 
     private void ActivateEvents()
     {
         ActivateTransitionsSceneEvents();
+
+        shopItemSelectPresenter.OnSelectPack_Data += shopPackPresenter.SetData;
+        shopItemSelectPresenter.OnSelect += shopPackPresenter.ShowBuy;
+        shopItemSelectPresenter.OnUnselect += shopPackPresenter.HideBuy;
     }
 
     private void DeactivateEvents()
     {
         DeactivateTransitionsSceneEvents();
+
+        shopItemSelectPresenter.OnSelectPack_Data -= shopPackPresenter.SetData;
+        shopItemSelectPresenter.OnSelect -= shopPackPresenter.ShowBuy;
+        shopItemSelectPresenter.OnUnselect -= shopPackPresenter.HideBuy;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -84,6 +101,8 @@ public class MainMenuEntryPoint : MonoBehaviour
         particleEffectPresenter?.Dispose();
         bankPresenter?.Dispose();
         bookPagesPresenter?.Dispose();
+        shopItemSelectPresenter?.Dispose();
+        shopPackPresenter?.Dispose();
     }
 
     private void OnDestroy()

@@ -18,12 +18,12 @@ public class PointAnimationView_BabyChicken : View, IPointAnimationView
 
     public void PlayAnimation()
     {
-
+        Debug.Log("None");
     }
 
     public void PlayAnimation(Vector3 vector)
     {
-        
+        Debug.Log("Play test");
     }
 
     public void PlayAnimation(EggValue eggValue, Vector3 vector)

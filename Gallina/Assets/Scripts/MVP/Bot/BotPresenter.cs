@@ -20,6 +20,9 @@ public class BotPresenter
         ActivateEvents();
 
         botStateMachine.Initialize();
+
+        botModel.Initialize();
+        botView.Initialize();
     }
 
     public void Dispose()
@@ -27,6 +30,9 @@ public class BotPresenter
         DeactivateEvents();
 
         botStateMachine.Dispose();
+
+        botModel?.Dispose();
+        botView?.Dispose();
     }
 
     private void ActivateEvents()

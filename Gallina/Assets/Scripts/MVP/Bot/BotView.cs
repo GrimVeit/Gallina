@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class BotView : View
 {
-    
+    public void Initialize()
+    {
+
+    }
+
+    public void Dispose()
+    {
+
+    }
 }
