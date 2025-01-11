@@ -40,12 +40,12 @@ public class ShopItemPack : MonoBehaviour, IPointerDownHandler
 [Serializable]
 public class Pack
 {
-    public List<TypeItem> Items;
+    public List<TypeCard> Items;
     public Sprite SpritePack;
     public int Coins;
 }
 
-public enum TypeItem
+public enum TypeCard
 {
     common, rare, epic, legendary, gold
 }

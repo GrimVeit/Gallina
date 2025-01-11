@@ -4,6 +4,7 @@ using UnityEngine;
 public class MainMenuEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
+    [SerializeField] private Cards cards;
     [SerializeField] private UIMainMenuRoot menuRootPrefab;
 
     private UIMainMenuRoot sceneRoot;
@@ -15,6 +16,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private ShopItemSelectPresenter shopItemSelectPresenter;
     private ShopPackPresenter shopPackPresenter;
+
+    private CardCollectionPresenter cardCollectionPresenter;
 
     private BookPagesPresenter bookPagesPresenter;
 
@@ -41,6 +44,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         shopItemSelectPresenter = new ShopItemSelectPresenter(new ShopItemSelectModel(), viewContainer.GetView<ShopItemSelectView>());
 
+        cardCollectionPresenter = new CardCollectionPresenter(new CardCollectionModel(cards), viewContainer.GetView<CardCollectionView>());
+
         shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter), viewContainer.GetView<ShopPackView>());
 
         sceneRoot.SetSoundProvider(soundPresenter);
@@ -56,6 +61,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         bookPagesPresenter.Initialize();
         shopItemSelectPresenter.Initialize();
         shopPackPresenter.Initialize();
+        cardCollectionPresenter.Initialize();
     }
 
     private void ActivateEvents()
@@ -103,6 +109,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         bookPagesPresenter?.Dispose();
         shopItemSelectPresenter?.Dispose();
         shopPackPresenter?.Dispose();
+        cardCollectionPresenter?.Dispose();
     }
 
     private void OnDestroy()

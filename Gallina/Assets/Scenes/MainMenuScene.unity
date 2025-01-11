@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: {fileID: 2002616254}
+  cards: {fileID: 11400000, guid: ab2cf128b6ab28640a1e98e90564bdd0, type: 2}
   menuRootPrefab: {fileID: 7020641842465465195, guid: ec1b6c9b49719114a879269a14250bdc, type: 3}
 --- !u!1 &1144957913
 GameObject:

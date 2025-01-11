@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2da8aa03324cbf4c93108329b76827a, type: 3}
+  m_Name: Cards
+  m_EditorClassIdentifier: 
+  cards:
+  - Number: 0
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 0812d2c50b9c7c644ac49ac12f517d4b, type: 3}
+  - Number: 1
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: f7db2b4bf3553b641a79ee907cd13ae6, type: 3}
+  - Number: 2
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: dfcec14e63d768e4dab9cfe2f7af8a8a, type: 3}
+  - Number: 3
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 0b414ba0a7977a94396520233fcf614a, type: 3}
+  - Number: 4
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 24f10e592d9537347a013f9e1bd6da94, type: 3}
+  - Number: 5
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 46d2e10a8f5792542943fc16ccb9ed3d, type: 3}
+  - Number: 6
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: b8d1c977a5d26b34cb088742480b5c51, type: 3}
+  - Number: 7
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 4cebd16225d802e44b7efc4229a8a04c, type: 3}
+  - Number: 8
+    PageNumber: 0
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 03827b87e99758d478f9129fa339e1b5, type: 3}
+  - Number: 9
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: f5e2e17270696044daaabaea1bfb8369, type: 3}
+  - Number: 10
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 1a33da1245780f2488688104f0b8e89e, type: 3}
+  - Number: 11
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 48c8f193d1ead914685c9918bf3eb938, type: 3}
+  - Number: 12
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 4f84917a568b84c449c2b2e6cc544f22, type: 3}
+  - Number: 13
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 938baa6c487eb9d409092124bd40ff58, type: 3}
+  - Number: 14
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: a401a569aec8ded4d9e4d85ee92346ed, type: 3}
+  - Number: 15
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 57e63b21e3100c14fb67952042f5acc0, type: 3}
+  - Number: 16
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: d40b5ebf5fea17341b1acbccd9ab9bf5, type: 3}
+  - Number: 17
+    PageNumber: 1
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 0354ae69ddbac2b48bf13c879bf6be63, type: 3}
