@@ -35,7 +35,7 @@ public class CardCollectionModel
         {
             cardDatas = new List<CardData>();
 
-            for (int i = 0; i < 13; i++)
+            for (int i = 0; i < 19; i++)
             {
                 cardDatas.Add(new CardData(i, false));
             }
@@ -78,6 +78,8 @@ public class CardCollectionModel
 
     public bool IsOpenCard(int id)
     {
+        Debug.Log(id);
+
         return cardDatas.FirstOrDefault(data => data.Number == id).IsOpen;
     }
 

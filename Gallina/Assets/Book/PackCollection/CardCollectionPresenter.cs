@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardCollectionPresenter
+public class CardCollectionPresenter : ICardCollection
 {
     private CardCollectionModel model;
     private CardCollectionView view;
@@ -36,4 +36,18 @@ public class CardCollectionPresenter
     {
         model.OnOpenCard -= view.OpenCard;
     }
+
+    #region Input
+
+    public bool IsOpenCard(int id)
+    {
+        return model.IsOpenCard(id);
+    }
+
+    #endregion
+}
+
+public interface ICardCollection
+{
+    public bool IsOpenCard(int id);
 }

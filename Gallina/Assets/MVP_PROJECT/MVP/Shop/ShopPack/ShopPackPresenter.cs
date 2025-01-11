@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,15 +17,21 @@ public class ShopPackPresenter
     public void Initialize()
     {
         ActivateEvents();
+
+        view.Initialize();
     }
 
     public void Dispose()
     {
         DeactivateEvents();
+
+        view.Dispose();
     }
 
     private void ActivateEvents()
     {
+        view.OnClickToBuyButton += model.BuyPack;
+
         model.OnGetData += view.SetCoins;
         model.OnShow += view.Show;
         model.OnHide += view.Hide;
@@ -32,12 +39,26 @@ public class ShopPackPresenter
 
     private void DeactivateEvents()
     {
+        view.OnClickToBuyButton -= model.BuyPack;
+
         model.OnGetData += view.SetCoins;
         model.OnShow += view.Show;
         model.OnHide += view.Hide;
     }
 
-    #region
+    #region Input
+
+    public event Action<ShopItemPack> OnBuyItemPack_Value
+    {
+        add { model.OnBuyItemPack_Value += value; }
+        remove { model.OnBuyItemPack_Value -= value; }
+    }
+
+    public event Action OnBuyItemPack
+    {
+        add { model.OnBuyItemPack += value; }
+        remove { model.OnBuyItemPack -= value; }
+    }
 
     public void ShowBuy()
     {

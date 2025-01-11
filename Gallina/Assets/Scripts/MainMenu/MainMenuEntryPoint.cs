@@ -17,6 +17,9 @@ public class MainMenuEntryPoint : MonoBehaviour
     private ShopItemSelectPresenter shopItemSelectPresenter;
     private ShopPackPresenter shopPackPresenter;
 
+    private UnpackerPackPresenter unpackerPackPresenter;
+    private UnpackerCardsPresenter unpackerCardsPresenter;
+
     private CardCollectionPresenter cardCollectionPresenter;
 
     private BookPagesPresenter bookPagesPresenter;
@@ -46,6 +49,10 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         cardCollectionPresenter = new CardCollectionPresenter(new CardCollectionModel(cards), viewContainer.GetView<CardCollectionView>());
 
+        unpackerPackPresenter = new UnpackerPackPresenter(new UnpackerPackModel(), viewContainer.GetView<UnpackerPackView>());
+
+        unpackerCardsPresenter = new UnpackerCardsPresenter(new UnpackerCardsModel(cards, cardCollectionPresenter), viewContainer.GetView<UnpackerCardsView>());
+
         shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter), viewContainer.GetView<ShopPackView>());
 
         sceneRoot.SetSoundProvider(soundPresenter);
@@ -57,11 +64,13 @@ public class MainMenuEntryPoint : MonoBehaviour
         soundPresenter.Initialize();
         particleEffectPresenter.Initialize();
         sceneRoot.Initialize();
+        cardCollectionPresenter.Initialize();
         bankPresenter.Initialize();
         bookPagesPresenter.Initialize();
         shopItemSelectPresenter.Initialize();
+        unpackerPackPresenter.Initialize();
         shopPackPresenter.Initialize();
-        cardCollectionPresenter.Initialize();
+        unpackerCardsPresenter.Initialize();
     }
 
     private void ActivateEvents()
@@ -71,6 +80,12 @@ public class MainMenuEntryPoint : MonoBehaviour
         shopItemSelectPresenter.OnSelectPack_Data += shopPackPresenter.SetData;
         shopItemSelectPresenter.OnSelect += shopPackPresenter.ShowBuy;
         shopItemSelectPresenter.OnUnselect += shopPackPresenter.HideBuy;
+
+        shopPackPresenter.OnBuyItemPack += sceneRoot.OpenPackPanel;
+        shopPackPresenter.OnBuyItemPack_Value += unpackerPackPresenter.SpawnPack;
+        shopPackPresenter.OnBuyItemPack_Value += unpackerCardsPresenter.SpawnCards;
+
+        unpackerPackPresenter.OnClosePack += unpackerCardsPresenter.ActivateCards;
     }
 
     private void DeactivateEvents()
@@ -80,6 +95,12 @@ public class MainMenuEntryPoint : MonoBehaviour
         shopItemSelectPresenter.OnSelectPack_Data -= shopPackPresenter.SetData;
         shopItemSelectPresenter.OnSelect -= shopPackPresenter.ShowBuy;
         shopItemSelectPresenter.OnUnselect -= shopPackPresenter.HideBuy;
+
+        shopPackPresenter.OnBuyItemPack -= sceneRoot.OpenPackPanel;
+        shopPackPresenter.OnBuyItemPack_Value -= unpackerPackPresenter.SpawnPack;
+        shopPackPresenter.OnBuyItemPack_Value -= unpackerCardsPresenter.SpawnCards;
+
+        unpackerPackPresenter.OnClosePack -= unpackerCardsPresenter.ActivateCards;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -110,6 +131,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         shopItemSelectPresenter?.Dispose();
         shopPackPresenter?.Dispose();
         cardCollectionPresenter?.Dispose();
+        unpackerPackPresenter?.Dispose();
     }
 
     private void OnDestroy()
