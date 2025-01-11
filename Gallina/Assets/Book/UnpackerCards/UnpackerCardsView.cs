@@ -9,25 +9,29 @@ public class UnpackerCardsView : View
     [SerializeField] private UnpackCard unpackCardPrefab;
     [SerializeField] private Transform transformParentSpawn;
     [SerializeField] private Transform transformSpawn;
-    //[SerializeField] private Transform transformLeftEnd;
-    //[SerializeField] private Transform transformRightEnd;
+    [SerializeField] private Transform transformLeftEnd;
+    [SerializeField] private Transform transformRightEnd;
 
-    //[SerializeField] private Button buttonLeft;
-    //[SerializeField] private Button buttonRight;
+    [SerializeField] private Button buttonLeft;
+    [SerializeField] private Button buttonRight;
 
     [SerializeField] private List<UnpackCard> unpackedCards;
 
-    //public void Initialize()
-    //{
-    //    buttonLeft.onClick.AddListener(MoveCardToClose_Left);
-    //    buttonRight.onClick.AddListener(MoveCardToClose_Right);
-    //}
+    private UnpackCard currentUnpackCard;
 
-    //public void Dispose()
-    //{
-    //    buttonLeft.onClick.RemoveListener(MoveCardToClose_Left);
-    //    buttonRight.onClick.RemoveListener(MoveCardToClose_Right);
-    //}
+    private bool isActive;
+
+    public void Initialize()
+    {
+        buttonLeft.onClick.AddListener(MoveCardToClose_Left);
+        buttonRight.onClick.AddListener(MoveCardToClose_Right);
+    }
+
+    public void Dispose()
+    {
+        buttonLeft.onClick.RemoveListener(MoveCardToClose_Left);
+        buttonRight.onClick.RemoveListener(MoveCardToClose_Right);
+    }
 
     public void SpawnNewCard(CardInfo cardInfo)
     {
@@ -63,15 +67,57 @@ public class UnpackerCardsView : View
     public void ActivateCards()
     {
         unpackedCards.ForEach(task => task.RotateTo(Vector3.zero, 0.2f));
+
+        currentUnpackCard = unpackedCards[unpackedCards.Count - 1];
+
+        isActive = false;
     }
 
-    //private void MoveCardToClose_Right()
-    //{
+    private void MoveCardToClose_Right()
+    {
+        if(isActive) return;
 
-    //}
+        isActive = true;
 
-    //private void MoveCardToClose_Left()
-    //{
+        currentUnpackCard?.MoveTo(transformLeftEnd.position, 0.2f, SetNextCard);
+        currentUnpackCard?.RotateTo(new Vector3(0, 0, 30), 0.15f);
+    }
 
-    //}
+    private void MoveCardToClose_Left()
+    {
+
+        if (isActive) return;
+
+        isActive = true;
+
+        currentUnpackCard?.MoveTo(transformRightEnd.position, 0.2f, SetNextCard);
+        currentUnpackCard?.RotateTo(new Vector3(0, 0, -30), 0.15f);
+    }
+
+
+    private void SetNextCard()
+    {
+        unpackedCards.Remove(currentUnpackCard);
+
+        currentUnpackCard.DeatroyCard();
+
+        if(unpackedCards.Count > 0)
+        {
+            currentUnpackCard = unpackedCards[unpackedCards.Count - 1];
+        }
+        else
+        {
+            Debug.Log("FINISH");
+            ClearCards();
+            OnAllCardsOpen?.Invoke();
+        }
+
+        isActive = false;
+    }
+
+    #region Input
+
+    public event Action OnAllCardsOpen;
+
+    #endregion
 }

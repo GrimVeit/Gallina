@@ -16,11 +16,15 @@ public class UnpackerCardsPresenter
     public void Initialize()
     {
         ActivateEvents();
+
+        view.Initialize();
     }
 
     public void Dispose()
     {
         DeactivateEvents();
+
+        view.Dispose();
     }
 
     private void ActivateEvents()
