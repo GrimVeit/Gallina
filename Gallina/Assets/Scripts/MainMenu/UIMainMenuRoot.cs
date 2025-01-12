@@ -27,24 +27,24 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void Activate()
     {
-        mainPanel.OnGoToShop += OpenShopPanel;
+        //mainPanel.OnGoToShop += OpenShopPanel;
 
-        shopPanel.OnClickCollectionsButton += OpenCollectionPanel;
-        shopPanel.OnClickBackButton += OpenMainPanel;
+        //shopPanel.OnClickCollectionsButton += OpenCollectionPanel;
+        //shopPanel.OnClickBackButton += OpenMainPanel;
 
-        collectionPanel.OnClickToBackButton += OpenShopPanel;
+        //collectionPanel.OnClickToBackButton += OpenShopPanel;
     }
 
     public void Deactivate()
     {
-        mainPanel.OnGoToShop -= OpenShopPanel;
+        //mainPanel.OnGoToShop -= OpenShopPanel;
 
-        shopPanel.OnClickCollectionsButton -= OpenCollectionPanel;
-        shopPanel.OnClickBackButton -= OpenMainPanel;
+        //shopPanel.OnClickCollectionsButton -= OpenCollectionPanel;
+        //shopPanel.OnClickBackButton -= OpenMainPanel;
 
-        collectionPanel.OnClickToBackButton -= OpenShopPanel;
+        //collectionPanel.OnClickToBackButton -= OpenShopPanel;
 
-        currentPanel.DeactivatePanel();
+        //currentPanel.DeactivatePanel();
     }
 
     public void Dispose()
@@ -101,10 +101,34 @@ public class UIMainMenuRoot : MonoBehaviour
 
     #region Input Actions
 
+    public event Action OnGoToShop
+    {
+        add { mainPanel.OnGoToShop += value; }
+        remove { mainPanel.OnGoToShop -= value; }
+    }
+
     public event Action OnGoToGame
     {
         add { shopPanel.OnClickPlayButton += value; }
         remove { shopPanel.OnClickPlayButton -= value; }
+    }
+
+    public event Action OnClickCollectionsButton
+    {
+        add { shopPanel.OnClickCollectionsButton += value; }
+        remove { shopPanel.OnClickCollectionsButton -= value; }
+    }
+
+    public event Action OnClickBackButtonFromShopPanel
+    {
+        add { shopPanel.OnClickBackButton += value; }
+        remove { shopPanel.OnClickBackButton -= value; }
+    }
+
+    public event Action OnClickBackButtonFromCollectionPanel
+    {
+        add { collectionPanel.OnClickToBackButton += value; }
+        remove {  collectionPanel.OnClickToBackButton -= value; }
     }
 
     #endregion

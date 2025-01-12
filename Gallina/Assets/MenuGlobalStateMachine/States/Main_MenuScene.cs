@@ -36,6 +36,8 @@ public class Main_MenuScene : IGlobalState
     {
         Debug.Log("Activate - MAIN STATE");
 
+        ActivateTransitions();
+
         shopItemSelectPresenter.OnSelectPack_Data += shopPackPresenter.SetData;
         shopItemSelectPresenter.OnSelect += shopPackPresenter.ShowBuy;
         shopItemSelectPresenter.OnUnselect += shopPackPresenter.HideBuy;
@@ -46,12 +48,26 @@ public class Main_MenuScene : IGlobalState
 
         unpackerCardsPresenter.OnSpawnNewCard += addCardCollectionPresenter.AddCard;
 
-        sceneRoot.OpenMainPanel();
+        sceneRoot.OpenShopPanel();
+    }
+
+    private void ActivateTransitions()
+    {
+        //sceneRoot.OnClickCollectionsButton += OpenCollectionPanel;
+        sceneRoot.OnClickBackButtonFromShopPanel += ChangeStateToHello;
+    }
+
+    private void DeactivateTransitions()
+    {
+        //sceneRoot.OnClickCollectionsButton -= OpenCollectionPanel;
+        sceneRoot.OnClickBackButtonFromShopPanel -= ChangeStateToHello;
     }
 
     public void ExitState()
     {
         Debug.Log("Deactivate - MAIN STATE");
+
+        DeactivateTransitions();
 
         shopItemSelectPresenter.OnSelectPack_Data -= shopPackPresenter.SetData;
         shopItemSelectPresenter.OnSelect -= shopPackPresenter.ShowBuy;
@@ -62,6 +78,11 @@ public class Main_MenuScene : IGlobalState
         shopPackPresenter.OnBuyItemPack -= ChangeStateToOpenPack;
 
         unpackerCardsPresenter.OnSpawnNewCard -= addCardCollectionPresenter.AddCard;
+    }
+
+    private void ChangeStateToHello()
+    {
+        globalMachineControl.SetState(globalMachineControl.GetState<Hello_MenuScene>());
     }
 
     private void ChangeStateToOpenPack()
