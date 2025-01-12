@@ -9,6 +9,7 @@ public class Main_MenuScene : IGlobalState
     private ShopPackPresenter shopPackPresenter;
     private UnpackerPackPresenter unpackerPackPresenter;
     private UnpackerCardsPresenter unpackerCardsPresenter;
+    private AddCardCollectionPresenter addCardCollectionPresenter;
 
 
     private IControlGlobalStateMachine globalMachineControl;
@@ -19,7 +20,8 @@ public class Main_MenuScene : IGlobalState
         ShopItemSelectPresenter shopItemSelectPresenter, 
         ShopPackPresenter shopPackPresenter,
         UnpackerPackPresenter unpackerPackPresenter,
-        UnpackerCardsPresenter unpackerCardsPresenter)
+        UnpackerCardsPresenter unpackerCardsPresenter,
+        AddCardCollectionPresenter addCardCollectionPresenter)
     {
         this.globalMachineControl = globalMachineControl;
         this.sceneRoot = sceneRoot;
@@ -27,6 +29,7 @@ public class Main_MenuScene : IGlobalState
         this.shopPackPresenter = shopPackPresenter;
         this.unpackerPackPresenter = unpackerPackPresenter;
         this.unpackerCardsPresenter = unpackerCardsPresenter;
+        this.addCardCollectionPresenter = addCardCollectionPresenter;
     }
 
     public void EnterState()
@@ -40,6 +43,8 @@ public class Main_MenuScene : IGlobalState
         shopPackPresenter.OnBuyItemPack_Value += unpackerPackPresenter.SpawnPack;
         shopPackPresenter.OnBuyItemPack_Value += unpackerCardsPresenter.SpawnCards;
         shopPackPresenter.OnBuyItemPack += ChangeStateToOpenPack;
+
+        unpackerCardsPresenter.OnSpawnNewCard += addCardCollectionPresenter.AddCard;
 
         sceneRoot.OpenMainPanel();
     }
@@ -55,6 +60,8 @@ public class Main_MenuScene : IGlobalState
         shopPackPresenter.OnBuyItemPack_Value -= unpackerPackPresenter.SpawnPack;
         shopPackPresenter.OnBuyItemPack_Value -= unpackerCardsPresenter.SpawnCards;
         shopPackPresenter.OnBuyItemPack -= ChangeStateToOpenPack;
+
+        unpackerCardsPresenter.OnSpawnNewCard -= addCardCollectionPresenter.AddCard;
     }
 
     private void ChangeStateToOpenPack()

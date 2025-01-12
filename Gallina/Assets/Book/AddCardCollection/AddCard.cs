@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AddCard : MonoBehaviour
 {
+    public CardInfo CardInfo => currentCardInfo;
+
     public event Action<CardInfo> OnEndMove;
 
     [SerializeField] private Transform transformSpawn;

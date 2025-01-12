@@ -36,7 +36,7 @@ public class BookPagesView : View
         buttonRight.onClick.RemoveListener(HandleClickToCloseButton);
     }
 
-    private IEnumerator OpenPage(int index)
+    private IEnumerator OpenPage_Coroutine(int index)
     {
         int currentIndex = currentOpenPage.Index;
 
@@ -76,6 +76,15 @@ public class BookPagesView : View
         }
     }
 
+    public void OpenPage(int page)
+    {
+        if (enumerator != null)
+            Coroutines.Stop(enumerator);
+
+        enumerator = OpenPage_Coroutine(page);
+        Coroutines.Start(enumerator);
+    }
+
     public void OpenSecondPage()
     {
         int index = currentOpenPage.Index + 1;
@@ -84,7 +93,7 @@ public class BookPagesView : View
         if (enumerator != null)
             Coroutines.Stop(enumerator);
 
-        enumerator = OpenPage(index);
+        enumerator = OpenPage_Coroutine(index);
         Coroutines.Start(enumerator);
         OnClickToLeft?.Invoke();
     }
@@ -97,7 +106,7 @@ public class BookPagesView : View
         if (enumerator != null)
             Coroutines.Stop(enumerator);
 
-        enumerator = OpenPage(index);
+        enumerator = OpenPage_Coroutine(index);
         Coroutines.Start(enumerator);
         OnClickToLeft?.Invoke();
     }

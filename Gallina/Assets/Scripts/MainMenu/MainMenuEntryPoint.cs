@@ -19,6 +19,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private UnpackerPackPresenter unpackerPackPresenter;
     private UnpackerCardsPresenter unpackerCardsPresenter;
+    private AddCardCollectionPresenter addCardCollectionPresenter;
 
     private CardCollectionPresenter cardCollectionPresenter;
 
@@ -55,9 +56,19 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         unpackerCardsPresenter = new UnpackerCardsPresenter(new UnpackerCardsModel(cards, cardCollectionPresenter), viewContainer.GetView<UnpackerCardsView>());
 
+        addCardCollectionPresenter = new AddCardCollectionPresenter(new AddCardCollectionModel(), viewContainer.GetView<AddCardCollectionView>());
+
         shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter), viewContainer.GetView<ShopPackView>());
 
-        menuGlobalStateMachine = new MenuGlobalStateMachine(sceneRoot, shopItemSelectPresenter, shopPackPresenter, unpackerPackPresenter, unpackerCardsPresenter);
+        menuGlobalStateMachine = new MenuGlobalStateMachine(
+            sceneRoot, 
+            shopItemSelectPresenter, 
+            shopPackPresenter, 
+            unpackerPackPresenter, 
+            unpackerCardsPresenter,
+            bookPagesPresenter,
+            addCardCollectionPresenter,
+            cardCollectionPresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -68,13 +79,16 @@ public class MainMenuEntryPoint : MonoBehaviour
         soundPresenter.Initialize();
         particleEffectPresenter.Initialize();
         sceneRoot.Initialize();
-        cardCollectionPresenter.Initialize();
         bankPresenter.Initialize();
+
+        cardCollectionPresenter.Initialize();
         bookPagesPresenter.Initialize();
         shopItemSelectPresenter.Initialize();
         unpackerPackPresenter.Initialize();
-        shopPackPresenter.Initialize();
         unpackerCardsPresenter.Initialize();
+        shopPackPresenter.Initialize();
+        addCardCollectionPresenter.Initialize();
+
         menuGlobalStateMachine.Initialize();
     }
 

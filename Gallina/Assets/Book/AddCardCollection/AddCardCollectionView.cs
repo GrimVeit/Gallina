@@ -4,43 +4,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AddCardCollectionView : MonoBehaviour
+public class AddCardCollectionView : View
 {
+    public CardInfo CurrentCardInfo => currentAddCard.CardInfo;
+
     [SerializeField] private List<AddCard> allAddCards = new List<AddCard>();
+    [SerializeField] private Card cardPrefab;
 
     [SerializeField] private List<AddCard> usedAddCards = new List<AddCard>();
 
     private AddCard currentAddCard;
 
-    private bool isActive;
+    private bool isActive = false;
 
     [SerializeField] private Button buttonActivate;
 
     public void Initialize()
     {
+        buttonActivate.onClick.AddListener(MoveCard);
 
+        for (int i = 0; i < allAddCards.Count; i++)
+        {
+            allAddCards[i].OnEndMove += OnEndMoveCard;
+        }
     }
 
     public void Dispose()
     {
-        
+        buttonActivate.onClick.RemoveListener(MoveCard);
+
+        for (int i = 0; i < allAddCards.Count; i++)
+        {
+            allAddCards[i].OnEndMove -= OnEndMoveCard;
+        }
     }
 
     public void AddNewCard(CardInfo cardInfo)
     {
+        Debug.Log(cardInfo.Number);
+
         var card = allAddCards[cardInfo.Number];
-
+        card.SetData(cardPrefab, cardInfo);
         usedAddCards.Add(card);
-    }
 
-    public void ActivateAddCards()
-    {
         currentAddCard = usedAddCards[0];
-
-        isActive = false;
     }
 
-    private void MoveCardToClose_Right()
+    public void ActivateCurrentCard()
+    {
+        currentAddCard.ActivateCard();
+    }
+
+    public void MoveCard()
     {
         if (isActive) return;
 
@@ -51,9 +66,11 @@ public class AddCardCollectionView : MonoBehaviour
 
     public void OnEndMoveCard(CardInfo cardInfo)
     {
-        OnMoveCardEnd?.Invoke(cardInfo);
+        OnMoveCardEnd_Value?.Invoke(cardInfo);
 
         SetNextAddCard();
+        OnMoveCardEnd?.Invoke();
+
     }
 
     private void SetNextAddCard()
@@ -68,13 +85,16 @@ public class AddCardCollectionView : MonoBehaviour
         {
             OnFinish?.Invoke();
         }
+
+        isActive = false;
     }
 
     #region Input
 
     public event Action OnFinish;
 
-    public event Action<CardInfo> OnMoveCardEnd;
+    public event Action<CardInfo> OnMoveCardEnd_Value;
+    public event Action OnMoveCardEnd;
 
     #endregion
 }

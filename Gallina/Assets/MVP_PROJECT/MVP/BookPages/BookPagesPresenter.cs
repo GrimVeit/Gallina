@@ -29,11 +29,20 @@ public class BookPagesPresenter
 
     private void ActivateEvents()
     {
-
+        bookPagesModel.OnOpenPage += bookPagesView.OpenPage;
     }
 
     private void DeactivateEvents()
     {
-
+        bookPagesModel.OnOpenPage -= bookPagesView.OpenPage;
     }
+
+    #region Input
+
+    public void OpenPage(int pageIndex)
+    {
+        bookPagesModel.OpenPage(pageIndex);
+    }
+
+    #endregion
 }

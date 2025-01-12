@@ -44,6 +44,11 @@ public class CardCollectionPresenter : ICardCollection
         return model.IsOpenCard(id);
     }
 
+    public void UnlockCard(int number)
+    {
+        model.UnlockCard(number);
+    }
+
     #endregion
 }
 

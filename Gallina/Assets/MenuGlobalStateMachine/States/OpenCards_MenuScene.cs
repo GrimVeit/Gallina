@@ -7,7 +7,9 @@ public class OpenCards_MenuScene : IGlobalState
     private UnpackerCardsPresenter unpackerCardsPresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
-    public OpenCards_MenuScene(IControlGlobalStateMachine controlGlobalStateMachine, UnpackerCardsPresenter unpackerCardsPresenter)
+    public OpenCards_MenuScene(
+        IControlGlobalStateMachine controlGlobalStateMachine, 
+        UnpackerCardsPresenter unpackerCardsPresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.unpackerCardsPresenter = unpackerCardsPresenter;
@@ -17,11 +19,20 @@ public class OpenCards_MenuScene : IGlobalState
     {
         Debug.Log("Activate - OPEN CARDS STATE");
 
+        unpackerCardsPresenter.OnAllCardsOpen += ChangeStateToOpenPageBook;
+
         unpackerCardsPresenter.ActivateCards();
     }
 
     public void ExitState()
     {
         Debug.Log("Deactivate - OPEN CARDS STATE");
+
+        unpackerCardsPresenter.OnAllCardsOpen -= ChangeStateToOpenPageBook;
+    }
+
+    private void ChangeStateToOpenPageBook()
+    {
+        controlGlobalStateMachine.SetState(controlGlobalStateMachine.GetState<OpenBookPage_MenuScene>());
     }
 }

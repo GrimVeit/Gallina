@@ -78,6 +78,8 @@ public class UIMainMenuRoot : MonoBehaviour
 
     private void OpenPanel(Panel panel)
     {
+        if(currentPanel == panel) return;
+
         if (currentPanel != null)
             currentPanel.DeactivatePanel();
 

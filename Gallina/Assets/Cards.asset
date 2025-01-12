@@ -83,9 +83,5 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: d40b5ebf5fea17341b1acbccd9ab9bf5, type: 3}
   - Number: 17
     PageNumber: 1
-    cardType: 0
-    Sprite: {fileID: 21300000, guid: 0354ae69ddbac2b48bf13c879bf6be63, type: 3}
-  - Number: 18
-    PageNumber: 2
     cardType: 1
     Sprite: {fileID: 21300000, guid: 0354ae69ddbac2b48bf13c879bf6be63, type: 3}

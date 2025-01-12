@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class AddCardCollectionModel
 {
-    public event Action<CardInfo> OnAddNeweCard;
+    public event Action<CardInfo> OnAddNewCard;
 
     public void AddCard(CardInfo cardInfo)
     {
-        OnAddNeweCard?.Invoke(cardInfo);
+        OnAddNewCard?.Invoke(cardInfo);
     }
 }

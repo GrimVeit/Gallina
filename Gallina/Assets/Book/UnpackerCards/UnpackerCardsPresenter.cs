@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +43,18 @@ public class UnpackerCardsPresenter
     }
 
     #region Input
+
+    public event Action<CardInfo> OnSpawnNewCard
+    {
+        add { model.OnSpawnNewCard += value; }
+        remove { model.OnSpawnNewCard -= value; }
+    }
+
+    public event Action OnAllCardsOpen
+    {
+        add { view.OnAllCardsOpen += value; }
+        remove { view.OnAllCardsOpen -= value; }
+    }
 
     public void SpawnCards(ShopItemPack pack)
     {
