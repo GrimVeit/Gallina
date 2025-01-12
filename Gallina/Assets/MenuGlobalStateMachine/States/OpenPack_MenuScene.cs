@@ -7,6 +7,7 @@ public class OpenPack_MenuScene : IGlobalState
     private UIMainMenuRoot sceneRoot;
     private UnpackerPackPresenter unpackerPackPresenter;
     private UnpackerCardsPresenter unpackerCardsPresenter;
+    private ShopItemSelectPresenter itemSelectPresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
@@ -14,12 +15,14 @@ public class OpenPack_MenuScene : IGlobalState
         IControlGlobalStateMachine controlGlobalStateMachine, 
         UIMainMenuRoot sceneRoot, 
         UnpackerPackPresenter unpackerPackPresenter, 
-        UnpackerCardsPresenter unpackerCardsPresenter)
+        UnpackerCardsPresenter unpackerCardsPresenter,
+        ShopItemSelectPresenter itemSelectPresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.sceneRoot = sceneRoot;
         this.unpackerPackPresenter = unpackerPackPresenter;
         this.unpackerCardsPresenter = unpackerCardsPresenter;
+        this.itemSelectPresenter = itemSelectPresenter;
     }
 
     public void EnterState()
@@ -29,6 +32,7 @@ public class OpenPack_MenuScene : IGlobalState
         unpackerPackPresenter.OnClosePack += ChangeStateToOpenCards;
 
         sceneRoot.OpenPackPanel();
+        itemSelectPresenter.Unselect();
     }
 
     public void ExitState()

@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class AddCardCollectionView : View
 {
-    public CardInfo CurrentCardInfo => currentAddCard.CardInfo;
+    public AddCard CurrentAddCard => currentAddCard;
 
     [SerializeField] private List<AddCard> allAddCards = new List<AddCard>();
     [SerializeField] private Card cardPrefab;
 
     [SerializeField] private List<AddCard> usedAddCards = new List<AddCard>();
 
-    private AddCard currentAddCard;
+    private AddCard currentAddCard = null;
 
     private bool isActive = false;
 
@@ -76,6 +76,7 @@ public class AddCardCollectionView : View
     private void SetNextAddCard()
     {
         usedAddCards.Remove(currentAddCard);
+        currentAddCard.DestroyCard();
 
         if(usedAddCards.Count > 0)
         {
@@ -83,6 +84,8 @@ public class AddCardCollectionView : View
         }
         else
         {
+            currentAddCard = null;
+
             OnFinish?.Invoke();
         }
 

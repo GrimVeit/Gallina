@@ -3227,8 +3227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformSpawn: {fileID: 5713776026337409250}
-  transformParent: {fileID: 3650052422943749733}
-  transformEnd: {fileID: 3650052422943749733}
+  transformParent: {fileID: 2786699730995433197}
+  transformEnd: {fileID: 2786699730995433197}
 --- !u!1 &607216410779181553
 GameObject:
   m_ObjectHideFlags: 0
@@ -34468,8 +34468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformSpawn: {fileID: 3326172492776504075}
-  transformParent: {fileID: 0}
-  transformEnd: {fileID: 0}
+  transformParent: {fileID: 3650052422943749733}
+  transformEnd: {fileID: 3650052422943749733}
 --- !u!1 &6582599681422981802
 GameObject:
   m_ObjectHideFlags: 0

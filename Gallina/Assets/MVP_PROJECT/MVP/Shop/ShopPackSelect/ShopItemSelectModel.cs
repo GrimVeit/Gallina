@@ -29,4 +29,13 @@ public class ShopItemSelectModel
     {
         OnSelect?.Invoke();
     }
+
+    public void Unselect()
+    {
+        if (currentSelectPack != null)
+        {
+            OnUnselectPack?.Invoke(currentSelectPack);
+            OnUnselect?.Invoke();
+        }
+    }
 }

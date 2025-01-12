@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnpackerCardsModel
@@ -12,6 +13,8 @@ public class UnpackerCardsModel
 
     private ICardCollection cardCollection;
 
+    private List<CardInfo> newCardList = new List<CardInfo>();
+
     public UnpackerCardsModel(Cards cards, ICardCollection cardCollection)
     {
         this.cards = cards;
@@ -21,6 +24,8 @@ public class UnpackerCardsModel
     public void SpawnCards(ShopItemPack pack)
     {
         Debug.Log(pack.Pack.Coins);
+
+        newCardList.Clear();
 
         for (int i = 0; i < pack.Pack.Items.Count; i++)
         {
@@ -40,8 +45,21 @@ public class UnpackerCardsModel
         }
         else
         {
-            OnSpawnNewCard?.Invoke(cardInfo);
+            if (IsAlreadyOpen(cardInfo))
+            {
+                OnSpawnDuplicateCard?.Invoke(cardInfo);
+            }
+            else
+            {
+                OnSpawnNewCard?.Invoke(cardInfo);
+                newCardList.Add(cardInfo);
+            }
         }
+    }
+
+    private bool IsAlreadyOpen(CardInfo cardInfo)
+    {
+        return newCardList.Contains(cardInfo);
     }
 
     public void ActivateCards()

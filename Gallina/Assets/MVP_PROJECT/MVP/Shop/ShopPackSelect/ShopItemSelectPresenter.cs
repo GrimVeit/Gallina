@@ -66,5 +66,11 @@ public class ShopItemSelectPresenter
         remove { model.OnUnselect -= value; }
     }
 
+   
+    public void Unselect()
+    {
+        model.Unselect();
+    }
+
     #endregion
 }

@@ -37,6 +37,6 @@ public class AddCard : MonoBehaviour
 
     public void MoveCard()
     {
-        currentCard.transform.DOMove(transformEnd.position, 1).OnComplete(()=> OnEndMove?.Invoke(currentCardInfo));
+        currentCard?.transform.DOMove(transformEnd.position, 1).OnComplete(()=> OnEndMove?.Invoke(currentCardInfo));
     }
 }

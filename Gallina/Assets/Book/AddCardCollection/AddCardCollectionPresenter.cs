@@ -52,7 +52,7 @@ public class AddCardCollectionPresenter
         remove { view.OnMoveCardEnd -= value; }
     }
 
-    public CardInfo CurrentCardInfo => view.CurrentCardInfo;
+    public AddCard CurrentAddCard => view.CurrentAddCard;
 
     public void AddCard(CardInfo cardInfo)
     {
