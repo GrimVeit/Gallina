@@ -33,8 +33,6 @@ public class UIMainMenuRoot : MonoBehaviour
         shopPanel.OnClickBackButton += OpenMainPanel;
 
         collectionPanel.OnClickToBackButton += OpenShopPanel;
-
-        OpenMainPanel();
     }
 
     public void Deactivate()

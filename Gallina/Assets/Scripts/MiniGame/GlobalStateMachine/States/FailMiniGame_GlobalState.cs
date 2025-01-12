@@ -6,9 +6,9 @@ public class FailMiniGame_GlobalState : IGlobalState
 {
     private UIMiniGameSceneRoot sceneRoot;
 
-    private IMiniGameGlobalMachineControl machineControl;
+    private IControlGlobalStateMachine machineControl;
 
-    public FailMiniGame_GlobalState(IMiniGameGlobalMachineControl machineControl, UIMiniGameSceneRoot sceneRoot)
+    public FailMiniGame_GlobalState(IControlGlobalStateMachine machineControl, UIMiniGameSceneRoot sceneRoot)
     {
         this.machineControl = machineControl;
         this.sceneRoot = sceneRoot;

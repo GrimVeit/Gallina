@@ -79,8 +79,8 @@ public class UnpackerCardsView : View
 
         isActive = true;
 
-        currentUnpackCard?.MoveTo(transformLeftEnd.position, 0.2f, SetNextCard);
-        currentUnpackCard?.RotateTo(new Vector3(0, 0, 30), 0.15f);
+        currentUnpackCard?.MoveTo(transformLeftEnd.position, 0.4f, SetNextCard);
+        currentUnpackCard?.RotateTo(new Vector3(0, 0, 30), 0.3f);
     }
 
     private void MoveCardToClose_Left()
@@ -90,8 +90,8 @@ public class UnpackerCardsView : View
 
         isActive = true;
 
-        currentUnpackCard?.MoveTo(transformRightEnd.position, 0.2f, SetNextCard);
-        currentUnpackCard?.RotateTo(new Vector3(0, 0, -30), 0.15f);
+        currentUnpackCard?.MoveTo(transformRightEnd.position, 0.4f, SetNextCard);
+        currentUnpackCard?.RotateTo(new Vector3(0, 0, -30), 0.3f);
     }
 
 

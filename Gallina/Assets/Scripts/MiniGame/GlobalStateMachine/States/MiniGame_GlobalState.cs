@@ -10,9 +10,9 @@ public class MiniGame_GlobalState : IGlobalState
     private EggCatcherPresenter eggCatcherPresenter;
     private ScorePresenter scorePresenter;
 
-    private IMiniGameGlobalMachineControl machineControl;
+    private IControlGlobalStateMachine machineControl;
 
-    public MiniGame_GlobalState(IMiniGameGlobalMachineControl machineControl, UIMiniGameSceneRoot sceneRoot, BasketPresenter basketPresenter, EggCatcherPresenter eggCatcherPresenter, ScorePresenter scorePresenter)
+    public MiniGame_GlobalState(IControlGlobalStateMachine machineControl, UIMiniGameSceneRoot sceneRoot, BasketPresenter basketPresenter, EggCatcherPresenter eggCatcherPresenter, ScorePresenter scorePresenter)
     {
         this.machineControl = machineControl;
         this.sceneRoot = sceneRoot;

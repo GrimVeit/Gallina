@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniGameGlobalStateMachine : IMiniGameGlobalMachineControl
+public class MiniGameGlobalStateMachine : IControlGlobalStateMachine
 {
     private Dictionary<Type, IGlobalState> states = new Dictionary<Type, IGlobalState>();
 
@@ -44,7 +44,7 @@ public class MiniGameGlobalStateMachine : IMiniGameGlobalMachineControl
     }
 }
 
-public interface IMiniGameGlobalMachineControl
+public interface IControlGlobalStateMachine
 {
     public IGlobalState GetState<T>() where T : IGlobalState;
 

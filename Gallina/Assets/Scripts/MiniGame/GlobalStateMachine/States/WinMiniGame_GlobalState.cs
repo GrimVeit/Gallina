@@ -6,9 +6,9 @@ public class WinMiniGame_GlobalState : IGlobalState
 {
     private UIMiniGameSceneRoot sceneRoot;
 
-    private IMiniGameGlobalMachineControl machineControl;
+    private IControlGlobalStateMachine machineControl;
 
-    public WinMiniGame_GlobalState(IMiniGameGlobalMachineControl machineControl, UIMiniGameSceneRoot sceneRoot)
+    public WinMiniGame_GlobalState(IControlGlobalStateMachine machineControl, UIMiniGameSceneRoot sceneRoot)
     {
         this.machineControl = machineControl;
         this.sceneRoot = sceneRoot;
