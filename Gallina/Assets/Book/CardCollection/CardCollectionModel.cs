@@ -35,7 +35,7 @@ public class CardCollectionModel
         {
             cardDatas = new List<CardData>();
 
-            for (int i = 0; i < 19; i++)
+            for (int i = 0; i < 90; i++)
             {
                 cardDatas.Add(new CardData(i, false));
             }

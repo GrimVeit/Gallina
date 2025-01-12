@@ -83,5 +83,293 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: d40b5ebf5fea17341b1acbccd9ab9bf5, type: 3}
   - Number: 17
     PageNumber: 1
-    cardType: 1
+    cardType: 0
     Sprite: {fileID: 21300000, guid: 0354ae69ddbac2b48bf13c879bf6be63, type: 3}
+  - Number: 18
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 378286940c73dac4dac6c74d776a9496, type: 3}
+  - Number: 19
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 1b80ba9193473d448be8fae5fa3dc8bb, type: 3}
+  - Number: 20
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: df8c1cf0e0804204f9e2f36b5229b108, type: 3}
+  - Number: 21
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: dab5bb8a8d1e1b949bba13002367e603, type: 3}
+  - Number: 22
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 5167607ec413fac429eb62a90701aca8, type: 3}
+  - Number: 23
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 432717e3853c32f47b1878648378e3b5, type: 3}
+  - Number: 24
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 0b2d9cca2b5c46d4f8337ab6a293bbe8, type: 3}
+  - Number: 25
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 6885c0b9a6520f245b60019e31239fe9, type: 3}
+  - Number: 26
+    PageNumber: 2
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: db00ceaa4b0f8a84e910a3fe95e83c9b, type: 3}
+  - Number: 27
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 4e6a812fc4466984e889cb9a9e19ec6a, type: 3}
+  - Number: 28
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: aee133cf75731734691509f3b0801c8f, type: 3}
+  - Number: 29
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 018ccce8e963a894487bf594619976d2, type: 3}
+  - Number: 30
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 96fddff3a64849d499bbbb4acb210adf, type: 3}
+  - Number: 31
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 6a36116955ed82545ad617aa1e960864, type: 3}
+  - Number: 32
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 868cb560cdc3f1f46bc891df80ba156c, type: 3}
+  - Number: 33
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 4498ca4ac9a4122458f4c1294c73fa4f, type: 3}
+  - Number: 34
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 9a4e04999fc95cd4583064aaf0bdd189, type: 3}
+  - Number: 35
+    PageNumber: 3
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 49c230ba62f035445a554cfb4f66e163, type: 3}
+  - Number: 36
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 9c68ce5a8c4f36147832ce5bd7ce2240, type: 3}
+  - Number: 37
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: e31fab3733ab9d24e94d7f4ea9702d46, type: 3}
+  - Number: 38
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 8b267f3c4c510374fa4eb06c83b5648e, type: 3}
+  - Number: 39
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 8f2a7d59c00fa5243a413732400866fd, type: 3}
+  - Number: 40
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: da184fda29491b84ab45892f47db0097, type: 3}
+  - Number: 41
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 6678674fed0d7c047b8c43110e62c3d8, type: 3}
+  - Number: 42
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: be6756b89c09f0e41a588f3122c08331, type: 3}
+  - Number: 43
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 8b0452c73987c604583fa6ef53d30e24, type: 3}
+  - Number: 44
+    PageNumber: 4
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 933560f1a0593b34c9804335a1bbd4a4, type: 3}
+  - Number: 45
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 5605a0881df58b144934ac46ae76a2ff, type: 3}
+  - Number: 46
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 94acb64d07b5bad47b34e0819fade913, type: 3}
+  - Number: 47
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 186855d068fbc3242a80bfb6359c8430, type: 3}
+  - Number: 48
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 7700795f0caa5274a80d7c73f4f7bb92, type: 3}
+  - Number: 49
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 2dd6f47d78b59284fa32a2ff92cef8a7, type: 3}
+  - Number: 50
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: ecc9c01d7b7bfc94d95aed1dcfbd810f, type: 3}
+  - Number: 51
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 2052fffd381ca2e4bae1cf81ef99ebb9, type: 3}
+  - Number: 52
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 78c28b6c6e1cac64f851dc3c41389b7a, type: 3}
+  - Number: 53
+    PageNumber: 5
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 14bbfb329e18d8042ae1f3b16ce3dcff, type: 3}
+  - Number: 54
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 8739fc430cab4f148977c90ae2f0dc27, type: 3}
+  - Number: 55
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 41a793e4213f4f4488e728e89ff9f4a8, type: 3}
+  - Number: 56
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 00077858e44decb42a833a3ae0ae56cc, type: 3}
+  - Number: 57
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: fa3fca6d5db2d4a4bb642266b17142f7, type: 3}
+  - Number: 58
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 7671eb19ea251ce4a928763c3e3b2ebe, type: 3}
+  - Number: 59
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: aa00ba2ac66247c44bcc7cdf239381c3, type: 3}
+  - Number: 60
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 40679ee48cb857145ad0f5d209d2dfdb, type: 3}
+  - Number: 61
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 98a64647387b8204fae3b3f65b3932fe, type: 3}
+  - Number: 62
+    PageNumber: 6
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 762d096651d780445b9c1efb7ca79f1b, type: 3}
+  - Number: 63
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: b5d7f603a77488848a3188c0da6c9e04, type: 3}
+  - Number: 64
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 3c00932bed6172e45b096117bd0740e5, type: 3}
+  - Number: 65
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: aaa5e0746f9aa264aa2e63e58aed6415, type: 3}
+  - Number: 66
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 6bff1d061230bf14ab9dd714eeacf1de, type: 3}
+  - Number: 67
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 5f2d7efd473d8f94ca53f8e7f62cb037, type: 3}
+  - Number: 68
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: c5a77b2ffb72f2a46a3a24c1926ec070, type: 3}
+  - Number: 69
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 6e79b773c5eb71747b57bbe3aea154ba, type: 3}
+  - Number: 70
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: 9cbc9dfe7adc69f4cbd1143212a787bf, type: 3}
+  - Number: 71
+    PageNumber: 7
+    cardType: 0
+    Sprite: {fileID: 21300000, guid: c0ecc933a3c56d440b18e75789b5ebd6, type: 3}
+  - Number: 72
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: db794fff7a606d347afbbdbfd9224507, type: 3}
+  - Number: 73
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: bffeff455d3685a4b9298705775618ef, type: 3}
+  - Number: 74
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 947606c723db2eb4da015ec346a6022a, type: 3}
+  - Number: 75
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 758276a86798ea641bb5d96cf2c27c86, type: 3}
+  - Number: 76
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 4e0a6f0eb19c0564aad7e3d664f1fb00, type: 3}
+  - Number: 77
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: e2206c63b4dcc69489ecc9745de37405, type: 3}
+  - Number: 78
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 5a9438421961d3b48a9e60ae4c2599cb, type: 3}
+  - Number: 79
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 643eea52c64b40340b26aad2144adf73, type: 3}
+  - Number: 80
+    PageNumber: 8
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: bb63b22fa4ad1d34ab3bf3e4a3ef5dce, type: 3}
+  - Number: 81
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: ab7153cd10c457f4b98e924af4cef78a, type: 3}
+  - Number: 82
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 3c61a271dc4bbc64b8385c12a6b3e06d, type: 3}
+  - Number: 83
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 834dae60d8b96734b99a9928b2c07caa, type: 3}
+  - Number: 84
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 3f4da5f61476a3c4f8cf537d306696fa, type: 3}
+  - Number: 85
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: dc1cab97fd3720e449f1f13a8c9e453c, type: 3}
+  - Number: 86
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 957aba6bfcc60e04089d8dd1b44edb54, type: 3}
+  - Number: 87
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: b94d3436b8cad3145a39bb369ef0c1d4, type: 3}
+  - Number: 88
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: 1330531003a75cc49856cc3c9d1040dc, type: 3}
+  - Number: 89
+    PageNumber: 9
+    cardType: 1
+    Sprite: {fileID: 21300000, guid: fcf1420e886fa04458aa5c4fc3bcb26f, type: 3}
