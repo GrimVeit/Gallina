@@ -75,11 +75,6 @@ public class SwipeAnimation_LeftRight : SwipeAnimation
     public override void DeactivateAnimation()
     {
         currentSwipe?.KillAllTweens();
-        currentSwipe?.ScaleTo(Vector3.zero, 0.3f, OnEnd);
-    }
-
-    private void OnEnd()
-    {
-        currentSwipe.DestroySwipe();
+        currentSwipe?.DestroyScale();
     }
 }

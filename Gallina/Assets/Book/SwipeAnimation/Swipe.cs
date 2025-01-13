@@ -36,7 +36,12 @@ public class Swipe : MonoBehaviour
         tweenMove?.Kill();
     }
 
-    public void DestroySwipe()
+    public void DestroyScale()
+    {
+        ScaleTo(Vector2.zero, 0.3f, DestroySwipe);
+    }
+
+    private void DestroySwipe()
     {
         KillAllTweens();
 

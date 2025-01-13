@@ -23,7 +23,7 @@ public class MenuGlobalStateMachine : IControlGlobalStateMachine
         states[typeof(OpenPack_MenuScene)] = new OpenPack_MenuScene(this, sceneRoot, unpackerPackPresenter, unpackerCardsPresenter, shopItemSelectPresenter, shopPackPresenter, swipeAnimationPresenter);
         states[typeof(OpenCards_MenuScene)] = new OpenCards_MenuScene(this, unpackerCardsPresenter, swipeAnimationPresenter);
         states[typeof(OpenBookPage_MenuScene)] = new OpenBookPage_MenuScene(this, sceneRoot, bookPagesPresenter, addCardCollectionPresenter);
-        states[typeof(AddCard_MenuScene)] = new AddCard_MenuScene(this, addCardCollectionPresenter, cardCollectionPresenter);
+        states[typeof(AddCard_MenuScene)] = new AddCard_MenuScene(this, addCardCollectionPresenter, cardCollectionPresenter, swipeAnimationPresenter);
     }
 
     public void Initialize()
