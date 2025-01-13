@@ -30,11 +30,15 @@ public class BookPagesPresenter
     private void ActivateEvents()
     {
         bookPagesModel.OnOpenPage += bookPagesView.OpenPage;
+        bookPagesModel.OnOpenSecondPage += bookPagesView.OpenSecondPage;
+        bookPagesModel.OnOpenPastPage += bookPagesView.OpenPastPage;
     }
 
     private void DeactivateEvents()
     {
         bookPagesModel.OnOpenPage -= bookPagesView.OpenPage;
+        bookPagesModel.OnOpenSecondPage -= bookPagesView.OpenSecondPage;
+        bookPagesModel.OnOpenPastPage -= bookPagesView.OpenPastPage;
     }
 
     #region Input
@@ -42,6 +46,16 @@ public class BookPagesPresenter
     public void OpenPage(int pageIndex)
     {
         bookPagesModel.OpenPage(pageIndex);
+    }
+
+    public void OpenSecondPage()
+    {
+        bookPagesModel.OpenSecondPage();
+    }
+
+    public void OpenPastPage()
+    {
+        bookPagesModel.OpenPastPage();
     }
 
     #endregion

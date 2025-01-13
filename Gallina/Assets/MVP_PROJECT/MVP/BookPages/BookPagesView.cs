@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,8 @@ public class BookPagesView : View
     [SerializeField] private Transform parentOpenPages;
 
     [SerializeField] private BookPage currentOpenPage;
+
+    [SerializeField] private TextMeshProUGUI textPage;
 
     private IEnumerator enumerator;
 
@@ -48,7 +51,7 @@ public class BookPagesView : View
                 currentOpenPage.ClosePage();
                 currentOpenPage.transform.SetParent(parentClosePages);
 
-                Debug.Log("Close page - " + currentOpenPage.Index);
+                OnChoosePage?.Invoke(currentOpenPage);
 
                 yield return new WaitForSeconds(0.1f);
             }
@@ -61,13 +64,13 @@ public class BookPagesView : View
             {
                 currentOpenPage = openPages[i];
 
-                if(i != index)
+                if (i != index)
                 {
                     currentOpenPage.OpenPage();
                     currentOpenPage.transform.SetParent(parentOpenPages);
                 }
 
-                Debug.Log("Open page - " + currentOpenPage.Index);
+                OnChoosePage?.Invoke(currentOpenPage);
 
                 yield return new WaitForSeconds(0.1f);
             }
@@ -111,7 +114,18 @@ public class BookPagesView : View
         OnClickToLeft?.Invoke();
     }
 
+
+    public void SetDisplayNumberPage(BookPage bookPage)
+    {
+        textPage.text = $"Page: {bookPage.Index + 1}";
+    }
+
     #region Input
+
+    public event Action<BookPage> OnChoosePage;
+
+
+
 
     public event Action OnClickToLeft;
     public event Action OnClickToRight;

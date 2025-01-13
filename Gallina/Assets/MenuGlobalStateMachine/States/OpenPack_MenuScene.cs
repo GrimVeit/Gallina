@@ -9,6 +9,7 @@ public class OpenPack_MenuScene : IGlobalState
     private UnpackerCardsPresenter unpackerCardsPresenter;
     private ShopItemSelectPresenter itemSelectPresenter;
     private ShopPackPresenter shopPackPresenter;
+    private SwipeAnimationPresenter swipeAnimationPresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
@@ -18,7 +19,8 @@ public class OpenPack_MenuScene : IGlobalState
         UnpackerPackPresenter unpackerPackPresenter, 
         UnpackerCardsPresenter unpackerCardsPresenter,
         ShopItemSelectPresenter itemSelectPresenter,
-        ShopPackPresenter shopPackPresenter)
+        ShopPackPresenter shopPackPresenter,
+        SwipeAnimationPresenter swipeAnimationPresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.sceneRoot = sceneRoot;
@@ -26,6 +28,7 @@ public class OpenPack_MenuScene : IGlobalState
         this.unpackerCardsPresenter = unpackerCardsPresenter;
         this.itemSelectPresenter = itemSelectPresenter;
         this.shopPackPresenter = shopPackPresenter;
+        this.swipeAnimationPresenter = swipeAnimationPresenter;
     }
 
     public void EnterState()
@@ -35,6 +38,7 @@ public class OpenPack_MenuScene : IGlobalState
         itemSelectPresenter.OnUnselect += shopPackPresenter.HideBuy;
         unpackerPackPresenter.OnClosePack += ChangeStateToOpenCards;
 
+        swipeAnimationPresenter.ActivateAnimation("LeftRight_OpenPack");
         sceneRoot.OpenPackPanel();
         itemSelectPresenter.Unselect();
     }
@@ -45,6 +49,8 @@ public class OpenPack_MenuScene : IGlobalState
 
         itemSelectPresenter.OnUnselect -= shopPackPresenter.HideBuy;
         unpackerPackPresenter.OnClosePack -= ChangeStateToOpenCards;
+
+        swipeAnimationPresenter.DeactivateAnimation("LeftRight_OpenPack");
     }
 
     private void ChangeStateToOpenCards()

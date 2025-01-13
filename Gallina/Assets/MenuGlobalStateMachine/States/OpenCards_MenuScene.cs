@@ -5,14 +5,17 @@ using UnityEngine;
 public class OpenCards_MenuScene : IGlobalState
 {
     private UnpackerCardsPresenter unpackerCardsPresenter;
+    private SwipeAnimationPresenter swipeAnimationPresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
     public OpenCards_MenuScene(
         IControlGlobalStateMachine controlGlobalStateMachine, 
-        UnpackerCardsPresenter unpackerCardsPresenter)
+        UnpackerCardsPresenter unpackerCardsPresenter,
+        SwipeAnimationPresenter swipeAnimationPresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.unpackerCardsPresenter = unpackerCardsPresenter;
+        this.swipeAnimationPresenter = swipeAnimationPresenter;
     }
 
     public void EnterState()
@@ -22,6 +25,7 @@ public class OpenCards_MenuScene : IGlobalState
         unpackerCardsPresenter.OnAllCardsOpen += ChangeStateToOpenPageBook;
 
         unpackerCardsPresenter.ActivateCards();
+        swipeAnimationPresenter.ActivateAnimation("LeftRight_OpenCards");
     }
 
     public void ExitState()
@@ -29,6 +33,7 @@ public class OpenCards_MenuScene : IGlobalState
         Debug.Log("Deactivate - OPEN CARDS STATE");
 
         unpackerCardsPresenter.OnAllCardsOpen -= ChangeStateToOpenPageBook;
+        swipeAnimationPresenter.DeactivateAnimation("LeftRight_OpenCards");
     }
 
     private void ChangeStateToOpenPageBook()

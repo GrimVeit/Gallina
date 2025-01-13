@@ -25,6 +25,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private BookPagesPresenter bookPagesPresenter;
 
+    private SwipeAnimationPresenter swipeAnimationPresenter;
+
     private MenuGlobalStateMachine menuGlobalStateMachine;
 
     public void Run(UIRootView uIRootView)
@@ -60,6 +62,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter), viewContainer.GetView<ShopPackView>());
 
+        swipeAnimationPresenter = new SwipeAnimationPresenter(new SwipeAnimationModel(), viewContainer.GetView<SwipeAnimationView>());
+
         menuGlobalStateMachine = new MenuGlobalStateMachine(
             sceneRoot, 
             shopItemSelectPresenter, 
@@ -68,7 +72,8 @@ public class MainMenuEntryPoint : MonoBehaviour
             unpackerCardsPresenter,
             bookPagesPresenter,
             addCardCollectionPresenter,
-            cardCollectionPresenter);
+            cardCollectionPresenter,
+            swipeAnimationPresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -88,6 +93,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         unpackerCardsPresenter.Initialize();
         shopPackPresenter.Initialize();
         addCardCollectionPresenter.Initialize();
+        swipeAnimationPresenter.Initialize();
 
         menuGlobalStateMachine.Initialize();
     }

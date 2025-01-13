@@ -15,12 +15,13 @@ public class MenuGlobalStateMachine : IControlGlobalStateMachine
         UnpackerCardsPresenter unpackerCardsPresenter,
         BookPagesPresenter bookPagesPresenter,
         AddCardCollectionPresenter addCardCollectionPresenter,
-        CardCollectionPresenter cardCollectionPresenter)
+        CardCollectionPresenter cardCollectionPresenter,
+        SwipeAnimationPresenter swipeAnimationPresenter)
     {
         states[typeof(Hello_MenuScene)] = new Hello_MenuScene(this, sceneRoot);
         states[typeof(Main_MenuScene)] = new Main_MenuScene(this, sceneRoot, shopItemSelectPresenter, shopPackPresenter, unpackerPackPresenter, unpackerCardsPresenter, addCardCollectionPresenter);
-        states[typeof(OpenPack_MenuScene)] = new OpenPack_MenuScene(this, sceneRoot, unpackerPackPresenter, unpackerCardsPresenter, shopItemSelectPresenter, shopPackPresenter);
-        states[typeof(OpenCards_MenuScene)] = new OpenCards_MenuScene(this, unpackerCardsPresenter);
+        states[typeof(OpenPack_MenuScene)] = new OpenPack_MenuScene(this, sceneRoot, unpackerPackPresenter, unpackerCardsPresenter, shopItemSelectPresenter, shopPackPresenter, swipeAnimationPresenter);
+        states[typeof(OpenCards_MenuScene)] = new OpenCards_MenuScene(this, unpackerCardsPresenter, swipeAnimationPresenter);
         states[typeof(OpenBookPage_MenuScene)] = new OpenBookPage_MenuScene(this, sceneRoot, bookPagesPresenter, addCardCollectionPresenter);
         states[typeof(AddCard_MenuScene)] = new AddCard_MenuScene(this, addCardCollectionPresenter, cardCollectionPresenter);
     }
