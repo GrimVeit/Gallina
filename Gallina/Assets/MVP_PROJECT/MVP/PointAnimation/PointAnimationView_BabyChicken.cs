@@ -6,51 +6,31 @@ using UnityEngine.UI;
 
 public class PointAnimationView_BabyChicken : View, IPointAnimationView
 {
-    [Header("Egg")]
     [SerializeField] private BabyChicken babyChickenPrefab;
     [SerializeField] private Transform parentSpawn;
-    [SerializeField] private List<Transform> transformsChickenMoveInEnd;
-    [SerializeField] private Sprite tenEgg;
-    [SerializeField] private Sprite hundredEgg;
-    [SerializeField] private Sprite thousandEgg;
+    [SerializeField] private Transform transformEndMove;
 
-    private List<BabyChicken> babyChickens;
+    private List<BabyChicken> babyChickens = new List<BabyChicken>();
 
     public void PlayAnimation()
     {
-        Debug.Log("None");
+
     }
 
     public void PlayAnimation(Vector3 vector)
     {
-        Debug.Log("Play test");
+        SpawnBabyChicken(vector);
     }
 
-    public void PlayAnimation(EggValue eggValue, Vector3 vector)
-    {
-        switch (eggValue)
-        {
-            case EggValue.Ten:
-                SpawnBabyChicken(vector, tenEgg);
-                break;
-            case EggValue.Hundred:
-                SpawnBabyChicken(vector, hundredEgg);
-                break;
-            case EggValue.Thousand:
-                SpawnBabyChicken(vector, thousandEgg);
-                break;
-        }
-    }
-
-    private void SpawnBabyChicken(Vector3 vector, Sprite sprite)
+    private void SpawnBabyChicken(Vector3 vector)
     {
         BabyChicken babyChicken = Instantiate(babyChickenPrefab, parentSpawn);
-        babyChickens.Add(babyChicken);
-        babyChicken.SetEggSprite(sprite);
         babyChicken.transform.SetPositionAndRotation(vector, babyChickenPrefab.transform.rotation);
         babyChicken.OnEndMove += DestroyBabyChicken;
-        babyChicken.SetMoveTransformFinish(GetRandomTransformToMoveFinish());
-        babyChicken.ActivateAnimation(2, 0.15f);
+        babyChicken.SetMoveTransformFinish(transformEndMove);
+        babyChicken.ActivateAnimation();
+
+        babyChickens.Add(babyChicken);
     }
 
     private void DestroyBabyChicken(BabyChicken babyChicken)
@@ -61,11 +41,5 @@ public class PointAnimationView_BabyChicken : View, IPointAnimationView
             babyChicken.OnEndMove -= DestroyBabyChicken;
             Destroy(babyChicken.gameObject);
         }
-    }
-
-    private Transform GetRandomTransformToMoveFinish()
-    {
-        int index = Random.Range(0, transformsChickenMoveInEnd.Count);
-        return transformsChickenMoveInEnd[index];
     }
 }

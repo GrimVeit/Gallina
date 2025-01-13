@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,85 +9,83 @@ public class BabyChicken : MonoBehaviour
 {
     public event Action<BabyChicken> OnEndMove;
 
-    [SerializeField] private Image eggImage;
     [SerializeField] private Image chickenImage;
-    [SerializeField] private Sprite chickenSpriteUp;
-    [SerializeField] private Sprite chickenSpriteDown;
+    [SerializeField] private Sprite spriteCrackEgg;
+    [SerializeField] private Sprite spriteBreakEgg;
+    [SerializeField] private Sprite[] spritesRun = new Sprite[3];
 
     private Transform moveOnFinishTransform;
 
-    private IEnumerator babyChicken_IEnumerator;
-    private IEnumerator egg_IEnumerator;
+    private IEnumerator handleEggSequence_IEnumerator;
+    private IEnumerator playRunning_IEnumerator;
 
     private Tween moveTween;
-    private Tween rotateTween;
 
     public void SetMoveTransformFinish(Transform transform)
     {
         this.moveOnFinishTransform = transform;
     }
 
-    public void SetEggSprite(Sprite sprite)
+    public void ActivateAnimation()
     {
-        eggImage.sprite = sprite;
-    }
-
-    public void ActivateAnimation(float duration, float speed)
-    {
-        eggImage.enabled = true;
         chickenImage.enabled = true;
 
-        if (babyChicken_IEnumerator != null)
-            StopCoroutine(babyChicken_IEnumerator);
-        if (egg_IEnumerator != null)
-            StartCoroutine(egg_IEnumerator);
+        if (handleEggSequence_IEnumerator != null)
+            StopCoroutine(handleEggSequence_IEnumerator);
+
+        if(playRunning_IEnumerator != null)
+            StopCoroutine(playRunning_IEnumerator);
 
 
-        babyChicken_IEnumerator = BabyChicken_Coroutine(duration, speed);
-        egg_IEnumerator = Egg_Coroutine();
-        StartCoroutine(babyChicken_IEnumerator);
-        StartCoroutine(egg_IEnumerator);
+        handleEggSequence_IEnumerator = HandleEggSequence(0.1f, 0.3f);
+        playRunning_IEnumerator = PlayRunningIEnumerator(0.1f);
+
+        StartCoroutine(handleEggSequence_IEnumerator);
     }
 
-    private IEnumerator Egg_Coroutine()
+    private IEnumerator HandleEggSequence(float timeCrack, float timeBreak)
     {
-        yield return new WaitForSeconds(0.3f);
-        eggImage.enabled = false;
-    }
+        chickenImage.sprite = spriteCrackEgg;
 
-    private IEnumerator BabyChicken_Coroutine(float dura, float speed)
-    {
-        float duration = dura;
-        float elapsedTime = 0f;
+        yield return new WaitForSeconds(timeCrack);
 
-        while (elapsedTime < duration)
-        {
-            chickenImage.sprite = chickenImage.sprite == chickenSpriteDown ? chickenSpriteUp : chickenSpriteDown;
+        chickenImage.sprite = spriteBreakEgg;
 
-            yield return new WaitForSeconds(speed);
-
-            elapsedTime += speed;
-        }
-
-        chickenImage.sprite = chickenSpriteDown;
+        yield return new WaitForSeconds(timeBreak);
 
         MoveBabyChicken();
+        StartCoroutine(playRunning_IEnumerator);
+    }
+
+    private IEnumerator PlayRunningIEnumerator(float timeDifferent)
+    {
+        int index = 0;
+
+        while (true)
+        {
+            chickenImage.sprite = spritesRun[index];
+
+            index = (index + 1) % spritesRun.Length;
+
+            yield return new WaitForSeconds(timeDifferent);
+        }
     }
 
     private void MoveBabyChicken()
     {
-        if (rotateTween != null) rotateTween.Kill();
         if (moveTween != null) moveTween.Kill();
 
-        int randomValue = UnityEngine.Random.Range(0, 2) == 0 ? 360 : -360;
-
-        rotateTween = transform.DORotate(new Vector3(0, 0, randomValue), 1.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
         moveTween = transform.DOMove(moveOnFinishTransform.position, 1.6f).OnComplete(() => OnEndMove?.Invoke(this));
     }
 
     private void OnDestroy()
     {
-        if (rotateTween != null) rotateTween.Kill();
-        if (moveTween != null) moveTween.Kill();
+        if(handleEggSequence_IEnumerator != null)
+            StopCoroutine(handleEggSequence_IEnumerator);
+
+        if(playRunning_IEnumerator != null)
+            StopCoroutine(playRunning_IEnumerator);
+
+        moveTween?.Kill();
     }
 }

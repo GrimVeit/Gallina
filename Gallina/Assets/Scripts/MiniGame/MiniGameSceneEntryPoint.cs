@@ -16,6 +16,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private BasketPresenter basketPresenter;
     private EggCatcherPresenter eggCatcherPresenter;
     private ScorePresenter scorePresenter;
+    private PointAnimationPresenter pointAnimationPresenter;
 
     private MiniGameGlobalStateMachine globalStateMachine;
 
@@ -47,7 +48,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, soundPresenter), viewContainer.GetView<ScoreView>());
         scorePresenter.Initialize();
 
-        globalStateMachine = new MiniGameGlobalStateMachine(sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter);
+        pointAnimationPresenter = new PointAnimationPresenter(new PointAnimationModel(), viewContainer.GetView<PointAnimationView_BabyChicken>());
+        pointAnimationPresenter.Initialize();
+
+        globalStateMachine = new MiniGameGlobalStateMachine(sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter, pointAnimationPresenter);
         globalStateMachine.Initialize();
     }
 
@@ -62,6 +66,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         particleEffectPresenter?.Dispose();
         eggCatcherPresenter?.Dispose();
         scorePresenter?.Dispose();
+        pointAnimationPresenter?.Dispose();
     }
 
     #region Input

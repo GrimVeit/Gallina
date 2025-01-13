@@ -27,14 +27,12 @@ public class PointAnimationPresenter
     {
         pointAnimationModel.OnPlayAnimation += pointAnimationView.PlayAnimation;
         pointAnimationModel.OnPlayAnimation_Position += pointAnimationView.PlayAnimation;
-        pointAnimationModel.OnPlayAnimation_EggValue += pointAnimationView.PlayAnimation;
     }
 
     private void DeactivateEvents()
     {
         pointAnimationModel.OnPlayAnimation -= pointAnimationView.PlayAnimation;
         pointAnimationModel.OnPlayAnimation_Position -= pointAnimationView.PlayAnimation;
-        pointAnimationModel.OnPlayAnimation_EggValue -= pointAnimationView.PlayAnimation;
     }
 
     #region Input
@@ -49,11 +47,6 @@ public class PointAnimationPresenter
         pointAnimationModel.PlayAnimation(vector);
     }
 
-    public void PlayAnimation(EggValue value, Vector3 vector)
-    {
-        pointAnimationModel.PlayAnimation(value, vector);
-    }
-
     #endregion
 }
 
@@ -61,5 +54,4 @@ public interface IPointAnimationView
 {
     void PlayAnimation();
     void PlayAnimation(Vector3 vector);
-    void PlayAnimation(EggValue eggValue, Vector3 vector);
 }
