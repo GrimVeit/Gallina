@@ -32,7 +32,7 @@ public class OpenCards_MenuScene : IGlobalState
 
         unpackerCardsPresenter.ActivateCards();
         swipeAnimationPresenter.ActivateAnimation("LeftRight_OpenCards");
-        swipePresenter.Activate("All");
+        swipePresenter.Activate("OpenPackPanel");
     }
 
     public void ExitState()
@@ -44,7 +44,7 @@ public class OpenCards_MenuScene : IGlobalState
 
         unpackerCardsPresenter.OnAllCardsOpen -= ChangeStateToOpenPageBook;
         swipeAnimationPresenter.DeactivateAnimation("LeftRight_OpenCards");
-        swipePresenter.Deactivate("All");
+        swipePresenter.Deactivate("OpenPackPanel");
     }
 
     private void ChangeStateToOpenPageBook()

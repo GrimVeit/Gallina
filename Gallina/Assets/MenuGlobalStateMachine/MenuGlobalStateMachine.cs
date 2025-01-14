@@ -26,8 +26,9 @@ public class MenuGlobalStateMachine : IControlGlobalStateMachine
         states[typeof(EndOpenPack_MenuScene)] = new EndOpenPack_MenuScene(this, unpackerPackPresenter);
         states[typeof(OpenCards_MenuScene)] = new OpenCards_MenuScene(this, unpackerCardsPresenter, swipeAnimationPresenter, swipePresenter);
         states[typeof(StartOpenBookPage_MenuScene)] = new StartOpenBookPage_MenuScene(this, sceneRoot, addCardCollectionPresenter);
-        states[typeof(OpenBookPage_MenuScene)] = new OpenBookPage_MenuScene(this, sceneRoot, bookPagesPresenter, addCardCollectionPresenter);
+        states[typeof(OpenBookPage_MenuScene)] = new OpenBookPage_MenuScene(this, bookPagesPresenter, addCardCollectionPresenter);
         states[typeof(AddCard_MenuScene)] = new AddCard_MenuScene(this, addCardCollectionPresenter, cardCollectionPresenter, swipeAnimationPresenter, swipePresenter);
+        states[typeof(ReadBookPage_MenuScene)] = new ReadBookPage_MenuScene(this, sceneRoot, bookPagesPresenter, swipeAnimationPresenter, swipePresenter);
     }
 
     public void Initialize()

@@ -53,13 +53,13 @@ public class Main_MenuScene : IGlobalState
 
     private void ActivateTransitions()
     {
-        //sceneRoot.OnClickCollectionsButton += OpenCollectionPanel;
+        sceneRoot.OnClickCollectionsButton += ChangeStateToReadBook;
         sceneRoot.OnClickBackButtonFromShopPanel += ChangeStateToHello;
     }
 
     private void DeactivateTransitions()
     {
-        //sceneRoot.OnClickCollectionsButton -= OpenCollectionPanel;
+        sceneRoot.OnClickCollectionsButton -= ChangeStateToReadBook;
         sceneRoot.OnClickBackButtonFromShopPanel -= ChangeStateToHello;
     }
 
@@ -88,5 +88,10 @@ public class Main_MenuScene : IGlobalState
     private void ChangeStateToStartOpenPack()
     {
         globalMachineControl.SetState(globalMachineControl.GetState<StartOpenPack_MenuScene>());
+    }
+
+    private void ChangeStateToReadBook()
+    {
+        globalMachineControl.SetState(globalMachineControl.GetState<ReadBookPage_MenuScene>());
     }
 }

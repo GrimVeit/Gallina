@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OpenBookPage_MenuScene : IGlobalState
 {
-    private UIMainMenuRoot sceneRoot;
     private BookPagesPresenter bookPagesPresenter;
     private AddCardCollectionPresenter addCardCollectionPresenter;
 
@@ -12,12 +11,10 @@ public class OpenBookPage_MenuScene : IGlobalState
 
     public OpenBookPage_MenuScene(
         IControlGlobalStateMachine controlGlobalStateMachine,
-        UIMainMenuRoot sceneRoot,
         BookPagesPresenter bookPagesPresenter, 
         AddCardCollectionPresenter addCardCollectionPresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
-        this.sceneRoot = sceneRoot;
         this.bookPagesPresenter = bookPagesPresenter;
         this.addCardCollectionPresenter = addCardCollectionPresenter;
     }

@@ -34,7 +34,7 @@ public class AddCard_MenuScene : IGlobalState
         addCardCollectionPresenter.OnEndMove += ChangeStateToOpenPageBook;
 
         addCardCollectionPresenter.ActivateCurrentCard();
-        swipePresenter.Activate("All");
+        swipePresenter.Activate("CollectionPanel");
 
         ActivateSwipeAnimation();
     }
@@ -74,7 +74,7 @@ public class AddCard_MenuScene : IGlobalState
     {
         addCardCollectionPresenter.OnEndMove_Value -= OnEndMove;
         addCardCollectionPresenter.OnEndMove -= ChangeStateToOpenPageBook;
-        swipePresenter.Deactivate("All");
+        swipePresenter.Deactivate("CollectionPanel");
 
         DeactivateSwipeAnimation();
     }

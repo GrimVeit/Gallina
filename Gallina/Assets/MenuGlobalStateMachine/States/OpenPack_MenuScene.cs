@@ -31,7 +31,7 @@ public class OpenPack_MenuScene : IGlobalState
         unpackerPackPresenter.OnStartClosePack += ChangeStateToEndOpenPack;
 
         swipeAnimationPresenter.ActivateAnimation("LeftRight_OpenPack");
-        swipePresenter.Activate("All");
+        swipePresenter.Activate("OpenPackPanel");
     }
 
     public void ExitState()
@@ -41,7 +41,7 @@ public class OpenPack_MenuScene : IGlobalState
         unpackerPackPresenter.OnStartClosePack -= ChangeStateToEndOpenPack;
 
         swipeAnimationPresenter.DeactivateAnimation("LeftRight_OpenPack");
-        swipePresenter.Deactivate("All");
+        swipePresenter.Deactivate("OpenPackPanel");
     }
 
     private void ChangeStateToEndOpenPack()

@@ -20,7 +20,7 @@ public class BookPagesModel
 
     public void OpenSecondPage()
     {
-        OnOpenPastPage?.Invoke();
+        OnOpenSecondPage?.Invoke();
     }
 
     public void OpenPastPage()
