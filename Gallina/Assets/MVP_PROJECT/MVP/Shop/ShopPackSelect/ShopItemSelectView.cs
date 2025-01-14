@@ -31,7 +31,7 @@ public class ShopItemSelectView : View
 
     public void SelectPack(ShopItemPack pack)
     {
-        pack.SelectPack(transformSelect.position);
+        pack.SelectPack(transformSelect.position, new Vector2(2, 2));
     }
 
     public void UnselectPack(ShopItemPack pack)
