@@ -11,21 +11,16 @@ public class UnpackerPackView : View
     [SerializeField] private Transform transformSpawn;
     [SerializeField] private Transform transformEnd;
 
-    [SerializeField] private Button buttonLeft;
-    [SerializeField] private Button buttonRight;
-
     private UnpackPack currentPack;
 
     public void Initialize()
     {
-        buttonLeft.onClick.AddListener(MovePackToClose_Left);
-        buttonRight.onClick.AddListener(MovePackToClose_Right);
+
     }
 
     public void Dispose()
     {
-        buttonLeft.onClick.RemoveListener(MovePackToClose_Left);
-        buttonRight.onClick.RemoveListener(MovePackToClose_Right);
+
     }
 
     public void SpawnPack(Pack pack)

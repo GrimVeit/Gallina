@@ -31,11 +31,13 @@ public class AddCardCollectionPresenter
     private void ActivateEvents()
     {
         model.OnAddNewCard += view.AddNewCard;
+        model.OnMoveCurrentCard += view.MoveCard;
     }
 
     private void DeactivateEvents()
     {
         model.OnAddNewCard -= view.AddNewCard;
+        model.OnMoveCurrentCard -= view.MoveCard;
     }
 
     #region Input
@@ -66,7 +68,7 @@ public class AddCardCollectionPresenter
 
     public void MoveCurrentCard()
     {
-        view.MoveCard();
+        model.MoveCurrentCard();
     }
 
     #endregion

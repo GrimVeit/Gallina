@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class UnpackerPackModel
 {
+    public event Action OnMovePackToClose_Left;
+    public event Action OnMovePackToClose_Right;
+
     public event Action<CardInfo> OnSpawnDuplicateCard;
     public event Action<CardInfo> OnSpawnNewCard;
 
@@ -19,5 +22,15 @@ public class UnpackerPackModel
     public void MovePackToOpen()
     {
         OnMovePackToOpen?.Invoke();
+    }
+
+    public void MovePackToClose_Left()
+    {
+        OnMovePackToClose_Left?.Invoke();
+    }
+
+    public void MovePackToClose_Right()
+    {
+        OnMovePackToClose_Right?.Invoke();
     }
 }

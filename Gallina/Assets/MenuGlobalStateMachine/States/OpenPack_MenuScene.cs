@@ -6,26 +6,32 @@ public class OpenPack_MenuScene : IGlobalState
 {
     private UnpackerPackPresenter unpackerPackPresenter;
     private SwipeAnimationPresenter swipeAnimationPresenter;
+    private SwipePresenter swipePresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
     public OpenPack_MenuScene(
         IControlGlobalStateMachine controlGlobalStateMachine, 
         UnpackerPackPresenter unpackerPackPresenter, 
-        SwipeAnimationPresenter swipeAnimationPresenter)
+        SwipeAnimationPresenter swipeAnimationPresenter,
+        SwipePresenter swipePresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.unpackerPackPresenter = unpackerPackPresenter;
         this.swipeAnimationPresenter = swipeAnimationPresenter;
+        this.swipePresenter = swipePresenter;
     }
 
     public void EnterState()
     {
         Debug.Log("Activate - OPEN PACK STATE");
 
+        swipePresenter.OnSwipeRight += unpackerPackPresenter.MovePackToClose_Right;
+        swipePresenter.OnSwipeLeft += unpackerPackPresenter.MovePackToClose_Left;
         unpackerPackPresenter.OnStartClosePack += ChangeStateToEndOpenPack;
 
         swipeAnimationPresenter.ActivateAnimation("LeftRight_OpenPack");
+        swipePresenter.Activate("All");
     }
 
     public void ExitState()
@@ -35,6 +41,7 @@ public class OpenPack_MenuScene : IGlobalState
         unpackerPackPresenter.OnStartClosePack -= ChangeStateToEndOpenPack;
 
         swipeAnimationPresenter.DeactivateAnimation("LeftRight_OpenPack");
+        swipePresenter.Deactivate("All");
     }
 
     private void ChangeStateToEndOpenPack()

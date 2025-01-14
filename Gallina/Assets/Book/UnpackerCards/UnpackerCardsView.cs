@@ -12,9 +12,6 @@ public class UnpackerCardsView : View
     [SerializeField] private Transform transformLeftEnd;
     [SerializeField] private Transform transformRightEnd;
 
-    [SerializeField] private Button buttonLeft;
-    [SerializeField] private Button buttonRight;
-
     [SerializeField] private List<UnpackCard> unpackedCards;
 
     private UnpackCard currentUnpackCard;
@@ -23,14 +20,12 @@ public class UnpackerCardsView : View
 
     public void Initialize()
     {
-        buttonLeft.onClick.AddListener(MoveCardToClose_Left);
-        buttonRight.onClick.AddListener(MoveCardToClose_Right);
+
     }
 
     public void Dispose()
     {
-        buttonLeft.onClick.RemoveListener(MoveCardToClose_Left);
-        buttonRight.onClick.RemoveListener(MoveCardToClose_Right);
+
     }
 
     public void SpawnNewCard(CardInfo cardInfo)
@@ -73,20 +68,9 @@ public class UnpackerCardsView : View
         isActive = false;
     }
 
-    private void MoveCardToClose_Right()
+    public void MoveCardToClose_Right()
     {
         if(isActive) return;
-
-        isActive = true;
-
-        currentUnpackCard?.MoveTo(transformLeftEnd.position, 0.4f, SetNextCard);
-        currentUnpackCard?.RotateTo(new Vector3(0, 0, 30), 0.3f);
-    }
-
-    private void MoveCardToClose_Left()
-    {
-
-        if (isActive) return;
 
         isActive = true;
 
@@ -94,8 +78,19 @@ public class UnpackerCardsView : View
         currentUnpackCard?.RotateTo(new Vector3(0, 0, -30), 0.3f);
     }
 
+    public void MoveCardToClose_Left()
+    {
 
-    private void SetNextCard()
+        if (isActive) return;
+
+        isActive = true;
+
+        currentUnpackCard?.MoveTo(transformLeftEnd.position, 0.4f, SetNextCard);
+        currentUnpackCard?.RotateTo(new Vector3(0, 0, 30), 0.3f);
+    }
+
+
+    public void SetNextCard()
     {
         unpackedCards.Remove(currentUnpackCard);
 

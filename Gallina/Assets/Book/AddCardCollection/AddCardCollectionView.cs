@@ -17,12 +17,8 @@ public class AddCardCollectionView : View
 
     private bool isActive = false;
 
-    [SerializeField] private Button buttonActivate;
-
     public void Initialize()
     {
-        buttonActivate.onClick.AddListener(MoveCard);
-
         for (int i = 0; i < allAddCards.Count; i++)
         {
             allAddCards[i].OnEndMove += OnEndMoveCard;
@@ -31,8 +27,6 @@ public class AddCardCollectionView : View
 
     public void Dispose()
     {
-        buttonActivate.onClick.RemoveListener(MoveCard);
-
         for (int i = 0; i < allAddCards.Count; i++)
         {
             allAddCards[i].OnEndMove -= OnEndMoveCard;

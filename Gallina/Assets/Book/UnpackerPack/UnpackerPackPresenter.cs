@@ -32,12 +32,16 @@ public class UnpackerPackPresenter
     {
         model.OnSpawnPack += view.SpawnPack;
         model.OnMovePackToOpen += view.MovePackToOpen;
+        model.OnMovePackToClose_Left += view.MovePackToClose_Left;
+        model.OnMovePackToClose_Right += view.MovePackToClose_Right;
     }
 
     private void DeactivateEvents()
     {
         model.OnSpawnPack -= view.SpawnPack;
         model.OnMovePackToOpen -= view.MovePackToOpen;
+        model.OnMovePackToClose_Left -= view.MovePackToClose_Left;
+        model.OnMovePackToClose_Right -= view.MovePackToClose_Right;
     }
 
     #region Input
@@ -69,6 +73,16 @@ public class UnpackerPackPresenter
     public void MovePackToOpen()
     {
         model.MovePackToOpen();
+    }
+
+    public void MovePackToClose_Left()
+    {
+        model.MovePackToClose_Left();
+    }
+
+    public void MovePackToClose_Right()
+    {
+        model.MovePackToClose_Right();
     }
 
     #endregion

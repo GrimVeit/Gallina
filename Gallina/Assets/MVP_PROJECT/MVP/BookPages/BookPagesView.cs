@@ -9,9 +9,6 @@ public class BookPagesView : View
 {
     [SerializeField] private int index;
 
-    [SerializeField] private Button buttonLeft;
-    [SerializeField] private Button buttonRight;
-
     [SerializeField] private List<BookPage> openPages = new List<BookPage>();
     [SerializeField] private Transform parentClosePages;
     [SerializeField] private Transform parentOpenPages;
@@ -28,15 +25,11 @@ public class BookPagesView : View
         currentOpenPage = openPages[0];
         currentOpenPage.ClosePage();
         currentOpenPage.transform.SetParent(parentClosePages);
-
-        buttonLeft.onClick.AddListener(HandleClickToOpenPastPage);
-        buttonRight.onClick.AddListener(HandleClickToCloseButton);
     }
 
     public void Dispose()
     {
-        buttonLeft.onClick.RemoveListener(HandleClickToOpenPastPage);
-        buttonRight.onClick.RemoveListener(HandleClickToCloseButton);
+
     }
 
     private IEnumerator OpenPage_Coroutine(int index)
@@ -97,14 +90,13 @@ public class BookPagesView : View
     public void OpenSecondPage()
     {
         int index = currentOpenPage.Index + 1;
-        if(index > openPages[openPages.Count - 1].Index) return;
+        if(index > openPages[openPages.Count - 2].Index) return;
 
         if (enumerator != null)
             Coroutines.Stop(enumerator);
 
         enumerator = OpenPage_Coroutine(index);
         Coroutines.Start(enumerator);
-        OnClickToLeft?.Invoke();
     }
 
     public void OpenPastPage()
@@ -117,7 +109,6 @@ public class BookPagesView : View
 
         enumerator = OpenPage_Coroutine(index);
         Coroutines.Start(enumerator);
-        OnClickToLeft?.Invoke();
     }
 
 
@@ -131,19 +122,6 @@ public class BookPagesView : View
     public event Action<BookPage> OnChoosePage;
 
     public event Action OnEndOpenPage;
-
-    public event Action OnClickToLeft;
-    public event Action OnClickToRight;
-
-    private void HandleClickToOpenPastPage()
-    {
-        OpenPastPage();
-    }
-
-    private void HandleClickToCloseButton()
-    {
-        OpenSecondPage();
-    }
 
     #endregion
 }

@@ -33,6 +33,9 @@ public class UnpackerCardsPresenter
         model.OnActivatedCards += view.ActivateCards;
         model.OnSpawnNewCard += view.SpawnNewCard;
         model.OnSpawnDuplicateCard += view.SpawnDuplicateCard;
+
+        model.OnMoveCardToClose_Left += view.MoveCardToClose_Left;
+        model.OnMoveCardToClose_Right += view.MoveCardToClose_Right;
     }
 
     private void DeactivateEvents()
@@ -40,6 +43,9 @@ public class UnpackerCardsPresenter
         model.OnActivatedCards -= view.ActivateCards;
         model.OnSpawnNewCard -= view.SpawnNewCard;
         model.OnSpawnDuplicateCard -= view.SpawnDuplicateCard;
+
+        model.OnMoveCardToClose_Left -= view.MoveCardToClose_Left;
+        model.OnMoveCardToClose_Right -= view.MoveCardToClose_Right;
     }
 
     #region Input
@@ -64,6 +70,16 @@ public class UnpackerCardsPresenter
     public void ActivateCards()
     {
         model.ActivateCards();
+    }
+
+    public void MoveCardToClose_Right()
+    {
+        model.MoveCardToClose_Right();
+    }
+
+    public void MoveCardToClose_Left()
+    {
+        model.MoveCardToClose_Left();
     }
 
     #endregion
