@@ -44,7 +44,7 @@ public class Main_MenuScene : IGlobalState
 
         shopPackPresenter.OnBuyItemPack_Value += unpackerPackPresenter.SpawnPack;
         shopPackPresenter.OnBuyItemPack_Value += unpackerCardsPresenter.SpawnCards;
-        shopPackPresenter.OnBuyItemPack += ChangeStateToOpenPack;
+        shopPackPresenter.OnBuyItemPack += ChangeStateToStartOpenPack;
 
         unpackerCardsPresenter.OnSpawnNewCard += addCardCollectionPresenter.AddCard;
 
@@ -75,7 +75,7 @@ public class Main_MenuScene : IGlobalState
 
         shopPackPresenter.OnBuyItemPack_Value -= unpackerPackPresenter.SpawnPack;
         shopPackPresenter.OnBuyItemPack_Value -= unpackerCardsPresenter.SpawnCards;
-        shopPackPresenter.OnBuyItemPack -= ChangeStateToOpenPack;
+        shopPackPresenter.OnBuyItemPack -= ChangeStateToStartOpenPack;
 
         unpackerCardsPresenter.OnSpawnNewCard -= addCardCollectionPresenter.AddCard;
     }
@@ -85,8 +85,8 @@ public class Main_MenuScene : IGlobalState
         globalMachineControl.SetState(globalMachineControl.GetState<Hello_MenuScene>());
     }
 
-    private void ChangeStateToOpenPack()
+    private void ChangeStateToStartOpenPack()
     {
-        globalMachineControl.SetState(globalMachineControl.GetState<OpenPack_MenuScene>());
+        globalMachineControl.SetState(globalMachineControl.GetState<StartOpenPack_MenuScene>());
     }
 }

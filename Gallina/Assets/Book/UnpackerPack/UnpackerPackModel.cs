@@ -14,7 +14,6 @@ public class UnpackerPackModel
     public void SpawnPack(Pack pack)
     {
         OnSpawnPack?.Invoke(pack);
-        OnMovePackToOpen?.Invoke();
     }
 
     public void MovePackToOpen()

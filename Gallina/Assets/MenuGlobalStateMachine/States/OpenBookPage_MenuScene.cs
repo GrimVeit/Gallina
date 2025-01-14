@@ -25,33 +25,21 @@ public class OpenBookPage_MenuScene : IGlobalState
     public void EnterState()
     {
         Debug.Log("Activate - OPEN BOOK PAGE STATE");
-        //Debug.Log(addCardCollectionPresenter.CurrentCardInfo.Number);
-        Debug.Log(addCardCollectionPresenter.CurrentAddCard);
 
-        if (addCardCollectionPresenter.CurrentAddCard != null)
-        {
-            sceneRoot.OpenCollectionPanel();
-            bookPagesPresenter.OpenPage(addCardCollectionPresenter.CurrentAddCard.CardInfo.PageNumber);
-            ChangeStateToAddCard();
-        }
-        else
-        {
-            ChangeStateToMain();
-        }
+        bookPagesPresenter.OnEndOpenPage += ChangeStateToAddCard;
+
+        bookPagesPresenter.OpenPage(addCardCollectionPresenter.CurrentAddCard.CardInfo.PageNumber);
     }
 
     public void ExitState()
     {
         Debug.Log("Deactivate - OPEN BOOK PAGE STATE");
+
+        bookPagesPresenter.OnEndOpenPage -= ChangeStateToAddCard;
     }
 
     private void ChangeStateToAddCard()
     {
         controlGlobalStateMachine.SetState(controlGlobalStateMachine.GetState<AddCard_MenuScene>());
-    }
-
-    private void ChangeStateToMain()
-    {
-        controlGlobalStateMachine.SetState(controlGlobalStateMachine.GetState<Main_MenuScene>());
     }
 }

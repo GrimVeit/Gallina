@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class BookPagesModel
 {
+    public event Action OnEndOpenPage;
+
     public event Action OnOpenSecondPage;
     public event Action OnOpenPastPage;
     public event Action<int> OnOpenPage;
+
+    public event Action<BookPage> OnNumberPage;
 
     public void OpenPage(int page)
     {
@@ -22,5 +26,15 @@ public class BookPagesModel
     public void OpenPastPage()
     {
         OnOpenPastPage?.Invoke();
+    }
+
+    public void NumberPage(BookPage bookPage)
+    {
+        OnNumberPage?.Invoke(bookPage);
+    }
+
+    public void EndOpenPage()
+    {
+        OnEndOpenPage?.Invoke();
     }
 }

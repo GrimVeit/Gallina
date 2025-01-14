@@ -38,6 +38,6 @@ public class OpenCards_MenuScene : IGlobalState
 
     private void ChangeStateToOpenPageBook()
     {
-        controlGlobalStateMachine.SetState(controlGlobalStateMachine.GetState<OpenBookPage_MenuScene>());
+        controlGlobalStateMachine.SetState(controlGlobalStateMachine.GetState<StartOpenBookPage_MenuScene>());
     }
 }

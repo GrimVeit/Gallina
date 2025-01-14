@@ -55,6 +55,8 @@ public class BookPagesView : View
 
                 yield return new WaitForSeconds(0.1f);
             }
+
+            OnEndOpenPage?.Invoke();
             Debug.Log(currentOpenPage.Index);
             yield break;
         }
@@ -74,9 +76,13 @@ public class BookPagesView : View
 
                 yield return new WaitForSeconds(0.1f);
             }
+
+            OnEndOpenPage?.Invoke();
             Debug.Log(currentOpenPage.Index);
             yield break;
         }
+
+        OnEndOpenPage?.Invoke();
     }
 
     public void OpenPage(int page)
@@ -124,8 +130,7 @@ public class BookPagesView : View
 
     public event Action<BookPage> OnChoosePage;
 
-
-
+    public event Action OnEndOpenPage;
 
     public event Action OnClickToLeft;
     public event Action OnClickToRight;

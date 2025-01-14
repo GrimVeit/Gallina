@@ -42,6 +42,13 @@ public class UnpackerPackPresenter
 
     #region Input
 
+
+    public event Action OnStartClosePack
+    {
+        add { view.OnStartClosePack += value; }
+        remove { view.OnStartClosePack -= value; }
+    }
+
     public event Action OnOpenPack
     {
         add { view.OnOpenPack += value; }

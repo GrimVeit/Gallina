@@ -2716,7 +2716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pack:
-    Items: 
+    Items: 04000000
     SpritePack: {fileID: 21300000, guid: 95604aa6ce21e644585c2eba3763b703, type: 3}
     Coins: 500
 --- !u!1 &466488139973771256
@@ -25459,7 +25459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pack:
-    Items: 
+    Items: 04000000
     SpritePack: {fileID: 21300000, guid: 95604aa6ce21e644585c2eba3763b703, type: 3}
     Coins: 500
 --- !u!1 &4088616224006064549
@@ -30062,7 +30062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pack:
-    Items: 
+    Items: 04000000
     SpritePack: {fileID: 21300000, guid: 95604aa6ce21e644585c2eba3763b703, type: 3}
     Coins: 500
 --- !u!1 &4892642489848612363
@@ -51185,7 +51185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pack:
-    Items: 
+    Items: 04000000
     SpritePack: {fileID: 21300000, guid: 95604aa6ce21e644585c2eba3763b703, type: 3}
     Coins: 500
 --- !u!1 &8601180721345618992
