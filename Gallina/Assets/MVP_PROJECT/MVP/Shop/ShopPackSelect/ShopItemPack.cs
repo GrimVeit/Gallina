@@ -18,23 +18,45 @@ public class ShopItemPack : MonoBehaviour
 
     private Tween tweenMove;
     private Tween tweenScale;
+    private Tween tweenRotate;
+
+    private Transform transformParentDefault;
+
+    private void Awake()
+    {
+        transformParentDefault = transform.parent;
+    }
 
     public void SelectPack(Vector2 vectorMove, Vector2 vectorScale)
     {
         tweenMove?.Kill();
         tweenScale?.Kill();
+        tweenRotate?.Kill();
 
         tweenMove = transform.DOMove(vectorMove, timeMove).OnComplete(()=> OnEndSelect?.Invoke());
         tweenScale = transform.DOScale(vectorScale, timeMove);
+        tweenRotate = transform.DOLocalRotate(Vector3.zero, timeMove);
     }
 
     public void UnselectPack()
     {
         tweenMove?.Kill();
         tweenScale?.Kill();
+        tweenRotate?.Kill();
 
         tweenMove = transform.DOLocalMove(Vector3.zero, timeMove);
         tweenScale = transform.DOScale(Vector2.one, timeMove);
+        tweenRotate = transform.DOLocalRotate(Vector3.zero, timeMove);
+    }
+
+    public void SetParent(Transform transformParent)
+    {
+        transform.SetParent(transformParent);
+    }
+
+    public void SetDefaultParent()
+    {
+        transform.SetParent(transformParentDefault);
     }
 }
 
