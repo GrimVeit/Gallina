@@ -5,30 +5,29 @@ using UnityEngine;
 
 public class ShopPackModel
 {
-    public event Action<ShopItemPack> OnBuyItemPack_Value;
-    public event Action OnBuyItemPack;
+    public event Action OnBuyRandomSpin;
 
     public event Action OnShow;
     public event Action OnHide;
     public event Action<int> OnGetData;
 
-    private ShopItemPack currentItemPack;
-
     private IMoneyProvider moneyProvider;
 
-    public ShopPackModel(IMoneyProvider moneyProvider)
+    private int price;
+
+    public ShopPackModel(IMoneyProvider moneyProvider, int price)
     {
         this.moneyProvider = moneyProvider;
+        this.price = price;
     }
 
     public void BuyPack()
     {
-        if (moneyProvider.CanAfford(currentItemPack.Pack.Coins))
+        if (moneyProvider.CanAfford(price))
         {
-            OnBuyItemPack_Value?.Invoke(currentItemPack);
-            OnBuyItemPack?.Invoke();
+            OnBuyRandomSpin?.Invoke();
 
-            moneyProvider.SendMoney(-currentItemPack.Pack.Coins);
+            moneyProvider.SendMoney(-price);
         }
     }
 
@@ -40,12 +39,5 @@ public class ShopPackModel
     public void HideBuy()
     {
         OnHide?.Invoke();
-    }
-
-    public void SetData(ShopItemPack pack)
-    {
-        currentItemPack = pack;
-
-        OnGetData?.Invoke(currentItemPack.Pack.Coins);
     }
 }

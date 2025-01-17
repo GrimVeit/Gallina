@@ -23,6 +23,7 @@ public class WinMiniGame_GlobalState : IGlobalState
         eggCatcherPresenter.OnEggDown_Position += pointAnimationPresenter.PlayAnimation;
 
         sceneRoot.OpenWinPanel();
+
         sceneRoot.CloseFooterPanel();
         sceneRoot.CloseHeaderPanel();
     }
@@ -30,7 +31,5 @@ public class WinMiniGame_GlobalState : IGlobalState
     public void ExitState()
     {
         eggCatcherPresenter.OnEggDown_Position -= pointAnimationPresenter.PlayAnimation;
-
-        sceneRoot.CloseWinPanel();
     }
 }

@@ -4,29 +4,48 @@ using UnityEngine;
 
 public class CardTypeCollectionPresenter
 {
-    private int countCommonCards;
-    private int countRareCards;
-    private int countEpicCards;
-    private int countLegendaryCards;
-    private int countGoldCards;
+    private CardTypeCollectionModel typeCollectionModel;
+    private CardTypeCollectionView typeCollectionView;
 
-
-    public void AddCardType(TypeCard typeCard)
+    public CardTypeCollectionPresenter(CardTypeCollectionModel typeCollectionModel, CardTypeCollectionView typeCollectionView)
     {
-        switch (typeCard)
-        {
-            case TypeCard.common:
-                countCommonCards++;
-                break;
-            case TypeCard.rare:
-                countRareCards++;
-                break;
-            case TypeCard.epic:
-                countEpicCards++;
-                break;
-            case TypeCard.legendary:
-                countLegendaryCards++;
-                break;
-        }
+        this.typeCollectionModel = typeCollectionModel;
+        this.typeCollectionView = typeCollectionView;
     }
+
+    public void Initialize()
+    {
+        ActivateEvents();
+    }
+
+    public void Dispose()
+    {
+        DeactivateEvents();
+    }
+
+    private void ActivateEvents()
+    {
+        typeCollectionModel.OnOpenDisplay += typeCollectionView.Activate;
+        typeCollectionModel.OnAddCard += typeCollectionView.AddCard;
+    }
+
+    private void DeactivateEvents()
+    {
+        typeCollectionModel.OnOpenDisplay -= typeCollectionView.Activate;
+        typeCollectionModel.OnAddCard -= typeCollectionView.AddCard;
+    }
+
+    #region Input
+
+    public void AddCardType(CardInfo cardInfo)
+    {
+        typeCollectionModel.AddCardType(cardInfo.cardType);
+    }
+
+    public void OpenDisplay(BookPage bookPage)
+    {
+        typeCollectionModel.OpenDisplayType(bookPage.BookPageData.TypeCards);
+    }
+
+    #endregion
 }

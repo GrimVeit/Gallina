@@ -7,8 +7,7 @@ public class EggCatcherModel
     public event Action OnEggDown;
     public event Action OnEggWin;
     public event Action<Vector3> OnEggDown_Position;
-    public event Action<EggValue, Vector3> OnEggDown_EggValue;
-    public event Action<EggValue> OnEggWin_EggValue;
+    public event Action<Vector3> OnEggDown_EggValue;
 
     public event Action OnSpawnEgg;
 
@@ -54,7 +53,7 @@ public class EggCatcherModel
 
     public void Dispose()
     {
-
+        DeactivateSpawner();
     }
 
     public void EggWin(EggValues eggValues)
@@ -64,7 +63,6 @@ public class EggCatcherModel
         //soundProvider.PlayOneShot("Pop");
 
         OnEggWin?.Invoke();
-        OnEggWin_EggValue?.Invoke(eggValues.EggValue);
     }
 
     public void EggDown(EggValues eggValues, Vector3 posDown)
@@ -75,7 +73,6 @@ public class EggCatcherModel
 
         OnEggDown?.Invoke();
         OnEggDown_Position?.Invoke(posDown);
-        OnEggDown_EggValue?.Invoke(eggValues.EggValue, posDown);
     }
 
     public void EggJump()

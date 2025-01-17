@@ -20,26 +20,8 @@ public class EggsPrefabs : MonoBehaviour
 
     public EggPrefab GetRandomEgg()
     {
-        totalWeight = 0;
+        int index = Random.Range(0, prefabs.Count);
 
-        foreach (var egg in prefabs)
-        {
-            totalWeight += egg.eggValue.DropChance;
-        }
-
-        float randomValue = Random.Range(0, totalWeight);
-        float currentValue = 0;
-
-        foreach(var eggPrefab in prefabs)
-        {
-            currentValue += eggPrefab.eggValue.DropChance;
-
-            if(randomValue <= currentValue)
-            {
-                return eggPrefab;
-            }
-        }
-
-        return null;
+        return prefabs[index];
     }
 }

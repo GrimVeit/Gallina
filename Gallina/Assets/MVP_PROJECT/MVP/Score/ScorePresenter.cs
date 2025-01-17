@@ -59,9 +59,9 @@ public class ScorePresenter
         remove { scoreModel.OnGameFailed -= value; }
     }
 
-    public void AddScore(EggValue eggValue)
+    public void AddScore()
     {
-        scoreModel.AddScore(eggValue);
+        scoreModel.AddScore();
     }
 
     public void RemoveHealth()

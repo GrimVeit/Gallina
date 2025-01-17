@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class ShopItemSelectModel
 {
 
-    public event Action<ShopItemPack> OnSelectPack_Data;
-    public event Action OnSelect;
+    public event Action OnEndSelect;
+
+    public event Action<ShopItemPack> OnSelectPack;
     public event Action<ShopItemPack> OnUnselectPack;
     public event Action OnUnselect;
 
@@ -17,17 +15,14 @@ public class ShopItemSelectModel
     {
         if(currentSelectPack != null)
         {
+            currentSelectPack.OnEndSelect -= OnSelectPackMethod;
             OnUnselectPack?.Invoke(currentSelectPack);
             OnUnselect?.Invoke();
         }
 
         currentSelectPack = pack;
-        OnSelectPack_Data?.Invoke(currentSelectPack);
-    }
-
-    public void EndSelect()
-    {
-        OnSelect?.Invoke();
+        currentSelectPack.OnEndSelect += OnSelectPackMethod;
+        OnSelectPack?.Invoke(currentSelectPack);
     }
 
     public void Unselect()
@@ -37,5 +32,11 @@ public class ShopItemSelectModel
             OnUnselectPack?.Invoke(currentSelectPack);
             OnUnselect?.Invoke();
         }
+    }
+
+
+    private void OnSelectPackMethod()
+    {
+        OnEndSelect?.Invoke();
     }
 }

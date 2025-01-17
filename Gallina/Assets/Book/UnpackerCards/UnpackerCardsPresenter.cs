@@ -62,7 +62,7 @@ public class UnpackerCardsPresenter
         remove { view.OnAllCardsOpen -= value; }
     }
 
-    public void SpawnCards(ShopItemPack pack)
+    public void SpawnCards(Pack pack)
     {
         model.SpawnCards(pack);
     }

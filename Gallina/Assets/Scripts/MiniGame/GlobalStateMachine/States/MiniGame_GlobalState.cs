@@ -34,15 +34,12 @@ public class MiniGame_GlobalState : IGlobalState
         scorePresenter.OnGameFailed += ChangeStateToFail;
         scorePresenter.OnGameWinned += ChangeStateToWin;
         eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
-        eggCatcherPresenter.OnEggWin_EggValue += scorePresenter.AddScore;
+        eggCatcherPresenter.OnEggWin += scorePresenter.AddScore;
         eggCatcherPresenter.OnEggDown_Position += pointAnimationPresenter.PlayAnimation;
 
         eggCatcherPresenter.SetTimerSpawnerData(2, 0.5f, 0.01f, 1);
         eggCatcherPresenter.StartSpawner();
-        basketPresenter.Start();
 
-        sceneRoot.OpenMainPanel();
-        sceneRoot.OpenFooterPanel();
         sceneRoot.OpenHeaderPanel();
     }
 
@@ -51,15 +48,14 @@ public class MiniGame_GlobalState : IGlobalState
         scorePresenter.OnGameFailed -= ChangeStateToFail;
         scorePresenter.OnGameWinned -= ChangeStateToWin;
         eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
-        eggCatcherPresenter.OnEggWin_EggValue -= scorePresenter.AddScore;
+        eggCatcherPresenter.OnEggWin -= scorePresenter.AddScore;
         eggCatcherPresenter.OnEggDown_Position -= pointAnimationPresenter.PlayAnimation;
 
         eggCatcherPresenter.DeactivateSpawner();
         basketPresenter.Stop();
 
-        sceneRoot.OpenMainPanel();
-        sceneRoot.OpenFooterPanel();
-        sceneRoot.OpenHeaderPanel();
+        sceneRoot.CloseHeaderPanel();
+        sceneRoot.CloseFooterPanel();
     }
 
     private void ChangeStateToWin()

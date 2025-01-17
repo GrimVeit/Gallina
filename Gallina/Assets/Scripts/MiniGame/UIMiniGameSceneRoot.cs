@@ -39,10 +39,6 @@ public class UIMiniGameSceneRoot : MonoBehaviour
         failPanel.OnClickToButtonExit += GoToMainMenu;
         winPanel.OnClickToButtonRestart += GoToRestart;
         failPanel.OnClickToButtonRestart += GoToRestart;
-
-        OpenMainPanel();
-        OpenFooterPanel();
-        OpenHeaderPanel();
     }
 
     public void Deactivate()

@@ -6,15 +6,5 @@ using UnityEngine;
 public class EggValues
 {
     [SerializeField] private Sprite spriteEgg;
-    [SerializeField] [Range(0, 100)] float dropChance;
-    [SerializeField] private EggValue eggValue;
-
     public Sprite SpriteEgg => spriteEgg;
-    public float DropChance => dropChance;
-    public EggValue EggValue => eggValue;
-}
-
-public enum EggValue
-{
-    Ten, Hundred, Thousand
 }

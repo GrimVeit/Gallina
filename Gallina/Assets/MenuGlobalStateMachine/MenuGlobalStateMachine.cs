@@ -9,19 +9,21 @@ public class MenuGlobalStateMachine : IControlGlobalStateMachine
 
     public MenuGlobalStateMachine(
         UIMainMenuRoot sceneRoot,
-        ShopItemSelectPresenter shopItemSelectPresenter,
         ShopPackPresenter shopPackPresenter,
+        ShopItemSelectPresenter shopItemSelectPresenter,
         UnpackerPackPresenter unpackerPackPresenter,
         UnpackerCardsPresenter unpackerCardsPresenter,
         BookPagesPresenter bookPagesPresenter,
+        PackSpinPresenter packSpinPresenter,
         AddCardCollectionPresenter addCardCollectionPresenter,
         CardCollectionPresenter cardCollectionPresenter,
         SwipeAnimationPresenter swipeAnimationPresenter,
         SwipePresenter swipePresenter)
     {
         states[typeof(Hello_MenuScene)] = new Hello_MenuScene(this, sceneRoot);
-        states[typeof(Main_MenuScene)] = new Main_MenuScene(this, sceneRoot, shopItemSelectPresenter, shopPackPresenter, unpackerPackPresenter, unpackerCardsPresenter, addCardCollectionPresenter);
-        states[typeof(StartOpenPack_MenuScene)] = new StartOpenPack_MenuScene(this, sceneRoot, unpackerPackPresenter, shopItemSelectPresenter, shopPackPresenter);
+        states[typeof(Main_MenuScene)] = new Main_MenuScene(this, sceneRoot, shopPackPresenter, unpackerPackPresenter, unpackerCardsPresenter, addCardCollectionPresenter);
+        states[typeof(PackSpin_MenuScene)] = new PackSpin_MenuScene(this, sceneRoot, packSpinPresenter, shopItemSelectPresenter, unpackerPackPresenter, unpackerCardsPresenter, addCardCollectionPresenter);
+        states[typeof(StartOpenPack_MenuScene)] = new StartOpenPack_MenuScene(this, sceneRoot, unpackerPackPresenter, shopItemSelectPresenter);
         states[typeof(OpenPack_MenuScene)] = new OpenPack_MenuScene(this, unpackerPackPresenter, swipeAnimationPresenter, swipePresenter);
         states[typeof(EndOpenPack_MenuScene)] = new EndOpenPack_MenuScene(this, unpackerPackPresenter);
         states[typeof(OpenCards_MenuScene)] = new OpenCards_MenuScene(this, unpackerCardsPresenter, swipeAnimationPresenter, swipePresenter);

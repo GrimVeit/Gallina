@@ -5,7 +5,6 @@ using UnityEngine;
 public class Main_MenuScene : IGlobalState
 {
     private UIMainMenuRoot sceneRoot;
-    private ShopItemSelectPresenter shopItemSelectPresenter;
     private ShopPackPresenter shopPackPresenter;
     private UnpackerPackPresenter unpackerPackPresenter;
     private UnpackerCardsPresenter unpackerCardsPresenter;
@@ -17,7 +16,6 @@ public class Main_MenuScene : IGlobalState
     public Main_MenuScene(
         IControlGlobalStateMachine globalMachineControl, 
         UIMainMenuRoot sceneRoot, 
-        ShopItemSelectPresenter shopItemSelectPresenter, 
         ShopPackPresenter shopPackPresenter,
         UnpackerPackPresenter unpackerPackPresenter,
         UnpackerCardsPresenter unpackerCardsPresenter,
@@ -25,7 +23,6 @@ public class Main_MenuScene : IGlobalState
     {
         this.globalMachineControl = globalMachineControl;
         this.sceneRoot = sceneRoot;
-        this.shopItemSelectPresenter = shopItemSelectPresenter;
         this.shopPackPresenter = shopPackPresenter;
         this.unpackerPackPresenter = unpackerPackPresenter;
         this.unpackerCardsPresenter = unpackerCardsPresenter;
@@ -38,15 +35,7 @@ public class Main_MenuScene : IGlobalState
 
         ActivateTransitions();
 
-        shopItemSelectPresenter.OnSelectPack_Data += shopPackPresenter.SetData;
-        shopItemSelectPresenter.OnSelect += shopPackPresenter.ShowBuy;
-        shopItemSelectPresenter.OnUnselect += shopPackPresenter.HideBuy;
-
-        shopPackPresenter.OnBuyItemPack_Value += unpackerPackPresenter.SpawnPack;
-        shopPackPresenter.OnBuyItemPack_Value += unpackerCardsPresenter.SpawnCards;
-        shopPackPresenter.OnBuyItemPack += ChangeStateToStartOpenPack;
-
-        unpackerCardsPresenter.OnSpawnNewCard += addCardCollectionPresenter.AddCard;
+        shopPackPresenter.OnBuyRandomSpin += ChangeStateToStartPackSpin;
 
         sceneRoot.OpenShopPanel();
     }
@@ -69,15 +58,7 @@ public class Main_MenuScene : IGlobalState
 
         DeactivateTransitions();
 
-        shopItemSelectPresenter.OnSelectPack_Data -= shopPackPresenter.SetData;
-        shopItemSelectPresenter.OnSelect -= shopPackPresenter.ShowBuy;
-        shopItemSelectPresenter.OnUnselect -= shopPackPresenter.HideBuy;
-
-        shopPackPresenter.OnBuyItemPack_Value -= unpackerPackPresenter.SpawnPack;
-        shopPackPresenter.OnBuyItemPack_Value -= unpackerCardsPresenter.SpawnCards;
-        shopPackPresenter.OnBuyItemPack -= ChangeStateToStartOpenPack;
-
-        unpackerCardsPresenter.OnSpawnNewCard -= addCardCollectionPresenter.AddCard;
+        shopPackPresenter.OnBuyRandomSpin -= ChangeStateToStartPackSpin;
     }
 
     private void ChangeStateToHello()
@@ -85,9 +66,9 @@ public class Main_MenuScene : IGlobalState
         globalMachineControl.SetState(globalMachineControl.GetState<Hello_MenuScene>());
     }
 
-    private void ChangeStateToStartOpenPack()
+    private void ChangeStateToStartPackSpin()
     {
-        globalMachineControl.SetState(globalMachineControl.GetState<StartOpenPack_MenuScene>());
+        globalMachineControl.SetState(globalMachineControl.GetState<PackSpin_MenuScene>());
     }
 
     private void ChangeStateToReadBook()

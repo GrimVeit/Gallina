@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class CardTypeCollectionView : MonoBehaviour
+public class CardTypeCollectionView : View
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private List<CardTypeCollection> cardTypeCollections = new List<CardTypeCollection>();
+
+    private CardTypeCollection currentCardTypeCollection;
+
+    public void Activate(TypeCard typeCard)
     {
-        
+        if(currentCardTypeCollection == null)
+        {
+            currentCardTypeCollection = cardTypeCollections.FirstOrDefault(data => data.TypeCards == typeCard);
+            currentCardTypeCollection.Activate();
+        }
+
+        if (currentCardTypeCollection.TypeCards == typeCard) return;
+
+        currentCardTypeCollection?.Deactivate();
+
+        currentCardTypeCollection = cardTypeCollections.FirstOrDefault(data => data.TypeCards == typeCard);
+        currentCardTypeCollection.Activate();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddCard(TypeCard typeCard)
     {
-        
+        cardTypeCollections.FirstOrDefault(data => data.TypeCards == typeCard).AddCard();
     }
 }

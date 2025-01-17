@@ -5,6 +5,7 @@ public class UIMainMenuRoot : MonoBehaviour
 {
     [SerializeField] private MainPanel_MainMenuScene mainPanel;
     [SerializeField] private ShopPanel_MainMenuScene shopPanel;
+    [SerializeField] private SpinPackPanel_MainMenuScene spinPackPanel;
     [SerializeField] private OpenPackPanel_MainMenuScene openPackPanel;
     [SerializeField] private CollectionPanel_MainMenuScene collectionPanel;
 
@@ -22,37 +23,27 @@ public class UIMainMenuRoot : MonoBehaviour
         mainPanel.Initialize();
         openPackPanel.Initialize();
         shopPanel.Initialize();
+        spinPackPanel.Initialize();
         collectionPanel.Initialize();
     }
 
     public void Activate()
     {
-        //mainPanel.OnGoToShop += OpenShopPanel;
 
-        //shopPanel.OnClickCollectionsButton += OpenCollectionPanel;
-        //shopPanel.OnClickBackButton += OpenMainPanel;
-
-        //collectionPanel.OnClickToBackButton += OpenShopPanel;
     }
 
     public void Deactivate()
     {
-        //mainPanel.OnGoToShop -= OpenShopPanel;
-
-        //shopPanel.OnClickCollectionsButton -= OpenCollectionPanel;
-        //shopPanel.OnClickBackButton -= OpenMainPanel;
-
-        //collectionPanel.OnClickToBackButton -= OpenShopPanel;
-
-        //currentPanel.DeactivatePanel();
+        currentPanel.DeactivatePanel();
     }
 
     public void Dispose()
     {
-        mainPanel.Dispose();
+        mainPanel?.Dispose();
         shopPanel?.Dispose();
+        spinPackPanel?.Dispose();
         openPackPanel?.Dispose();
-        collectionPanel.Dispose();
+        collectionPanel?.Dispose();
     }
 
     public void OpenMainPanel()
@@ -63,6 +54,11 @@ public class UIMainMenuRoot : MonoBehaviour
     public void OpenShopPanel()
     {
         OpenPanel(shopPanel);
+    }
+
+    public void OpenSpinPackPanel()
+    {
+        OpenPanel(spinPackPanel);
     }
 
     public void OpenCollectionPanel()

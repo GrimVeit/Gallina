@@ -68,18 +68,6 @@ public class EggCatcherPresenter
         remove { eggCatcherModel.OnEggDown_Position -= value; }
     }
 
-    public event Action<EggValue, Vector3> OnEggDown_EggValue
-    {
-        add { eggCatcherModel.OnEggDown_EggValue += value; }
-        remove { eggCatcherModel.OnEggDown_EggValue += value; }
-    }
-    
-    public event Action<EggValue> OnEggWin_EggValue
-    {
-        add { eggCatcherModel.OnEggWin_EggValue += value; }
-        remove { eggCatcherModel.OnEggWin_EggValue -= value; }
-    }
-
     public void SetTimerSpawnerData(float initialDelay, float minDelay, float decreaseAmount, float moveTime)
     {
         eggCatcherModel.SetTimerSpawnerData(initialDelay , minDelay , decreaseAmount, moveTime);

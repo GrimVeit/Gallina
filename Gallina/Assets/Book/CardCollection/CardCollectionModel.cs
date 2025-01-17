@@ -76,17 +76,14 @@ public class CardCollectionModel
     }
 
 
-    public bool IsOpenCard(int id)
+    public bool IsOpenCard(int id, object sender)
     {
-        Debug.Log(id);
+        //Debug.Log(id + "//" + sender);
 
-        return cardDatas.FirstOrDefault(data => data.Number == id).IsOpen;
+        var data = cardDatas.FirstOrDefault(data => data.Number == id);
+
+        return data.IsOpen;
     }
-
-    //public CardInfo GetRandomCard(TypeCard typeCard)
-    //{
-
-    //}
 }
 
 [Serializable]

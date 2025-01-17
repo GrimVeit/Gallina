@@ -6,8 +6,7 @@ public class StartOpenPack_MenuScene : IGlobalState
 {
     private UIMainMenuRoot sceneRoot;
     private UnpackerPackPresenter unpackerPackPresenter;
-    private ShopItemSelectPresenter itemSelectPresenter;
-    private ShopPackPresenter shopPackPresenter;
+    private ShopItemSelectPresenter shopItemSelectPresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
@@ -15,25 +14,22 @@ public class StartOpenPack_MenuScene : IGlobalState
         IControlGlobalStateMachine controlGlobalStateMachine,
         UIMainMenuRoot sceneRoot,
         UnpackerPackPresenter unpackerPackPresenter,
-        ShopItemSelectPresenter itemSelectPresenter,
-        ShopPackPresenter shopPackPresenter)
+        ShopItemSelectPresenter shopItemSelectPresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.sceneRoot = sceneRoot;
         this.unpackerPackPresenter = unpackerPackPresenter;
-        this.itemSelectPresenter = itemSelectPresenter;
-        this.shopPackPresenter = shopPackPresenter;
+        this.shopItemSelectPresenter = shopItemSelectPresenter;
     }
 
     public void EnterState()
     {
         Debug.Log("Activate - START OPEN PACK STATE");
 
-        itemSelectPresenter.OnUnselect += shopPackPresenter.HideBuy;
         unpackerPackPresenter.OnOpenPack += ChangeStateToOpenPack;
         
         sceneRoot.OpenPackPanel();
-        itemSelectPresenter.Unselect();
+        shopItemSelectPresenter.Unselect();
         unpackerPackPresenter.MovePackToOpen();
     }
 
@@ -41,7 +37,6 @@ public class StartOpenPack_MenuScene : IGlobalState
     {
         Debug.Log("Deactivate - START OPEN PACK STATE");
 
-        itemSelectPresenter.OnUnselect -= shopPackPresenter.HideBuy;
         unpackerPackPresenter.OnOpenPack -= ChangeStateToOpenPack;
     }
 

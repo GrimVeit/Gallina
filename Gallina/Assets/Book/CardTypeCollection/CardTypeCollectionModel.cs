@@ -1,18 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardTypeCollectionModel : MonoBehaviour
+public class CardTypeCollectionModel
 {
-    // Start is called before the first frame update
-    void Start()
+    public event Action<TypeCard> OnAddCard;
+    public event Action<TypeCard> OnOpenDisplay;
+
+
+    public void AddCardType(TypeCard typeCard)
     {
-        
+        Debug.Log(typeCard);
+
+        OnAddCard?.Invoke(typeCard);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenDisplayType(TypeCard typeCard)
     {
-        
+        OnOpenDisplay?.Invoke(typeCard);
     }
 }

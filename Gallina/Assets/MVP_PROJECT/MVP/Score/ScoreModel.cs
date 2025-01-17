@@ -62,7 +62,7 @@ public class ScoreModel
         }
     }
     
-    public void AddScore(EggValue eggValue)
+    public void AddScore()
     {
         currentRecord += 1;
         AddCoins(1);

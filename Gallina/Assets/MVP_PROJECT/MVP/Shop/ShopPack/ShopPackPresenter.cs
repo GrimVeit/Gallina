@@ -48,16 +48,10 @@ public class ShopPackPresenter
 
     #region Input
 
-    public event Action<ShopItemPack> OnBuyItemPack_Value
+    public event Action OnBuyRandomSpin
     {
-        add { model.OnBuyItemPack_Value += value; }
-        remove { model.OnBuyItemPack_Value -= value; }
-    }
-
-    public event Action OnBuyItemPack
-    {
-        add { model.OnBuyItemPack += value; }
-        remove { model.OnBuyItemPack -= value; }
+        add { model.OnBuyRandomSpin += value; }
+        remove { model.OnBuyRandomSpin -= value; }
     }
 
     public void ShowBuy()
@@ -68,11 +62,6 @@ public class ShopPackPresenter
     public void HideBuy()
     {
         model.HideBuy();
-    }
-
-    public void SetData(ShopItemPack pack)
-    {
-        model.SetData(pack);
     }
 
     #endregion

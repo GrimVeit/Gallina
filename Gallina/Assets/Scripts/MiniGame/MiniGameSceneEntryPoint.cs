@@ -17,6 +17,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private EggCatcherPresenter eggCatcherPresenter;
     private ScorePresenter scorePresenter;
     private PointAnimationPresenter pointAnimationPresenter;
+    private TimerPresenter timerPresenter;
 
     private MiniGameGlobalStateMachine globalStateMachine;
 
@@ -51,36 +52,72 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         pointAnimationPresenter = new PointAnimationPresenter(new PointAnimationModel(), viewContainer.GetView<PointAnimationView_BabyChicken>());
         pointAnimationPresenter.Initialize();
 
-        globalStateMachine = new MiniGameGlobalStateMachine(sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter, pointAnimationPresenter);
+        timerPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView>());
+        timerPresenter.Initialize();
+
+        globalStateMachine = new MiniGameGlobalStateMachine(sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter, pointAnimationPresenter, timerPresenter);
         globalStateMachine.Initialize();
+
+        ActivateEvents();
+    }
+
+    private void ActivateEvents()
+    {
+        sceneRoot.OnGoToMainMenu += HandleGoToMainMenu;
+        sceneRoot.OnGoToRestart += HandleGoToRestart;
+    }
+
+    private void DeactivateEvents()
+    {
+        sceneRoot.OnGoToMainMenu -= HandleGoToMainMenu;
+        sceneRoot.OnGoToRestart -= HandleGoToRestart;
     }
 
     public void Dispose()
     {
-        sceneRoot.Deactivate();
+        DeactivateEvents();
 
         sceneRoot?.Dispose();
         soundPresenter?.Dispose();
         bankPresenter?.Dispose();
         basketPresenter?.Dispose();
+        eggCatcherPresenter?.Dispose();
         particleEffectPresenter?.Dispose();
         eggCatcherPresenter?.Dispose();
         scorePresenter?.Dispose();
         pointAnimationPresenter?.Dispose();
+        timerPresenter?.Dispose();
+
+        globalStateMachine?.Dispose();
     }
 
     #region Input
 
-    public event Action OnGoToMainMenu
+    private void OnDestroy()
     {
-        add { sceneRoot.OnGoToMainMenu += value; }
-        remove { sceneRoot.OnGoToMainMenu -= value; }
+        Dispose();
     }
 
-    public event Action OnGoToRestart
+    public event Action OnGoToMainMenu;
+
+    public event Action OnGoToRestart;
+
+    private void HandleGoToMainMenu()
     {
-        add { sceneRoot.OnGoToRestart += value; }
-        remove { sceneRoot.OnGoToRestart -= value; }
+        eggCatcherPresenter.DeactivateSpawner();
+        sceneRoot.Deactivate();
+        sceneRoot.CloseWinPanel();
+        sceneRoot.CloseFailPanel();
+        OnGoToMainMenu?.Invoke();
+    }
+
+    private void HandleGoToRestart()
+    {
+        eggCatcherPresenter.DeactivateSpawner();
+        sceneRoot.Deactivate();
+        sceneRoot.CloseWinPanel();
+        sceneRoot.CloseFailPanel();
+        OnGoToRestart?.Invoke();
     }
 
     #endregion

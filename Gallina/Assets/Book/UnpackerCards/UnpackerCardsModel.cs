@@ -24,15 +24,13 @@ public class UnpackerCardsModel
         this.cardCollection = cardCollection;
     }
 
-    public void SpawnCards(ShopItemPack pack)
+    public void SpawnCards(Pack pack)
     {
-        Debug.Log(pack.Pack.Coins);
-
         newCardList.Clear();
 
-        for (int i = 0; i < pack.Pack.Items.Count; i++)
+        for (int i = 0; i < pack.Items.Count; i++)
         {
-            GetRandom(pack.Pack.Items[i]);
+            GetRandom(pack.Items[i]);
         }
     }
 
@@ -40,9 +38,9 @@ public class UnpackerCardsModel
     {
         var cardInfo = cards.GetRandomCardInfo(typeCard);
 
-        Debug.Log(cardCollection);
+        //Debug.Log(cardCollection);
 
-        if (cardCollection.IsOpenCard(cardInfo.Number))
+        if (cardCollection.IsOpenCard(cardInfo.Number, this))
         {
             OnSpawnDuplicateCard?.Invoke(cardInfo);
         }

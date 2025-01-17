@@ -23,6 +23,7 @@ public class FailMiniGame_GlobalState : IGlobalState
         eggCatcherPresenter.OnEggDown_Position += pointAnimationPresenter.PlayAnimation;
 
         sceneRoot.OpenFailPanel();
+
         sceneRoot.CloseFooterPanel();
         sceneRoot.CloseHeaderPanel();
     }
@@ -30,7 +31,5 @@ public class FailMiniGame_GlobalState : IGlobalState
     public void ExitState()
     {
         eggCatcherPresenter.OnEggDown_Position -= pointAnimationPresenter.PlayAnimation;
-
-        sceneRoot.CloseFailPanel();
     }
 }

@@ -65,9 +65,9 @@ public class UnpackerPackPresenter
         remove { view.OnClosePack -= value; }
     }
 
-    public void SpawnPack(ShopItemPack pack)
+    public void SpawnPack(Pack pack)
     {
-        model.SpawnPack(pack.Pack);
+        model.SpawnPack(pack);
     }
 
     public void MovePackToOpen()

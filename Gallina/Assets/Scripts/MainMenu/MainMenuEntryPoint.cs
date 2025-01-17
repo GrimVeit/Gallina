@@ -14,8 +14,8 @@ public class MainMenuEntryPoint : MonoBehaviour
     private ParticleEffectPresenter particleEffectPresenter;
     private SoundPresenter soundPresenter;
 
-    private ShopItemSelectPresenter shopItemSelectPresenter;
     private ShopPackPresenter shopPackPresenter;
+    private ShopItemSelectPresenter shopItemSelectPresenter;
 
     private UnpackerPackPresenter unpackerPackPresenter;
     private UnpackerCardsPresenter unpackerCardsPresenter;
@@ -27,6 +27,10 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private SwipeAnimationPresenter swipeAnimationPresenter;
     private SwipePresenter swipePresenter;
+
+    private CardTypeCollectionPresenter cardTypeCollectionPresenter;
+
+    private PackSpinPresenter packSpinPresenter;
 
     private MenuGlobalStateMachine menuGlobalStateMachine;
 
@@ -51,8 +55,6 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         bookPagesPresenter = new BookPagesPresenter(new BookPagesModel(), viewContainer.GetView<BookPagesView>());
 
-        shopItemSelectPresenter = new ShopItemSelectPresenter(new ShopItemSelectModel(), viewContainer.GetView<ShopItemSelectView>());
-
         cardCollectionPresenter = new CardCollectionPresenter(new CardCollectionModel(cards), viewContainer.GetView<CardCollectionView>());
 
         unpackerPackPresenter = new UnpackerPackPresenter(new UnpackerPackModel(), viewContainer.GetView<UnpackerPackView>());
@@ -61,19 +63,26 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         addCardCollectionPresenter = new AddCardCollectionPresenter(new AddCardCollectionModel(), viewContainer.GetView<AddCardCollectionView>());
 
-        shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter), viewContainer.GetView<ShopPackView>());
+        shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter, 20), viewContainer.GetView<ShopPackView>());
+
+        shopItemSelectPresenter = new ShopItemSelectPresenter(new ShopItemSelectModel(), viewContainer.GetView<ShopItemSelectView>());
+
+        packSpinPresenter = new PackSpinPresenter(new PackSpinModel(soundPresenter, particleEffectPresenter), viewContainer.GetView<PackSpinView>());
 
         swipeAnimationPresenter = new SwipeAnimationPresenter(new SwipeAnimationModel(), viewContainer.GetView<SwipeAnimationView>());
+
+        cardTypeCollectionPresenter = new CardTypeCollectionPresenter(new CardTypeCollectionModel(), viewContainer.GetView<CardTypeCollectionView>());
 
         swipePresenter = new SwipePresenter(new SwipeModel(), viewContainer.GetView<SwipeView>());
 
         menuGlobalStateMachine = new MenuGlobalStateMachine(
             sceneRoot, 
-            shopItemSelectPresenter, 
             shopPackPresenter, 
+            shopItemSelectPresenter,
             unpackerPackPresenter, 
             unpackerCardsPresenter,
             bookPagesPresenter,
+            packSpinPresenter,
             addCardCollectionPresenter,
             cardCollectionPresenter,
             swipeAnimationPresenter,
@@ -90,12 +99,14 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.Initialize();
         bankPresenter.Initialize();
 
+        cardTypeCollectionPresenter.Initialize();
         cardCollectionPresenter.Initialize();
         bookPagesPresenter.Initialize();
-        shopItemSelectPresenter.Initialize();
         unpackerPackPresenter.Initialize();
         unpackerCardsPresenter.Initialize();
+        packSpinPresenter.Initialize();
         shopPackPresenter.Initialize();
+        shopItemSelectPresenter.Initialize();
         addCardCollectionPresenter.Initialize();
         swipeAnimationPresenter.Initialize();
         swipePresenter.Initialize();
@@ -107,40 +118,26 @@ public class MainMenuEntryPoint : MonoBehaviour
     {
         ActivateTransitionsSceneEvents();
 
-        //shopItemSelectPresenter.OnSelectPack_Data += shopPackPresenter.SetData;
-        //shopItemSelectPresenter.OnSelect += shopPackPresenter.ShowBuy;
-        //shopItemSelectPresenter.OnUnselect += shopPackPresenter.HideBuy;
-
-        //shopPackPresenter.OnBuyItemPack += sceneRoot.OpenPackPanel;
-        //shopPackPresenter.OnBuyItemPack_Value += unpackerPackPresenter.SpawnPack;
-        //shopPackPresenter.OnBuyItemPack_Value += unpackerCardsPresenter.SpawnCards;
-
-        //unpackerPackPresenter.OnClosePack += unpackerCardsPresenter.ActivateCards;
+        cardCollectionPresenter.OnOpenCard += cardTypeCollectionPresenter.AddCardType;
+        bookPagesPresenter.OnChoosePage_Second += cardTypeCollectionPresenter.OpenDisplay;
     }
 
     private void DeactivateEvents()
     {
         DeactivateTransitionsSceneEvents();
 
-        //shopItemSelectPresenter.OnSelectPack_Data -= shopPackPresenter.SetData;
-        //shopItemSelectPresenter.OnSelect -= shopPackPresenter.ShowBuy;
-        //shopItemSelectPresenter.OnUnselect -= shopPackPresenter.HideBuy;
-
-        //shopPackPresenter.OnBuyItemPack -= sceneRoot.OpenPackPanel;
-        //shopPackPresenter.OnBuyItemPack_Value -= unpackerPackPresenter.SpawnPack;
-        //shopPackPresenter.OnBuyItemPack_Value -= unpackerCardsPresenter.SpawnCards;
-
-        //unpackerPackPresenter.OnClosePack -= unpackerCardsPresenter.ActivateCards;
+        cardCollectionPresenter.OnOpenCard -= cardTypeCollectionPresenter.AddCardType;
+        bookPagesPresenter.OnChoosePage_Second -= cardTypeCollectionPresenter.OpenDisplay;
     }
 
     private void ActivateTransitionsSceneEvents()
     {
-
+        sceneRoot.OnGoToGame += HandleGoToGame;
     }
 
     private void DeactivateTransitionsSceneEvents()
     {
-
+        sceneRoot.OnGoToGame -= HandleGoToGame;
     }
 
     private void Deactivate()
@@ -161,9 +158,11 @@ public class MainMenuEntryPoint : MonoBehaviour
         shopItemSelectPresenter?.Dispose();
         shopPackPresenter?.Dispose();
         cardCollectionPresenter?.Dispose();
+        packSpinPresenter?.Dispose();
         unpackerPackPresenter?.Dispose();
         swipeAnimationPresenter?.Dispose();
         swipePresenter?.Dispose();
+        cardTypeCollectionPresenter?.Dispose();
         menuGlobalStateMachine?.Dispose();
     }
 
@@ -174,10 +173,12 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     #region Input actions
 
-    public event Action OnGoToGame
+    public event Action OnGoToGame;
+
+    private void HandleGoToGame()
     {
-        add { sceneRoot.OnGoToGame += value; }
-        remove { sceneRoot.OnGoToGame -= value; }
+        Deactivate();
+        OnGoToGame?.Invoke();
     }
 
     #endregion
