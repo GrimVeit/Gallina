@@ -25,8 +25,10 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private BookPagesPresenter bookPagesPresenter;
 
-    private SwipeAnimationPresenter swipeAnimationPresenter;
+    private SwipeClickAnimationPresenter swipeAnimationPresenter;
+    private SwipeClickDescriptionPresenter swipeClickDescriptionPresenter;
     private SwipePresenter swipePresenter;
+    private ClickPresenter clickPresenter;
 
     private CardTypeCollectionPresenter cardTypeCollectionPresenter;
 
@@ -69,7 +71,11 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         packSpinPresenter = new PackSpinPresenter(new PackSpinModel(soundPresenter, particleEffectPresenter), viewContainer.GetView<PackSpinView>());
 
-        swipeAnimationPresenter = new SwipeAnimationPresenter(new SwipeAnimationModel(), viewContainer.GetView<SwipeAnimationView>());
+        swipeAnimationPresenter = new SwipeClickAnimationPresenter(new SwipeClickAnimationModel(), viewContainer.GetView<SwipeClickAnimationView>());
+
+        swipeClickDescriptionPresenter = new SwipeClickDescriptionPresenter(new SwipeClickDescriptionModel(), viewContainer.GetView<SwipeClickDescriptionView>());
+
+        clickPresenter = new ClickPresenter(new ClickModel(), viewContainer.GetView<ClickView>());
 
         cardTypeCollectionPresenter = new CardTypeCollectionPresenter(new CardTypeCollectionModel(), viewContainer.GetView<CardTypeCollectionView>());
 
@@ -86,7 +92,9 @@ public class MainMenuEntryPoint : MonoBehaviour
             addCardCollectionPresenter,
             cardCollectionPresenter,
             swipeAnimationPresenter,
-            swipePresenter);
+            swipePresenter,
+            clickPresenter,
+            swipeClickDescriptionPresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -109,7 +117,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         shopItemSelectPresenter.Initialize();
         addCardCollectionPresenter.Initialize();
         swipeAnimationPresenter.Initialize();
+        swipeClickDescriptionPresenter.Initialize();
         swipePresenter.Initialize();
+        clickPresenter.Initialize();
 
         menuGlobalStateMachine.Initialize();
     }
@@ -162,6 +172,8 @@ public class MainMenuEntryPoint : MonoBehaviour
         unpackerPackPresenter?.Dispose();
         swipeAnimationPresenter?.Dispose();
         swipePresenter?.Dispose();
+        clickPresenter?.Dispose();
+        swipeClickDescriptionPresenter?.Dispose();
         cardTypeCollectionPresenter?.Dispose();
         menuGlobalStateMachine?.Dispose();
     }

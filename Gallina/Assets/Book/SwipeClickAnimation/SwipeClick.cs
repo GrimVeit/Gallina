@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class Swipe : MonoBehaviour
+public class SwipeClick : MonoBehaviour
 {
     [SerializeField] private Transform transformSwipe;
 

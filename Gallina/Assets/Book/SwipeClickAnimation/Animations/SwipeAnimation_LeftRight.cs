@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-public class SwipeAnimation_LeftRight : SwipeAnimation
+public class SwipeAnimation_LeftRight : SwipeClickAnimation
 {
     public override string GetID() => id;
 
@@ -13,11 +13,11 @@ public class SwipeAnimation_LeftRight : SwipeAnimation
     [SerializeField] private Transform transformLeft;
     [SerializeField] private Transform transformRight;
 
-    private Swipe swipePrefab;
+    private SwipeClick swipePrefab;
 
-    private Swipe currentSwipe;
+    private SwipeClick currentSwipe;
 
-    public override void SetSwipe(Swipe swipe)
+    public override void SetSwipe(SwipeClick swipe)
     {
         swipePrefab = swipe;
     }

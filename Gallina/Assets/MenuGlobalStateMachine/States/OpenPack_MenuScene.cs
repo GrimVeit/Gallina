@@ -5,7 +5,7 @@ using UnityEngine;
 public class OpenPack_MenuScene : IGlobalState
 {
     private UnpackerPackPresenter unpackerPackPresenter;
-    private SwipeAnimationPresenter swipeAnimationPresenter;
+    private SwipeClickAnimationPresenter swipeAnimationPresenter;
     private SwipePresenter swipePresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
@@ -13,7 +13,7 @@ public class OpenPack_MenuScene : IGlobalState
     public OpenPack_MenuScene(
         IControlGlobalStateMachine controlGlobalStateMachine, 
         UnpackerPackPresenter unpackerPackPresenter, 
-        SwipeAnimationPresenter swipeAnimationPresenter,
+        SwipeClickAnimationPresenter swipeAnimationPresenter,
         SwipePresenter swipePresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;

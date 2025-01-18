@@ -6,8 +6,9 @@ public class AddCard_MenuScene : IGlobalState
 {
     private AddCardCollectionPresenter addCardCollectionPresenter;
     private CardCollectionPresenter cardCollectionPresenter;
-    private SwipeAnimationPresenter swipeAnimationPresenter;
+    private SwipeClickAnimationPresenter swipeAnimationPresenter;
     private SwipePresenter swipePresenter;
+    private SwipeClickDescriptionPresenter swipeClickDescriptionPresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
@@ -17,13 +18,15 @@ public class AddCard_MenuScene : IGlobalState
         IControlGlobalStateMachine controlGlobalStateMachine, 
         AddCardCollectionPresenter addCardCollectionPresenter, 
         CardCollectionPresenter cardCollectionPresenter, 
-        SwipeAnimationPresenter swipeAnimationPresenter, 
+        SwipeClickAnimationPresenter swipeAnimationPresenter, 
+        SwipeClickDescriptionPresenter swipeClickDescriptionPresenter,
         SwipePresenter swipePresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.addCardCollectionPresenter = addCardCollectionPresenter;
         this.cardCollectionPresenter = cardCollectionPresenter;
         this.swipeAnimationPresenter = swipeAnimationPresenter;
+        this.swipeClickDescriptionPresenter = swipeClickDescriptionPresenter;
         this.swipePresenter = swipePresenter;
     }
 
@@ -35,6 +38,7 @@ public class AddCard_MenuScene : IGlobalState
 
         addCardCollectionPresenter.ActivateCurrentCard();
         swipePresenter.Activate("CollectionPanel");
+        swipeClickDescriptionPresenter.ActivateDescription("SwipeClick_Description");
 
         ActivateSwipeAnimation();
     }
@@ -75,6 +79,7 @@ public class AddCard_MenuScene : IGlobalState
         addCardCollectionPresenter.OnEndMove_Value -= OnEndMove;
         addCardCollectionPresenter.OnEndMove -= ChangeStateToOpenPageBook;
         swipePresenter.Deactivate("CollectionPanel");
+        swipeClickDescriptionPresenter.DeactivateDescription("SwipeClick_Description");
 
         DeactivateSwipeAnimation();
     }

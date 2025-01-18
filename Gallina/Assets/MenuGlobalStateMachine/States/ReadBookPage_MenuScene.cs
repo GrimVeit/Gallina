@@ -6,7 +6,7 @@ public class ReadBookPage_MenuScene : IGlobalState
 {
     private UIMainMenuRoot sceneRoot;
     private BookPagesPresenter bookPagesPresenter;
-    private SwipeAnimationPresenter swipeAnimationPresenter;
+    private SwipeClickAnimationPresenter swipeAnimationPresenter;
     private SwipePresenter swipePresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
@@ -15,7 +15,7 @@ public class ReadBookPage_MenuScene : IGlobalState
         IControlGlobalStateMachine controlGlobalStateMachine,
         UIMainMenuRoot sceneRoot,
         BookPagesPresenter bookPagesPresenter,
-        SwipeAnimationPresenter swipeAnimationPresenter,
+        SwipeClickAnimationPresenter swipeAnimationPresenter,
         SwipePresenter swipePresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;

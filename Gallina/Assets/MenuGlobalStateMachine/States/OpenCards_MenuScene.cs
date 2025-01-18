@@ -5,14 +5,14 @@ using UnityEngine;
 public class OpenCards_MenuScene : IGlobalState
 {
     private UnpackerCardsPresenter unpackerCardsPresenter;
-    private SwipeAnimationPresenter swipeAnimationPresenter;
+    private SwipeClickAnimationPresenter swipeAnimationPresenter;
     private SwipePresenter swipePresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
     public OpenCards_MenuScene(
         IControlGlobalStateMachine controlGlobalStateMachine, 
         UnpackerCardsPresenter unpackerCardsPresenter,
-        SwipeAnimationPresenter swipeAnimationPresenter,
+        SwipeClickAnimationPresenter swipeAnimationPresenter,
         SwipePresenter swipePresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
@@ -28,7 +28,7 @@ public class OpenCards_MenuScene : IGlobalState
         swipePresenter.OnSwipeRight += unpackerCardsPresenter.MoveCardToClose_Right;
         swipePresenter.OnSwipeLeft += unpackerCardsPresenter.MoveCardToClose_Left;
 
-        unpackerCardsPresenter.OnAllCardsOpen += ChangeStateToOpenPageBook;
+        unpackerCardsPresenter.OnAllCardsOpen += ChangeStateToEndOpenCards;
 
         unpackerCardsPresenter.ActivateCards();
         swipeAnimationPresenter.ActivateAnimation("LeftRight_OpenCards");
@@ -42,13 +42,13 @@ public class OpenCards_MenuScene : IGlobalState
         swipePresenter.OnSwipeRight -= unpackerCardsPresenter.MoveCardToClose_Right;
         swipePresenter.OnSwipeLeft -= unpackerCardsPresenter.MoveCardToClose_Left;
 
-        unpackerCardsPresenter.OnAllCardsOpen -= ChangeStateToOpenPageBook;
+        unpackerCardsPresenter.OnAllCardsOpen -= ChangeStateToEndOpenCards;
         swipeAnimationPresenter.DeactivateAnimation("LeftRight_OpenCards");
         swipePresenter.Deactivate("OpenPackPanel");
     }
 
-    private void ChangeStateToOpenPageBook()
+    private void ChangeStateToEndOpenCards()
     {
-        controlGlobalStateMachine.SetState(controlGlobalStateMachine.GetState<StartOpenBookPage_MenuScene>());
+        controlGlobalStateMachine.SetState(controlGlobalStateMachine.GetState<EndOpenCards_MenuScene>());
     }
 }

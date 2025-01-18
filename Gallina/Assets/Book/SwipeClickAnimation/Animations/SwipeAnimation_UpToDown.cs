@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class SwipeAnimation_UpToDown : SwipeAnimation
+public class SwipeAnimation_UpToDown : SwipeClickAnimation
 {
     public override string GetID() => id;
 
@@ -14,11 +14,11 @@ public class SwipeAnimation_UpToDown : SwipeAnimation
     [SerializeField] private Transform transformUp;
     [SerializeField] private Transform transformDown;
 
-    private Swipe swipePrefab;
+    private SwipeClick swipePrefab;
 
-    private Swipe currentSwipe;
+    private SwipeClick currentSwipe;
 
-    public override void SetSwipe(Swipe swipe)
+    public override void SetSwipe(SwipeClick swipe)
     {
         swipePrefab = swipe;
     }

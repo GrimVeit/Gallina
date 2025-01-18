@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class SwipeAnimationModel
+public class SwipeClickAnimationModel
 {
     public event Action<string> OnActivateAnimation;
     public event Action<string> OnDeactivateAnimation;

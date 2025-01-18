@@ -63,6 +63,6 @@ public class PackSpin_MenuScene : IGlobalState
 
     private void ChangeStateToStartOpenPack()
     {
-        globalMachineControl.SetState(globalMachineControl.GetState<StartOpenPack_MenuScene>());
+        globalMachineControl.SetState(globalMachineControl.GetState<EndPackSpin_MenuScene>());
     }
 }

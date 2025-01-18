@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeAnimationPresenter
+public class SwipeClickAnimationPresenter
 {
-    private SwipeAnimationModel model;
-    private SwipeAnimationView view;
+    private SwipeClickAnimationModel model;
+    private SwipeClickAnimationView view;
 
-    public SwipeAnimationPresenter(SwipeAnimationModel model, SwipeAnimationView view)
+    public SwipeClickAnimationPresenter(SwipeClickAnimationModel model, SwipeClickAnimationView view)
     {
         this.model = model;
         this.view = view;

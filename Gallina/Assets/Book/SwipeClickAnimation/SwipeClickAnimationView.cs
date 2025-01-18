@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SwipeAnimationView : View
+public class SwipeClickAnimationView : View
 {
-    [SerializeField] private List<SwipeAnimation> swipeAnimations = new List<SwipeAnimation>();
+    [SerializeField] private List<SwipeClickAnimation> swipeAnimations = new List<SwipeClickAnimation>();
 
-    [SerializeField] private Swipe swipePrefab;
+    [SerializeField] private SwipeClick swipePrefab;
 
     public void Initialize()
     {
