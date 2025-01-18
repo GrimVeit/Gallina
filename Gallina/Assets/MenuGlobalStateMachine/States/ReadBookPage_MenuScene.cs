@@ -37,9 +37,10 @@ public class ReadBookPage_MenuScene : IGlobalState
         swipePresenter.OnSwipeLeft += bookPagesPresenter.OpenSecondPage;
 
         sceneRoot.OpenCollectionPanel();
+        sceneRoot.OpenCollectionHeaderPanel();
         swipePresenter.Activate("CollectionPanel");
         swipeAnimationPresenter.ActivateAnimation("LeftRight_ReadBook");
-        swipeClickDescriptionPresenter.ActivateDescription("SwipeClick_Description");
+        //swipeClickDescriptionPresenter.ActivateDescription("SwipeClick_Description");
     }
 
     public void ExitState()
@@ -50,9 +51,10 @@ public class ReadBookPage_MenuScene : IGlobalState
         swipePresenter.OnSwipeRight -= bookPagesPresenter.OpenPastPage;
         swipePresenter.OnSwipeLeft -= bookPagesPresenter.OpenSecondPage;
 
+        sceneRoot.CloseCollectionHeaderPanel();
         swipePresenter.Deactivate("CollectionPanel");
         swipeAnimationPresenter.DeactivateAnimation("LeftRight_ReadBook");
-        swipeClickDescriptionPresenter.DeactivateDescription("SwipeClick_Description");
+        //swipeClickDescriptionPresenter.DeactivateDescription("SwipeClick_Description");
     }
 
     private void ChangeStateToMain()

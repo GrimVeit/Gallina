@@ -25,6 +25,7 @@ public class SwipeAnimation_LeftRight : SwipeClickAnimation
     public override void ActivateAnimation()
     {
         currentSwipe = Instantiate(swipePrefab, parent);
+        currentSwipe.transform.position = transformMiddle.position;
         currentSwipe.SetScale(Vector2.zero);
         ScaleToMaxFromLeft();
     }
