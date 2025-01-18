@@ -6,16 +6,19 @@ public class EndPackSpin_MenuScene : IGlobalState
 {
     private ClickPresenter clickPresenter;
     private SwipeClickAnimationPresenter swipeClickAnimationPresenter;
+    private SwipeClickDescriptionPresenter swipeClickDescriptionPresenter;
 
     private IControlGlobalStateMachine globalMachineControl;
 
     public EndPackSpin_MenuScene(
         IControlGlobalStateMachine globalMachineControl,
         SwipeClickAnimationPresenter swipeClickAnimationPresenter,
+        SwipeClickDescriptionPresenter swipeClickDescriptionPresenter,
         ClickPresenter clickPresenter)
     {
         this.globalMachineControl = globalMachineControl;
         this.swipeClickAnimationPresenter = swipeClickAnimationPresenter;
+        this.swipeClickDescriptionPresenter = swipeClickDescriptionPresenter;
         this.clickPresenter = clickPresenter;
     }
 
@@ -27,6 +30,7 @@ public class EndPackSpin_MenuScene : IGlobalState
         clickPresenter.OnClick += ChangeStateToStartOpenPack;
 
         swipeClickAnimationPresenter.ActivateAnimation("Click_Spin");
+        swipeClickDescriptionPresenter.ActivateDescription("SwipeClick_SpinDescription");
         clickPresenter.Activate("Click_SpinZone");
     }
 
@@ -37,6 +41,7 @@ public class EndPackSpin_MenuScene : IGlobalState
         clickPresenter.OnClick -= ChangeStateToStartOpenPack;
 
         swipeClickAnimationPresenter.DeactivateAnimation("Click_Spin");
+        swipeClickDescriptionPresenter.DeactivateDescription("SwipeClick_SpinDescription");
         clickPresenter.Deactivate("Click_SpinZone");
     }
 

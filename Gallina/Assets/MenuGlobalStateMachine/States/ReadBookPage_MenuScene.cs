@@ -8,6 +8,7 @@ public class ReadBookPage_MenuScene : IGlobalState
     private BookPagesPresenter bookPagesPresenter;
     private SwipeClickAnimationPresenter swipeAnimationPresenter;
     private SwipePresenter swipePresenter;
+    private SwipeClickDescriptionPresenter swipeClickDescriptionPresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
@@ -16,13 +17,15 @@ public class ReadBookPage_MenuScene : IGlobalState
         UIMainMenuRoot sceneRoot,
         BookPagesPresenter bookPagesPresenter,
         SwipeClickAnimationPresenter swipeAnimationPresenter,
-        SwipePresenter swipePresenter)
+        SwipePresenter swipePresenter,
+        SwipeClickDescriptionPresenter swipeClickDescriptionPresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.sceneRoot = sceneRoot;
         this.bookPagesPresenter = bookPagesPresenter;
         this.swipeAnimationPresenter = swipeAnimationPresenter;
         this.swipePresenter = swipePresenter;
+        this.swipeClickDescriptionPresenter = swipeClickDescriptionPresenter;
     }
 
     public void EnterState()
@@ -36,6 +39,7 @@ public class ReadBookPage_MenuScene : IGlobalState
         sceneRoot.OpenCollectionPanel();
         swipePresenter.Activate("CollectionPanel");
         swipeAnimationPresenter.ActivateAnimation("LeftRight_ReadBook");
+        swipeClickDescriptionPresenter.ActivateDescription("SwipeClick_Description");
     }
 
     public void ExitState()
@@ -48,6 +52,7 @@ public class ReadBookPage_MenuScene : IGlobalState
 
         swipePresenter.Deactivate("CollectionPanel");
         swipeAnimationPresenter.DeactivateAnimation("LeftRight_ReadBook");
+        swipeClickDescriptionPresenter.DeactivateDescription("SwipeClick_Description");
     }
 
     private void ChangeStateToMain()

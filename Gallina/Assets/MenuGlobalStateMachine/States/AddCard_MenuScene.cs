@@ -38,7 +38,7 @@ public class AddCard_MenuScene : IGlobalState
 
         addCardCollectionPresenter.ActivateCurrentCard();
         swipePresenter.Activate("CollectionPanel");
-        swipeClickDescriptionPresenter.ActivateDescription("SwipeClick_Description");
+        swipeClickDescriptionPresenter.ActivateDescription("SwipeClick_CollectionDescription");
 
         ActivateSwipeAnimation();
     }
@@ -79,7 +79,7 @@ public class AddCard_MenuScene : IGlobalState
         addCardCollectionPresenter.OnEndMove_Value -= OnEndMove;
         addCardCollectionPresenter.OnEndMove -= ChangeStateToOpenPageBook;
         swipePresenter.Deactivate("CollectionPanel");
-        swipeClickDescriptionPresenter.DeactivateDescription("SwipeClick_Description");
+        swipeClickDescriptionPresenter.DeactivateDescription("SwipeClick_CollectionDescription");
 
         DeactivateSwipeAnimation();
     }

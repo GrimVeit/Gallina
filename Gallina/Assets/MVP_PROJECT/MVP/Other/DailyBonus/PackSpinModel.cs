@@ -29,9 +29,9 @@ public class PackSpinModel
         if (isActive)
         {
             OnActivateSpin?.Invoke();
-            spinSound.SetVolume(0.8f);
-            spinSound.SetPitch(1);
-            spinSound.Play();
+            //spinSound.SetVolume(0.8f);
+            //spinSound.SetPitch(1);
+            //spinSound.Play();
         }
     }
 

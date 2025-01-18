@@ -29,6 +29,8 @@ public class SwipeClickDescription_Fade : SwipeClickDescription
 
     public override void DeactivateDescription()
     {
+        if (currentDescription == null) return;
+
         currentDescription.ScaleTo(Vector3.zero, 0.2f, currentDescription.Destroy);
     }
 }

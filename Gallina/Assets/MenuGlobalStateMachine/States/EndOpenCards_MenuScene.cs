@@ -6,17 +6,20 @@ public class EndOpenCards_MenuScene : IGlobalState
 {
     private ClickPresenter clickPresenter;
     private SwipeClickAnimationPresenter swipeClickAnimationPresenter;
+    private SwipeClickDescriptionPresenter swipeClickDescriptionPresenter;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
     public EndOpenCards_MenuScene(
         IControlGlobalStateMachine controlGlobalStateMachine,
         SwipeClickAnimationPresenter swipeClickAnimationPresenter,
-        ClickPresenter clickPresenter)
+        ClickPresenter clickPresenter,
+        SwipeClickDescriptionPresenter swipeClickDescriptionPresenter)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.swipeClickAnimationPresenter = swipeClickAnimationPresenter;
         this.clickPresenter = clickPresenter;
+        this.swipeClickDescriptionPresenter = swipeClickDescriptionPresenter;
     }
 
 
@@ -27,6 +30,7 @@ public class EndOpenCards_MenuScene : IGlobalState
         clickPresenter.OnClick += ChangeStateToOpenPageBook;
 
         swipeClickAnimationPresenter.ActivateAnimation("Click_OpenCollection");
+        swipeClickDescriptionPresenter.ActivateDescription("SwipeClick_EndOpenCards");
         clickPresenter.Activate("Click_CollectionZone");
     }
 
@@ -37,6 +41,7 @@ public class EndOpenCards_MenuScene : IGlobalState
         clickPresenter.OnClick -= ChangeStateToOpenPageBook;
 
         swipeClickAnimationPresenter.DeactivateAnimation("Click_OpenCollection");
+        swipeClickDescriptionPresenter.DeactivateDescription("SwipeClick_EndOpenCards");
         clickPresenter.Deactivate("Click_CollectionZone");
     }
 
