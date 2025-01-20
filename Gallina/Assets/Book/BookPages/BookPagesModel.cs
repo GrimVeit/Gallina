@@ -13,6 +13,13 @@ public class BookPagesModel
 
     public event Action<BookPage> OnNumberPage;
 
+    private ISoundProvider soundProvider;
+
+    public BookPagesModel(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
+
     public void OpenPage(int page)
     {
         OnOpenPage?.Invoke(page);
@@ -28,8 +35,10 @@ public class BookPagesModel
         OnOpenPastPage?.Invoke();
     }
 
-    public void NumberPage(BookPage bookPage)
+    public void ChoosePage(BookPage bookPage)
     {
+        soundProvider.Play("SelectList");
+
         OnNumberPage?.Invoke(bookPage);
     }
 

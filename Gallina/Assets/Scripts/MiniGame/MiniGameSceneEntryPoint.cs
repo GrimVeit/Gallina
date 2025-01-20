@@ -108,6 +108,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         sceneRoot.Deactivate();
         sceneRoot.CloseWinPanel();
         sceneRoot.CloseFailPanel();
+        soundPresenter.Dispose();
         OnGoToMainMenu?.Invoke();
     }
 
@@ -117,6 +118,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         sceneRoot.Deactivate();
         sceneRoot.CloseWinPanel();
         sceneRoot.CloseFailPanel();
+        soundPresenter.Dispose();
         OnGoToRestart?.Invoke();
     }
 

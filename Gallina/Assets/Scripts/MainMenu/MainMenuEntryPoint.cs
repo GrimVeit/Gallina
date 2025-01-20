@@ -55,7 +55,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
 
-        bookPagesPresenter = new BookPagesPresenter(new BookPagesModel(), viewContainer.GetView<BookPagesView>());
+        bookPagesPresenter = new BookPagesPresenter(new BookPagesModel(soundPresenter), viewContainer.GetView<BookPagesView>());
 
         cardCollectionPresenter = new CardCollectionPresenter(new CardCollectionModel(cards), viewContainer.GetView<CardCollectionView>());
 
@@ -63,7 +63,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         unpackerCardsPresenter = new UnpackerCardsPresenter(new UnpackerCardsModel(cards, cardCollectionPresenter), viewContainer.GetView<UnpackerCardsView>());
 
-        addCardCollectionPresenter = new AddCardCollectionPresenter(new AddCardCollectionModel(), viewContainer.GetView<AddCardCollectionView>());
+        addCardCollectionPresenter = new AddCardCollectionPresenter(new AddCardCollectionModel(soundPresenter), viewContainer.GetView<AddCardCollectionView>());
 
         shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter, 20), viewContainer.GetView<ShopPackView>());
 

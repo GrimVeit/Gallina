@@ -21,7 +21,7 @@ public class PackSpinModel
         this.soundProvider = soundProvider;
         this.particleEffectProvider = particleEffectProvider;
 
-        //spinSound = this.soundProvider.GetSound("Spin");
+        spinSound = this.soundProvider.GetSound("Wheel");
     }
 
     public void Spin()
@@ -29,9 +29,9 @@ public class PackSpinModel
         if (isActive)
         {
             OnActivateSpin?.Invoke();
-            //spinSound.SetVolume(0.8f);
-            //spinSound.SetPitch(1);
-            //spinSound.Play();
+            spinSound.SetVolume(0.8f);
+            spinSound.SetPitch(1);
+            spinSound.Play();
         }
     }
 

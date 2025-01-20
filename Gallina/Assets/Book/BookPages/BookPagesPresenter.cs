@@ -30,7 +30,7 @@ public class BookPagesPresenter
 
     private void ActivateEvents()
     {
-        bookPagesView.OnChoosePage += bookPagesModel.NumberPage;
+        bookPagesView.OnChoosePage += bookPagesModel.ChoosePage;
         bookPagesView.OnEndOpenPage += bookPagesModel.EndOpenPage;
 
         bookPagesModel.OnNumberPage += bookPagesView.SetDisplayNumberPage;
@@ -41,7 +41,7 @@ public class BookPagesPresenter
 
     private void DeactivateEvents()
     {
-        bookPagesView.OnChoosePage -= bookPagesModel.NumberPage;
+        bookPagesView.OnChoosePage -= bookPagesModel.ChoosePage;
         bookPagesView.OnEndOpenPage -= bookPagesModel.EndOpenPage;
 
         bookPagesModel.OnNumberPage -= bookPagesView.SetDisplayNumberPage;
