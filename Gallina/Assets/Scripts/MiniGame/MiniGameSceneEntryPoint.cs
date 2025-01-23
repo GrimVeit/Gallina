@@ -43,13 +43,16 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         basketPresenter = new BasketPresenter(new BasketModel(3, 1, soundPresenter), viewContainer.GetView<BasketView_LeftRightControl>());
         basketPresenter.Initialize();
 
-        eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(2f, 0.5f, 0.01f, soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
+        eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(4f, 2f, 0.001f, soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
         eggCatcherPresenter.Initialize();
 
         scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, soundPresenter), viewContainer.GetView<ScoreView>());
         scorePresenter.Initialize();
 
-        pointAnimationPresenter = new PointAnimationPresenter(new PointAnimationModel(), viewContainer.GetView<PointAnimationView_BabyChicken>());
+        pointAnimationPresenter = new PointAnimationPresenter
+            (new PointAnimationModel(), 
+            viewContainer.GetView<PointAnimationView_BabyChicken>(), 
+            soundPresenter);
         pointAnimationPresenter.Initialize();
 
         timerPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView>());

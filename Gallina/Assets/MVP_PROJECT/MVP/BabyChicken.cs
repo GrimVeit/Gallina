@@ -19,10 +19,13 @@ public class BabyChicken : MonoBehaviour
     private IEnumerator handleEggSequence_IEnumerator;
     private IEnumerator playRunning_IEnumerator;
 
+    private ISoundProvider soundProvider;
+
     private Tween moveTween;
 
-    public void SetMoveTransformFinish(Transform transform)
+    public void SetData(ISoundProvider soundProvider, Transform transform)
     {
+        this.soundProvider = soundProvider;
         this.moveOnFinishTransform = transform;
     }
 
@@ -38,7 +41,7 @@ public class BabyChicken : MonoBehaviour
 
 
         handleEggSequence_IEnumerator = HandleEggSequence(0.1f, 0.3f);
-        playRunning_IEnumerator = PlayRunningIEnumerator(0.1f);
+        playRunning_IEnumerator = PlayRunningIEnumerator(0.02f);
 
         StartCoroutine(handleEggSequence_IEnumerator);
     }
@@ -47,11 +50,15 @@ public class BabyChicken : MonoBehaviour
     {
         chickenImage.sprite = spriteCrackEgg;
 
+        soundProvider.PlayOneShot("Egg_Down");
+
         yield return new WaitForSeconds(timeCrack);
 
         chickenImage.sprite = spriteBreakEgg;
 
         yield return new WaitForSeconds(timeBreak);
+
+        soundProvider.PlayOneShot("Egg_Run");
 
         MoveBabyChicken();
         StartCoroutine(playRunning_IEnumerator);

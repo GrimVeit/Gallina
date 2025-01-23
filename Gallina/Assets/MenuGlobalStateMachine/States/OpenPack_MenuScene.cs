@@ -8,6 +8,7 @@ public class OpenPack_MenuScene : IGlobalState
     private SwipeClickAnimationPresenter swipeAnimationPresenter;
     private SwipePresenter swipePresenter;
     private SwipeClickDescriptionPresenter swipeClickDescriptionPresenter;
+    private ISoundProvider soundProvider;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
@@ -16,13 +17,15 @@ public class OpenPack_MenuScene : IGlobalState
         UnpackerPackPresenter unpackerPackPresenter, 
         SwipeClickAnimationPresenter swipeAnimationPresenter,
         SwipeClickDescriptionPresenter swipeClickDescriptionPresenter,
-        SwipePresenter swipePresenter)
+        SwipePresenter swipePresenter,
+        ISoundProvider soundProvider)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.unpackerPackPresenter = unpackerPackPresenter;
         this.swipeAnimationPresenter = swipeAnimationPresenter;
         this.swipeClickDescriptionPresenter = swipeClickDescriptionPresenter;
         this.swipePresenter = swipePresenter;
+        this.soundProvider = soundProvider;
     }
 
     public void EnterState()
@@ -51,6 +54,8 @@ public class OpenPack_MenuScene : IGlobalState
 
     private void ChangeStateToEndOpenPack()
     {
+        soundProvider.PlayOneShot("OpenPack");
+
         controlGlobalStateMachine.SetState(controlGlobalStateMachine.GetState<EndOpenPack_MenuScene>());
     }
 }

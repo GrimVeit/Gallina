@@ -47,7 +47,7 @@ public class BasketModel : IBasketModel
             OnMoveIndex?.Invoke(currentIndexTransform);
         }
 
-        //soundProvider.PlayOneShot("Wooden");
+        soundProvider.PlayOneShot("Button_LeftRight");
     }
 
     public void MoveLeftIndex()
@@ -61,7 +61,7 @@ public class BasketModel : IBasketModel
             OnMoveIndex?.Invoke(currentIndexTransform);
         }
 
-        //soundProvider.PlayOneShot("Wooden");
+        soundProvider.PlayOneShot("Button_LeftRight");
     }
 
     public void SetPositionIndex(int index)
@@ -77,7 +77,7 @@ public class BasketModel : IBasketModel
         currentIndexTransform = index;
         OnMoveIndex?.Invoke(currentIndexTransform);
 
-        //soundProvider.PlayOneShot("Wooden");
+        soundProvider.PlayOneShot("Button_LeftRight");
     }
 
     public void Activate()

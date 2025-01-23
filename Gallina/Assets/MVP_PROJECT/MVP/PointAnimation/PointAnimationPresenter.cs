@@ -7,10 +7,12 @@ public class PointAnimationPresenter
     private PointAnimationModel pointAnimationModel;
     private IPointAnimationView pointAnimationView;
 
-    public PointAnimationPresenter(PointAnimationModel pointAnimationModel, IPointAnimationView pointAnimationView)
+    public PointAnimationPresenter(PointAnimationModel pointAnimationModel, IPointAnimationView pointAnimationView, ISoundProvider soundProvider)
     {
         this.pointAnimationModel = pointAnimationModel;
         this.pointAnimationView = pointAnimationView;
+
+        this.pointAnimationView.SetSoundProvider(soundProvider);
     }
 
     public void Initialize()
@@ -52,6 +54,7 @@ public class PointAnimationPresenter
 
 public interface IPointAnimationView
 {
+    void SetSoundProvider(ISoundProvider soundProvider);
     void PlayAnimation();
     void PlayAnimation(Vector3 vector);
 }

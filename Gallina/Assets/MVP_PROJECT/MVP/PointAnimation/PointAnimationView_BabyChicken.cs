@@ -12,6 +12,8 @@ public class PointAnimationView_BabyChicken : View, IPointAnimationView
 
     private List<BabyChicken> babyChickens = new List<BabyChicken>();
 
+    private ISoundProvider soundProvider;
+
     public void PlayAnimation()
     {
 
@@ -27,7 +29,7 @@ public class PointAnimationView_BabyChicken : View, IPointAnimationView
         BabyChicken babyChicken = Instantiate(babyChickenPrefab, parentSpawn);
         babyChicken.transform.SetPositionAndRotation(vector, babyChickenPrefab.transform.rotation);
         babyChicken.OnEndMove += DestroyBabyChicken;
-        babyChicken.SetMoveTransformFinish(transformEndMove);
+        babyChicken.SetData(soundProvider, transformEndMove);
         babyChicken.ActivateAnimation();
 
         babyChickens.Add(babyChicken);
@@ -41,5 +43,10 @@ public class PointAnimationView_BabyChicken : View, IPointAnimationView
             babyChicken.OnEndMove -= DestroyBabyChicken;
             Destroy(babyChicken.gameObject);
         }
+    }
+
+    public void SetSoundProvider(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
     }
 }

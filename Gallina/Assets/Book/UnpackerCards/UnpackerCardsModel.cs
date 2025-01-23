@@ -18,10 +18,13 @@ public class UnpackerCardsModel
 
     private List<CardInfo> newCardList = new List<CardInfo>();
 
-    public UnpackerCardsModel(Cards cards, ICardCollection cardCollection)
+    private ISoundProvider soundProvider;
+
+    public UnpackerCardsModel(Cards cards, ICardCollection cardCollection, ISoundProvider soundProvider)
     {
         this.cards = cards;
         this.cardCollection = cardCollection;
+        this.soundProvider = soundProvider;
     }
 
     public void SpawnCards(Pack pack)
@@ -70,11 +73,15 @@ public class UnpackerCardsModel
 
     public void MoveCardToClose_Right()
     {
+        soundProvider.PlayOneShot("MoveCard_Right");
+
         OnMoveCardToClose_Right?.Invoke();
     }
 
     public void MoveCardToClose_Left()
     {
         OnMoveCardToClose_Left?.Invoke();
+
+        soundProvider.PlayOneShot("MoveCard_Left");
     }
 }
