@@ -33,7 +33,7 @@ public class UnpackerCardsView : View
         var currentCard = Instantiate(unpackCardPrefab, transformParentSpawn);
         currentCard.transform.position = transformSpawn.position;
         currentCard.transform.eulerAngles = new Vector3(0, 90, 0);
-        currentCard.SetData(cardInfo.Sprite);
+        currentCard.SetData(cardInfo, true);
 
         unpackedCards.Add(currentCard);
     }
@@ -43,7 +43,7 @@ public class UnpackerCardsView : View
         var currentCard = Instantiate(unpackCardPrefab, transformParentSpawn);
         currentCard.transform.position = transformSpawn.position;
         currentCard.transform.eulerAngles = new Vector3(0, 90, 0);
-        currentCard.SetData(cardInfo.Sprite);
+        currentCard.SetData(cardInfo, false);
         currentCard.ActivateDuplicate();
 
         unpackedCards.Add(currentCard);
@@ -61,11 +61,9 @@ public class UnpackerCardsView : View
 
     public void ActivateCards()
     {
-        unpackedCards.ForEach(task => task.RotateTo(Vector3.zero, 0.2f));
+        //unpackedCards.ForEach(task => task.RotateTo(Vector3.zero, 0.2f));
 
-        currentUnpackCard = unpackedCards[unpackedCards.Count - 1];
-
-        isActive = false;
+        RotateOpenCard();
     }
 
     public void MoveCardToClose_Right()
@@ -74,7 +72,7 @@ public class UnpackerCardsView : View
 
         isActive = true;
 
-        currentUnpackCard?.MoveTo(transformRightEnd.position, 0.4f, SetNextCard);
+        currentUnpackCard?.MoveTo(transformRightEnd.position, 0.4f, RotateOpenCard);
         currentUnpackCard?.RotateTo(new Vector3(0, 0, -30), 0.3f);
     }
 
@@ -85,20 +83,23 @@ public class UnpackerCardsView : View
 
         isActive = true;
 
-        currentUnpackCard?.MoveTo(transformLeftEnd.position, 0.4f, SetNextCard);
+        currentUnpackCard?.MoveTo(transformLeftEnd.position, 0.4f, RotateOpenCard);
         currentUnpackCard?.RotateTo(new Vector3(0, 0, 30), 0.3f);
     }
 
-
-    public void SetNextCard()
+    private void RotateOpenCard()
     {
-        unpackedCards.Remove(currentUnpackCard);
+        if (currentUnpackCard != null)
+        {
+            unpackedCards.Remove(currentUnpackCard);
 
-        currentUnpackCard.DeatroyCard();
+            currentUnpackCard.DeatroyCard();
+        }
 
         if(unpackedCards.Count > 0)
         {
-            currentUnpackCard = unpackedCards[unpackedCards.Count - 1];
+            var index = unpackedCards.Count - 1;
+            unpackedCards[index].RotateTo(Vector3.zero, 0.2f, SetNextCard);
         }
         else
         {
@@ -106,12 +107,19 @@ public class UnpackerCardsView : View
             ClearCards();
             OnAllCardsOpen?.Invoke();
         }
+    }
 
+
+    public void SetNextCard()
+    {
+        currentUnpackCard = unpackedCards[unpackedCards.Count - 1];
+        OnSetNextCard?.Invoke(currentUnpackCard.CardInfo, currentUnpackCard.IsNew);
         isActive = false;
     }
 
     #region Input
 
+    public event Action<CardInfo, bool> OnSetNextCard;
     public event Action OnAllCardsOpen;
 
     #endregion

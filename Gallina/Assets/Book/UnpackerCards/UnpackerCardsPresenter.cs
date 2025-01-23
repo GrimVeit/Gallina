@@ -30,6 +30,8 @@ public class UnpackerCardsPresenter
 
     private void ActivateEvents()
     {
+        view.OnSetNextCard += model.OnSetCard;
+
         model.OnActivatedCards += view.ActivateCards;
         model.OnSpawnNewCard += view.SpawnNewCard;
         model.OnSpawnDuplicateCard += view.SpawnDuplicateCard;
@@ -40,6 +42,8 @@ public class UnpackerCardsPresenter
 
     private void DeactivateEvents()
     {
+        view.OnSetNextCard -= model.OnSetCard;
+
         model.OnActivatedCards -= view.ActivateCards;
         model.OnSpawnNewCard -= view.SpawnNewCard;
         model.OnSpawnDuplicateCard -= view.SpawnDuplicateCard;

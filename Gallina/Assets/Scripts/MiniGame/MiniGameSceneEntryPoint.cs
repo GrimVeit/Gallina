@@ -58,7 +58,14 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         timerPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView>());
         timerPresenter.Initialize();
 
-        globalStateMachine = new MiniGameGlobalStateMachine(sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter, pointAnimationPresenter, timerPresenter);
+        globalStateMachine = new MiniGameGlobalStateMachine
+            (sceneRoot, 
+            basketPresenter, 
+            eggCatcherPresenter, 
+            scorePresenter, 
+            pointAnimationPresenter, 
+            timerPresenter,
+            soundPresenter);
         globalStateMachine.Initialize();
 
         ActivateEvents();

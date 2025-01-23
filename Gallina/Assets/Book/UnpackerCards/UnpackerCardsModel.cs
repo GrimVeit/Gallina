@@ -19,12 +19,14 @@ public class UnpackerCardsModel
     private List<CardInfo> newCardList = new List<CardInfo>();
 
     private ISoundProvider soundProvider;
+    private IParticleEffectProvider particleEffectProvider;
 
-    public UnpackerCardsModel(Cards cards, ICardCollection cardCollection, ISoundProvider soundProvider)
+    public UnpackerCardsModel(Cards cards, ICardCollection cardCollection, ISoundProvider soundProvider, IParticleEffectProvider particleEffectProvider)
     {
         this.cards = cards;
         this.cardCollection = cardCollection;
         this.soundProvider = soundProvider;
+        this.particleEffectProvider = particleEffectProvider;
     }
 
     public void SpawnCards(Pack pack)
@@ -83,5 +85,41 @@ public class UnpackerCardsModel
         OnMoveCardToClose_Left?.Invoke();
 
         soundProvider.PlayOneShot("MoveCard_Left");
+    }
+
+    public void OnSetCard(CardInfo cardInfo, bool isNew)
+    {
+        Debug.LogWarning(cardInfo.cardType + "//" + cardInfo.Number + "//" + isNew);
+
+        if (isNew)
+        {
+            switch (cardInfo.cardType)
+            {
+                case TypeCard.common:
+                    soundProvider.PlayOneShot("NewCard_Common");
+                    particleEffectProvider.Play("NewCard_Common");
+                    break;
+                case TypeCard.rare:
+                    soundProvider.PlayOneShot("NewCard_Rare");
+                    particleEffectProvider.Play("NewCard_Rare");
+                    break;
+                case TypeCard.epic:
+                    soundProvider.PlayOneShot("NewCard_Epic");
+                    particleEffectProvider.Play("NewCard_Epic");
+                    break;
+                case TypeCard.legendary:
+                    soundProvider.PlayOneShot("NewCard_Legendary");
+                    particleEffectProvider.Play("NewCard_Legendary");
+                    break;
+                case TypeCard.gold:
+                    soundProvider.PlayOneShot("NewCard_Gold");
+                    particleEffectProvider.Play("NewCard_Gold");
+                    break;
+            }
+        }
+        else
+        {
+            soundProvider.PlayOneShot("DuplicateCard");
+        }
     }
 }

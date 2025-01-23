@@ -15,12 +15,13 @@ public class MiniGameGlobalStateMachine : IControlGlobalStateMachine
         EggCatcherPresenter eggCatcherPresenter, 
         ScorePresenter scorePresenter,
         PointAnimationPresenter pointAnimationPresenter,
-        TimerPresenter timerPresenter)
+        TimerPresenter timerPresenter,
+        ISoundProvider soundProvider)
     {
         states[typeof(StartMiniGame_GlobalState)] = new StartMiniGame_GlobalState(this, sceneRoot, basketPresenter, timerPresenter);
         states[typeof(MiniGame_GlobalState)] = new MiniGame_GlobalState(this, sceneRoot, basketPresenter, eggCatcherPresenter, scorePresenter, pointAnimationPresenter);
-        states[typeof(WinMiniGame_GlobalState)] = new WinMiniGame_GlobalState(this, sceneRoot, eggCatcherPresenter, pointAnimationPresenter);
-        states[typeof(FailMiniGame_GlobalState)] = new FailMiniGame_GlobalState(this, sceneRoot, eggCatcherPresenter, pointAnimationPresenter);
+        states[typeof(WinMiniGame_GlobalState)] = new WinMiniGame_GlobalState(this, sceneRoot, eggCatcherPresenter, pointAnimationPresenter, soundProvider);
+        states[typeof(FailMiniGame_GlobalState)] = new FailMiniGame_GlobalState(this, sceneRoot, eggCatcherPresenter, pointAnimationPresenter, soundProvider);
     }
 
     public void Initialize()

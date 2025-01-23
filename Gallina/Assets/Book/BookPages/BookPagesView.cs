@@ -27,7 +27,7 @@ public class BookPagesView : View
         currentOpenPage.ClosePage();
         currentOpenPage.transform.SetParent(parentClosePages);
 
-        OnChoosePage?.Invoke(currentOpenPage);
+        //OnChoosePage?.Invoke(currentOpenPage);
         OnChoosePage_Second?.Invoke(openPages.FirstOrDefault(data => data.BookPageData.Index == currentOpenPage.BookPageData.Index + 1));
     }
 

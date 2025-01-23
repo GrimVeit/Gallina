@@ -1,12 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UnpackCard : MonoBehaviour
 {
+    public CardInfo CardInfo => cardInfo;
+    public bool IsNew => isNew;
+
     [SerializeField] private Transform transformCard;
     [SerializeField] private Image imageCard;
     [SerializeField] private GameObject duplicateObject;
@@ -15,9 +16,14 @@ public class UnpackCard : MonoBehaviour
     private Tween tweenScale;
     private Tween tweenRotate;
 
-    public void SetData(Sprite sprite)
+    private CardInfo cardInfo;
+    private bool isNew = false;
+
+    public void SetData(CardInfo cardInfo, bool isNew)
     {
-        imageCard.sprite = sprite;
+        imageCard.sprite = cardInfo.Sprite;
+        this.cardInfo = cardInfo;
+        this.isNew = isNew;
     }
 
     public void ActivateDuplicate()

@@ -280,6 +280,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1562337756}
+  - {fileID: 977493440}
   m_Father: {fileID: 2002616253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377947648
@@ -873,6 +874,134 @@ Transform:
   - {fileID: 460187722}
   m_Father: {fileID: 2002616253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &977493439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977493440}
+  - component: {fileID: 977493441}
+  m_Layer: 0
+  m_Name: OpenCard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977493440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977493439}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 309527289}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &977493441
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977493439}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1144957913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,6 +1800,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2037030613}
   - {fileID: 1144957914}
   - {fileID: 1489232944}
   - {fileID: 780739513}
@@ -1700,7 +1830,7 @@ MonoBehaviour:
   - id: Background
     audioSource: {fileID: 1144957915}
     audioClip: {fileID: 8300000, guid: 6e6b460592f8b8f4abf58339e42f0567, type: 3}
-    volume: 0.4
+    volume: 0.5
     pitch: 1
     isLoop: 1
     isPlayAwake: 1
@@ -1714,7 +1844,7 @@ MonoBehaviour:
   - id: SelectList
     audioSource: {fileID: 460187723}
     audioClip: {fileID: 8300000, guid: 9fb761ea4cec5164099e09d05337373f, type: 3}
-    volume: 0.4
+    volume: 0.6
     pitch: 1.2
     isLoop: 0
     isPlayAwake: 0
@@ -1735,22 +1865,64 @@ MonoBehaviour:
   - id: OpenPack
     audioSource: {fileID: 1489232945}
     audioClip: {fileID: 8300000, guid: 2b68991c45a6bec4bace5f1dc1f8dcca, type: 3}
-    volume: 0.4
+    volume: 0.5
     pitch: 1
     isLoop: 0
     isPlayAwake: 0
   - id: MoveCard_Left
     audioSource: {fileID: 780739514}
     audioClip: {fileID: 8300000, guid: bbd128f81e40a94458e4cd219307f56e, type: 3}
-    volume: 0.4
+    volume: 0.5
     pitch: 0.98
     isLoop: 0
     isPlayAwake: 0
   - id: MoveCard_Right
     audioSource: {fileID: 780739514}
     audioClip: {fileID: 8300000, guid: bbd128f81e40a94458e4cd219307f56e, type: 3}
-    volume: 0.4
+    volume: 0.5
     pitch: 1.02
+    isLoop: 0
+    isPlayAwake: 0
+  - id: NewCard_Common
+    audioSource: {fileID: 977493441}
+    audioClip: {fileID: 8300000, guid: d4709d660989c5a49a2e73a7868a4ad9, type: 3}
+    volume: 0.6
+    pitch: 1
+    isLoop: 0
+    isPlayAwake: 0
+  - id: NewCard_Rare
+    audioSource: {fileID: 977493441}
+    audioClip: {fileID: 8300000, guid: 3bf05c92d531d5042941a230dee962e9, type: 3}
+    volume: 0.6
+    pitch: 1
+    isLoop: 0
+    isPlayAwake: 0
+  - id: NewCard_Epic
+    audioSource: {fileID: 977493441}
+    audioClip: {fileID: 8300000, guid: b7231037d8081cd4985b7435f1ebc73c, type: 3}
+    volume: 0.6
+    pitch: 1
+    isLoop: 0
+    isPlayAwake: 0
+  - id: NewCard_Legendary
+    audioSource: {fileID: 977493441}
+    audioClip: {fileID: 8300000, guid: 1744a12edeeeb794c81529a9106cbc05, type: 3}
+    volume: 0.6
+    pitch: 1
+    isLoop: 0
+    isPlayAwake: 0
+  - id: NewCard_Gold
+    audioSource: {fileID: 977493441}
+    audioClip: {fileID: 8300000, guid: 5de491fb239618445be741449e452b76, type: 3}
+    volume: 0.6
+    pitch: 1
+    isLoop: 0
+    isPlayAwake: 0
+  - id: DuplicateCard
+    audioSource: {fileID: 977493441}
+    audioClip: {fileID: 8300000, guid: d63f1e3fa91f80e4ca1d5370867f3f41, type: 3}
+    volume: 0.6
+    pitch: 1
     isLoop: 0
     isPlayAwake: 0
 --- !u!1 &2037030611
@@ -1879,7 +2051,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2002616253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2138375266
 GameObject:
@@ -2038,4 +2210,3 @@ SceneRoots:
   - {fileID: 2138375269}
   - {fileID: 926885647}
   - {fileID: 2002616253}
-  - {fileID: 2037030613}

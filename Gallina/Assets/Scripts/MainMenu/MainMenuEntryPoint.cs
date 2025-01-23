@@ -61,7 +61,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         unpackerPackPresenter = new UnpackerPackPresenter(new UnpackerPackModel(), viewContainer.GetView<UnpackerPackView>());
 
-        unpackerCardsPresenter = new UnpackerCardsPresenter(new UnpackerCardsModel(cards, cardCollectionPresenter, soundPresenter), viewContainer.GetView<UnpackerCardsView>());
+        unpackerCardsPresenter = new UnpackerCardsPresenter(new UnpackerCardsModel(cards, cardCollectionPresenter, soundPresenter, particleEffectPresenter), viewContainer.GetView<UnpackerCardsView>());
 
         addCardCollectionPresenter = new AddCardCollectionPresenter(new AddCardCollectionModel(soundPresenter), viewContainer.GetView<AddCardCollectionView>());
 
