@@ -11,6 +11,14 @@ public class ShopItemSelectModel
 
     private ShopItemPack currentSelectPack;
 
+    private ISoundProvider soundProvider;
+
+    public ShopItemSelectModel(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
+
+
     public void SelectPack(ShopItemPack pack)
     {
         if(currentSelectPack != null)
@@ -20,6 +28,7 @@ public class ShopItemSelectModel
             OnUnselect?.Invoke();
         }
 
+        soundProvider.PlayOneShot("NewPack");
         currentSelectPack = pack;
         currentSelectPack.OnEndSelect += OnSelectPackMethod;
         OnSelectPack?.Invoke(currentSelectPack);

@@ -7,6 +7,8 @@ public class EndPackSpin_MenuScene : IGlobalState
     private ClickPresenter clickPresenter;
     private SwipeClickAnimationPresenter swipeClickAnimationPresenter;
     private SwipeClickDescriptionPresenter swipeClickDescriptionPresenter;
+    private ISoundProvider soundProvider;
+    private IParticleEffectProvider particleEffectProvider;
 
     private IControlGlobalStateMachine globalMachineControl;
 
@@ -14,18 +16,25 @@ public class EndPackSpin_MenuScene : IGlobalState
         IControlGlobalStateMachine globalMachineControl,
         SwipeClickAnimationPresenter swipeClickAnimationPresenter,
         SwipeClickDescriptionPresenter swipeClickDescriptionPresenter,
-        ClickPresenter clickPresenter)
+        ClickPresenter clickPresenter,
+        ISoundProvider soundProvider,
+        IParticleEffectProvider particleEffectProvider)
     {
         this.globalMachineControl = globalMachineControl;
         this.swipeClickAnimationPresenter = swipeClickAnimationPresenter;
         this.swipeClickDescriptionPresenter = swipeClickDescriptionPresenter;
         this.clickPresenter = clickPresenter;
+        this.soundProvider = soundProvider;
+        this.particleEffectProvider = particleEffectProvider;
     }
 
 
     public void EnterState()
     {
         Debug.Log("Activate - END PACK SPIN STATE");
+
+        soundProvider.PlayOneShot("NewPack_Presentation");
+        particleEffectProvider.Play("NewPack");
 
         clickPresenter.OnClick += ChangeStateToStartOpenPack;
 

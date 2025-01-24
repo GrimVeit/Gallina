@@ -7,16 +7,17 @@ public class WinMiniGame_GlobalState : IGlobalState
     private UIMiniGameSceneRoot sceneRoot;
     private EggCatcherPresenter eggCatcherPresenter;
     private PointAnimationPresenter pointAnimationPresenter;
+    private IParticleEffectProvider particleEffectProvider;
 
     private IControlGlobalStateMachine machineControl;
 
     private ISoundProvider soundProvider;
-    private ISound soundGameOver;
+    private ISound soundGameWin;
     private ISound soundBackground;
 
     private IEnumerator enumeratorSoundGameOver;
 
-    public WinMiniGame_GlobalState(IControlGlobalStateMachine machineControl, UIMiniGameSceneRoot sceneRoot, EggCatcherPresenter eggCatcherPresenter, PointAnimationPresenter pointAnimationPresenter, ISoundProvider soundProvider)
+    public WinMiniGame_GlobalState(IControlGlobalStateMachine machineControl, UIMiniGameSceneRoot sceneRoot, EggCatcherPresenter eggCatcherPresenter, PointAnimationPresenter pointAnimationPresenter, ISoundProvider soundProvider, IParticleEffectProvider particleEffectProvider)
     {
         this.machineControl = machineControl;
         this.sceneRoot = sceneRoot;
@@ -24,8 +25,9 @@ public class WinMiniGame_GlobalState : IGlobalState
         this.pointAnimationPresenter = pointAnimationPresenter;
         this.soundProvider = soundProvider;
 
-        this.soundGameOver = soundProvider.GetSound("GameOver");
+        this.soundGameWin = soundProvider.GetSound("GameWin");
         this.soundBackground = soundProvider.GetSound("Background");
+        this.particleEffectProvider = particleEffectProvider;
     }
 
     public void EnterState()
@@ -38,6 +40,7 @@ public class WinMiniGame_GlobalState : IGlobalState
         sceneRoot.CloseHeaderPanel();
 
         soundBackground.SetVolume(0.4f, 0.1f, 0.1f, EndSound);
+        particleEffectProvider.Play("GameWin");
     }
 
     public void ExitState()
@@ -59,7 +62,7 @@ public class WinMiniGame_GlobalState : IGlobalState
 
     private IEnumerator EndSoundGameOver()
     {
-        soundGameOver.PlayOneShot();
+        soundGameWin.PlayOneShot();
 
         yield return new WaitForSeconds(2f);
 

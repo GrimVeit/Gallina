@@ -20,14 +20,12 @@ public class BasketModel : IBasketModel
         indexTransforms = new int[size];
 
         this.soundProvider = soundProvider;
-
         currentIndexTransform = startIndex;
-        OnMoveIndex?.Invoke(currentIndexTransform);
     }
 
     public void Initialize()
     {
-
+        OnMoveIndex?.Invoke(currentIndexTransform);
     }
 
     public void Dispose()

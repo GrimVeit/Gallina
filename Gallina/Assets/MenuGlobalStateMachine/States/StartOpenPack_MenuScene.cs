@@ -7,6 +7,7 @@ public class StartOpenPack_MenuScene : IGlobalState
     private UIMainMenuRoot sceneRoot;
     private UnpackerPackPresenter unpackerPackPresenter;
     private ShopItemSelectPresenter shopItemSelectPresenter;
+    private ISoundProvider soundProvider;
 
     private IControlGlobalStateMachine controlGlobalStateMachine;
 
@@ -14,12 +15,14 @@ public class StartOpenPack_MenuScene : IGlobalState
         IControlGlobalStateMachine controlGlobalStateMachine,
         UIMainMenuRoot sceneRoot,
         UnpackerPackPresenter unpackerPackPresenter,
-        ShopItemSelectPresenter shopItemSelectPresenter)
+        ShopItemSelectPresenter shopItemSelectPresenter,
+        ISoundProvider soundProvider)
     {
         this.controlGlobalStateMachine = controlGlobalStateMachine;
         this.sceneRoot = sceneRoot;
         this.unpackerPackPresenter = unpackerPackPresenter;
         this.shopItemSelectPresenter = shopItemSelectPresenter;
+        this.soundProvider = soundProvider;
     }
 
     public void EnterState()
@@ -31,6 +34,7 @@ public class StartOpenPack_MenuScene : IGlobalState
         sceneRoot.OpenPackPanel();
         shopItemSelectPresenter.Unselect();
         unpackerPackPresenter.MovePackToOpen();
+        //soundProvider.PlayOneShot("NewPack");
     }
 
     public void ExitState()

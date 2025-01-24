@@ -8,6 +8,13 @@ public class MainPanel_MainMenuScene : MovePanel
 
     public event Action OnGoToShop;
 
+    private ISoundProvider soundProvider;
+
+    public void SetSoundProvider(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
+
     public override void ActivatePanel()
     {
         base.ActivatePanel();
@@ -24,6 +31,7 @@ public class MainPanel_MainMenuScene : MovePanel
 
     private void HandleGoToChooseGamePanel()
     {
+        soundProvider.PlayOneShot("Button_Click");
         OnGoToShop?.Invoke();
     }
 }

@@ -67,7 +67,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         shopPackPresenter = new ShopPackPresenter(new ShopPackModel(bankPresenter, 20), viewContainer.GetView<ShopPackView>());
 
-        shopItemSelectPresenter = new ShopItemSelectPresenter(new ShopItemSelectModel(), viewContainer.GetView<ShopItemSelectView>());
+        shopItemSelectPresenter = new ShopItemSelectPresenter(new ShopItemSelectModel(soundPresenter), viewContainer.GetView<ShopItemSelectView>());
 
         packSpinPresenter = new PackSpinPresenter(new PackSpinModel(soundPresenter, particleEffectPresenter), viewContainer.GetView<PackSpinView>());
 
@@ -95,7 +95,8 @@ public class MainMenuEntryPoint : MonoBehaviour
             swipePresenter,
             clickPresenter,
             swipeClickDescriptionPresenter,
-            soundPresenter);
+            soundPresenter,
+            particleEffectPresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();

@@ -1,30 +1,22 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class ScoreView : View
 {
-    //[Header("Score")]
-    //[SerializeField] private TextMeshProUGUI textCoins;
-    //[SerializeField] private GameObject display100;
-    //[SerializeField] private GameObject display10;
-    //[SerializeField] private GameObject display1000;
+    [Header("Score")]
+    [SerializeField] private List<TextMeshProUGUI> textCoins = new List<TextMeshProUGUI>();
 
-    //[Header("Health")]
+    [Header("Health")]
     [SerializeField] private Transform parentEggsHealth;
     [SerializeField] private HealthStar healthPrefab;
     [SerializeField] private Sprite spriteActiveHealth;
     [SerializeField] private Sprite spriteInactiveHealth;
 
-    //private Vector3 defaultDisplay10Size;
-    //private Vector3 defaultDisplay100Size;
-    //private Vector3 defaultDisplay1000Size;
-
     public void Initialize()
     {
-        //defaultDisplay10Size = display10.transform.localScale;
-        //defaultDisplay100Size = display100.transform.localScale;
-        //defaultDisplay1000Size = display1000.transform.localScale;
+
     }
 
     public void Dispose()
@@ -36,27 +28,7 @@ public class ScoreView : View
 
     public void DisplayCoins(int coins)
     {
-        //textCoins.text = coins.ToString();
-    }
-
-    public void DisplayWin(int coins)
-    {
-        //switch (coins)
-        //{
-        //    case 10:
-        //        display10.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).
-        //            OnComplete(() => display10.transform.DOScale(defaultDisplay10Size, 0.2f));
-        //        break;
-        //    case 100:
-        //        display100.transform.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.1f).
-        //            OnComplete(() => display100.transform.DOScale(defaultDisplay100Size, 0.25f));
-        //        break;
-        //    case 1000:
-        //        display1000.transform.DOScale(new Vector3(1.6f, 1.6f, 1.6f), 0.1f).
-        //            OnComplete(() => display1000.transform.DOScale(defaultDisplay1000Size, 0.3f));
-        //        break;
-
-        //}
+        textCoins.ForEach(x => x.text = (coins.ToString() + " coins") );
     }
 
     #endregion

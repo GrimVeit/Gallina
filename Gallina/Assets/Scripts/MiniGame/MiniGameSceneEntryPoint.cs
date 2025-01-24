@@ -25,7 +25,6 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     {
         sceneRoot = Instantiate(sceneRootPrefab);
         sceneRoot.Activate();
-        sceneRoot.Initialize();
         uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
 
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
@@ -33,6 +32,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         soundPresenter = new SoundPresenter(new SoundModel(sounds.sounds, PlayerPrefsKeys.IS_MUTE_SOUNDS), viewContainer.GetView<SoundView>());
         soundPresenter.Initialize();
+
+        sceneRoot.SetSoundProvider(soundPresenter);
+        sceneRoot.Initialize();
 
         particleEffectPresenter = new ParticleEffectPresenter(new ParticleEffectModel(), viewContainer.GetView<ParticleEffectView>());
         particleEffectPresenter.Initialize();
@@ -65,7 +67,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
             scorePresenter, 
             pointAnimationPresenter, 
             timerPresenter,
-            soundPresenter);
+            soundPresenter,
+            particleEffectPresenter);
         globalStateMachine.Initialize();
 
         ActivateEvents();

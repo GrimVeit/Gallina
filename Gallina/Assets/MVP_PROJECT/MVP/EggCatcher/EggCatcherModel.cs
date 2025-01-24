@@ -60,7 +60,7 @@ public class EggCatcherModel
     {
         if (!isActive) return;
 
-        //soundProvider.PlayOneShot("Pop");
+        soundProvider.PlayOneShot("EggWin");
 
         OnEggWin?.Invoke();
     }

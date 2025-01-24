@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +6,13 @@ public class WinPanel_MiniGameScene : MovePanel
 {
     [SerializeField] private Button buttonExit;
     [SerializeField] private Button buttonRestart;
+
+    private ISoundProvider soundProvider;
+
+    public void SetSoundProvider(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
 
     public override void Initialize()
     {
@@ -32,11 +37,13 @@ public class WinPanel_MiniGameScene : MovePanel
 
     private void HandleClickToExitButton()
     {
+        soundProvider.PlayOneShot("Button_Click");
         OnClickToButtonExit?.Invoke();
     }
 
     private void HandleClickToRestartButton()
     {
+        soundProvider.PlayOneShot("Button_Click");
         OnClickToButtonRestart?.Invoke();
     }
 

@@ -8,6 +8,13 @@ public class ShopPanel_MainMenuScene : MovePanel
     [SerializeField] private Button playButton;
     [SerializeField] private Button collections_Button;
 
+    private ISoundProvider soundProvider;
+
+    public void SetSoundProvider(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
+
     public override void ActivatePanel()
     {
         base.ActivatePanel();
@@ -35,16 +42,19 @@ public class ShopPanel_MainMenuScene : MovePanel
 
     private void HandlerClickToBackButton()
     {
+        soundProvider.PlayOneShot("Button_Click");
         OnClickBackButton?.Invoke();
     }
 
     private void HandleClickToCollectionButton()
     {
+        soundProvider.PlayOneShot("Button_Click");
         OnClickCollectionsButton?.Invoke();
     }
 
     private void HandleClickToPlayButton()
     {
+        soundProvider.PlayOneShot("Button_Click");
         OnClickPlayButton?.Invoke();
     }
 

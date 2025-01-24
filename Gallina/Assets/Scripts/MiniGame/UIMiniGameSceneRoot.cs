@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIMiniGameSceneRoot : MonoBehaviour
 {
@@ -12,10 +11,21 @@ public class UIMiniGameSceneRoot : MonoBehaviour
     [SerializeField] private WinPanel_MiniGameScene winPanel;
     [SerializeField] private FailPanel_MiniGameScene failPanel;
 
+    private ISoundProvider soundProvider;
+
+    public void SetSoundProvider(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
+
     private Panel currentPanel;
 
     public void Initialize()
     {
+        headerPanel.SetSoundProvider(soundProvider);
+        winPanel.SetSoundProvider(soundProvider);
+        failPanel.SetSoundProvider(soundProvider);
+
         mainPanel.Initialize();
         headerPanel.Initialize();
         footerPanel.Initialize();

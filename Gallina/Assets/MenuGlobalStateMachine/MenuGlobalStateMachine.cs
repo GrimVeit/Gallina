@@ -21,13 +21,14 @@ public class MenuGlobalStateMachine : IControlGlobalStateMachine
         SwipePresenter swipePresenter,
         ClickPresenter clickPresenter,
         SwipeClickDescriptionPresenter swipeClickDescriptionPresenter,
-        ISoundProvider soundProvider) 
+        ISoundProvider soundProvider,
+        IParticleEffectProvider particleEffectProvider) 
     {
         states[typeof(Hello_MenuScene)] = new Hello_MenuScene(this, sceneRoot);
         states[typeof(Main_MenuScene)] = new Main_MenuScene(this, sceneRoot, shopPackPresenter, unpackerPackPresenter, unpackerCardsPresenter, addCardCollectionPresenter);
         states[typeof(PackSpin_MenuScene)] = new PackSpin_MenuScene(this, sceneRoot, packSpinPresenter, shopItemSelectPresenter, unpackerPackPresenter, unpackerCardsPresenter, addCardCollectionPresenter);
-        states[typeof(EndPackSpin_MenuScene)] = new EndPackSpin_MenuScene(this, swipeAnimationPresenter, swipeClickDescriptionPresenter, clickPresenter);
-        states[typeof(StartOpenPack_MenuScene)] = new StartOpenPack_MenuScene(this, sceneRoot, unpackerPackPresenter, shopItemSelectPresenter);
+        states[typeof(EndPackSpin_MenuScene)] = new EndPackSpin_MenuScene(this, swipeAnimationPresenter, swipeClickDescriptionPresenter, clickPresenter, soundProvider, particleEffectProvider);
+        states[typeof(StartOpenPack_MenuScene)] = new StartOpenPack_MenuScene(this, sceneRoot, unpackerPackPresenter, shopItemSelectPresenter, soundProvider);
         states[typeof(OpenPack_MenuScene)] = new OpenPack_MenuScene(this, unpackerPackPresenter, swipeAnimationPresenter, swipeClickDescriptionPresenter, swipePresenter, soundProvider);
         states[typeof(EndOpenPack_MenuScene)] = new EndOpenPack_MenuScene(this, unpackerPackPresenter);
         states[typeof(OpenCards_MenuScene)] = new OpenCards_MenuScene(this, unpackerCardsPresenter, swipeAnimationPresenter, swipePresenter, swipeClickDescriptionPresenter);

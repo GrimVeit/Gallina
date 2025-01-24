@@ -8,6 +8,13 @@ public class CollectionPanel_MainMenuScene : MovePanel
 {
     [SerializeField] private Button buttonBack;
 
+    private ISoundProvider soundProvider;
+
+    public void SetSoundProvider(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
+
     public override void Initialize()
     {
         base.Initialize();
@@ -38,6 +45,7 @@ public class CollectionPanel_MainMenuScene : MovePanel
 
     private void HandleClickToBackButton()
     {
+        soundProvider.PlayOneShot("Button_Click");
         OnClickToBackButton?.Invoke();
     }
     #endregion

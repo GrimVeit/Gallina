@@ -65,9 +65,10 @@ public class ScoreModel
     public void AddScore()
     {
         currentRecord += 1;
+        OnChangeAllCountCoins?.Invoke(currentRecord);
         AddCoins(1);
 
-        if(currentRecord == 30)
+        if(currentRecord == 5)
         {
             OnGameWinned?.Invoke();
         }

@@ -31,18 +31,14 @@ public class ScorePresenter
     {
         scoreModel.OnAddHealth += scoreView.AddHealth;
         scoreModel.OnRemoveHealth += scoreView.RemoveHealth;
-
         scoreModel.OnChangeAllCountCoins += scoreView.DisplayCoins;
-        scoreModel.OnGetCoins += scoreView.DisplayWin;
     }
 
     private void DeactivateEvents()
     {
         scoreModel.OnAddHealth -= scoreView.AddHealth;
         scoreModel.OnRemoveHealth -= scoreView.RemoveHealth;
-
         scoreModel.OnChangeAllCountCoins -= scoreView.DisplayCoins;
-        scoreModel.OnGetCoins -= scoreView.DisplayWin;
     }
 
     #region Input
